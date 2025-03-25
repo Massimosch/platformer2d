@@ -2,11 +2,12 @@ extends CharacterBody2D
 
 
 @export var speed : float = 200.0
-@export var jump_velocity : float = -200.0
+
 @export var double_jump_velocity : float = -100
 
 @onready var sprite : Sprite2D = $Sprite2D
 @onready var animation_tree : AnimationTree = $AnimationTree
+@onready var state_machine : CharacterStateMachine = $CharacterStateMachine
 
 #hae gravity projekti settingeistä ja synccc rigidbody nodejen kanssa
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -36,7 +37,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("jump"):
 		if is_on_floor():
 			#Normal jump
-			jump()
+			pass
 		elif not has_double_jumped:
 			double_jump()
 			
@@ -44,7 +45,7 @@ func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	direction = Input.get_vector("left", "right", "up", "down")
-	if direction.x != 0:
+	if direction.x != 0 && state_machine.check_if_can_move():
 		velocity.x = direction.x * speed
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
@@ -62,10 +63,6 @@ func update_facing_dir():
 		sprite.flip_h = false
 	elif direction.x < 0:
 		sprite.flip_h = true
-
-func jump():
-	velocity.y = jump_velocity
-	animation_locked = true
 
 func double_jump():
 	velocity.y = double_jump_velocity

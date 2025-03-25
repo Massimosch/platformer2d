@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://bgsi1vo3el1wv"]
+[gd_scene load_steps=58 format=3 uid="uid://bgsi1vo3el1wv"]
 
 [ext_resource type="Texture2D" uid="uid://dep52ujq4gv51" path="res://Art/Legacy-Fantasy - High Forest 2.3/Character/Idle/Idle-Sheet.png" id="1_5mj4t"]
 [ext_resource type="Script" uid="uid://bxq1vd4trhlp7" path="res://Characters/player.gd" id="1_eovys"]
@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://b1vdgjk1l2cu7" path="res://Art/Legacy-Fantasy - High Forest 2.3/Character/Jump-Start/Jump-Start-Sheet.png" id="4_p728j"]
 [ext_resource type="Texture2D" uid="uid://ent726f0jcyx" path="res://Art/Legacy-Fantasy - High Forest 2.3/Character/Jumlp-All/Jump-All-Sheet.png" id="5_5slg2"]
 [ext_resource type="Script" uid="uid://blu6jnyrcjnu" path="res://Characters/CharacterStateMachine.gd" id="7_p728j"]
+[ext_resource type="Script" uid="uid://dbwdr01nxqe5p" path="res://Characters/GroundState.gd" id="8_5slg2"]
+[ext_resource type="Script" uid="uid://5kkng6c3s4q2" path="res://Characters/AirState.gd" id="9_w3rah"]
+[ext_resource type="Script" uid="uid://d1w14p1bwafxl" path="res://Characters/LandingState.gd" id="10_c4gpq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_65n15"]
 atlas = ExtResource("1_5mj4t")
@@ -290,6 +293,45 @@ animations = [{
 radius = 8.0
 height = 44.0
 
+[sub_resource type="Animation" id="Animation_p728j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="Animation" id="Animation_4m0gv"]
 resource_name = "idle"
 length = 0.4
@@ -330,45 +372,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3]
-}
-
-[sub_resource type="Animation" id="Animation_p728j"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [null]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_5slg2"]
@@ -460,7 +463,6 @@ transitions = ["Start", "Move", SubResource("AnimationNodeStateMachineTransition
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_eovys")
-jump_velocity = -250.0
 double_jump_velocity = -150.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -487,7 +489,20 @@ tree_root = SubResource("AnimationNodeStateMachine_mevwr")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Move/blend_position = 0
 
-[node name="CharacterStateMachine" type="Node" parent="."]
+[node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state")]
 script = ExtResource("7_p728j")
+character = NodePath("..")
+current_state = NodePath("Ground")
+
+[node name="Ground" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("air_state")]
+script = ExtResource("8_5slg2")
+air_state = NodePath("../Air")
+
+[node name="Air" type="Node" parent="CharacterStateMachine"]
+script = ExtResource("9_w3rah")
+
+[node name="Landing" type="Node" parent="CharacterStateMachine"]
+script = ExtResource("10_c4gpq")
+can_move = false
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
