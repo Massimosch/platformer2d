@@ -1,5 +1,6 @@
 extends Label
-@export var state_machine : CharacterStateMachine
+
+@export var float_speed : Vector2 = Vector2(0, -50)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -8,4 +9,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	text = "State : " + state_machine.current_state.name
+	position += float_speed * delta
+
+
+func _on_timer_timeout():
+	queue_free()
