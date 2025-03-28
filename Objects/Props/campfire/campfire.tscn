@@ -1,0 +1,87 @@
+[gd_scene load_steps=12 format=3 uid="uid://dna1wnp1xl5qr"]
+
+[ext_resource type="Texture2D" uid="uid://b7aimguyw2vuy" path="res://Art/VillageGraphics/TX Village Props.png" id="1_5hn2p"]
+[ext_resource type="Texture2D" uid="uid://ctjku1a7i373u" path="res://Art/VillageGraphics/TX FX Flame.png" id="2_f7y63"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hkffx"]
+atlas = ExtResource("2_f7y63")
+region = Rect2(0, 99, 33, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gvw1u"]
+atlas = ExtResource("2_f7y63")
+region = Rect2(33, 99, 33, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_arcnq"]
+atlas = ExtResource("2_f7y63")
+region = Rect2(66, 99, 33, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vaoir"]
+atlas = ExtResource("2_f7y63")
+region = Rect2(99, 99, 33, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xmywe"]
+atlas = ExtResource("2_f7y63")
+region = Rect2(132, 99, 33, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rj6ne"]
+atlas = ExtResource("2_f7y63")
+region = Rect2(165, 99, 33, 33)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sdfqx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hkffx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gvw1u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_arcnq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vaoir")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xmywe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rj6ne")
+}],
+"loop": true,
+"name": &"campflame",
+"speed": 10.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_5hn2p"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_f7y63"]
+gradient = SubResource("Gradient_5hn2p")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.850427, 0.145299)
+
+[node name="Campfire" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1.90735e-06, -8)
+scale = Vector2(0.673913, 0.673913)
+texture = ExtResource("1_5hn2p")
+region_enabled = true
+region_rect = Rect2(354, 265, 61, 23)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.831254, 0.285814, 0.227523, 1)
+position = Vector2(-2, -27)
+sprite_frames = SubResource("SpriteFrames_sdfqx")
+animation = &"campflame"
+autoplay = "campflame"
+frame_progress = 0.18812
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -21)
+color = Color(0.953761, 0.493476, 0.257738, 1)
+energy = 1.5
+texture = SubResource("GradientTexture2D_f7y63")
+texture_scale = 3.0

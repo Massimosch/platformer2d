@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://yvuvuhdae2gh"]
+
+[ext_resource type="Texture2D" uid="uid://b7aimguyw2vuy" path="res://Art/VillageGraphics/TX Village Props.png" id="1_e4ns6"]
+
+[node name="Stairs" type="StaticBody2D"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-38, 22, -38, -22, -20, -22, -19, -20, -19, -14, -6, -14, -4, -12, -4, -6, 8, -6, 10, -3, 10, 2, 21, 2, 24, 4, 24, 10, 37, 10, 37, 22)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_e4ns6")
+region_enabled = true
+region_rect = Rect2(286, 693, 76, 44)

@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://du17cfsm7fijq"]
+
+[ext_resource type="Texture2D" uid="uid://b7aimguyw2vuy" path="res://Art/VillageGraphics/TX Village Props.png" id="1_lcike"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o1ei1"]
+size = Vector2(104, 7)
+
+[node name="Bridge" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_lcike")
+region_enabled = true
+region_rect = Rect2(28, 384, 104, 26)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -9.5)
+shape = SubResource("RectangleShape2D_o1ei1")
+one_way_collision = true
