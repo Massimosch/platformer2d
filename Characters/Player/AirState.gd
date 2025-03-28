@@ -10,7 +10,7 @@ class_name AirState
 
 var has_double_jumped = false
 
-func state_process(delta):
+func state_process(_delta):
 	if (character.is_on_floor()):
 		next_state = landing_state
 		
