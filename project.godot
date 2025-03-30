@@ -25,6 +25,10 @@ window/size/viewport_width=1400
 window/size/viewport_height=880
 window/stretch/scale=4.0
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/ovani_auto_footsteps/plugin.cfg")
+
 [input]
 
 up={

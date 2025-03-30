@@ -2,8 +2,8 @@ extends State
 
 @export var return_state : State
 @export var return_animation_node : String = "move"
-@export var attack1_name : String = "attack1"
-@export var attack2_name : String = "attack2"
+@export var attack1_name : String = "sword_attack_1"
+@export var attack2_name : String = "sword_attack_2"
 @export var attack2_node : String = "attack2"
 
 @onready var timer : Timer = $Timer
