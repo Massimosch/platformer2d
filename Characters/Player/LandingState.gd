@@ -7,5 +7,5 @@ class_name LandingState
 @onready var animation_player = $AnimationPlayer
 
 func _on_animation_tree_animation_finished(anim_name):
-	animation_player.stop()
-	next_state = ground_state
+	if (anim_name == landing_animation_name):
+		next_state = ground_state
