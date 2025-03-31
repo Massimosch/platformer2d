@@ -12,13 +12,10 @@ func _ready():
 	for child in get_children():
 		if(child is State):
 			states.append(child)
-			
 			#Set the state up with what they need to function
 			child.character = character
 			child.playback = animation_tree["parameters/playback"]
-			
 			child.connect("interrupt_state", on_state_interrupt_state)
-			
 		else:
 			push_warning("Child " + child.name + " is not a State")
 			
@@ -27,7 +24,6 @@ func _physics_process(delta):
 		switch_states(current_state.next_state)
 	current_state.state_process(delta)
 	
-
 func check_if_can_move():
 	return current_state.can_move
 

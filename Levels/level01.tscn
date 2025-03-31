@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://bbiqswa8jlgf4"]
+[gd_scene load_steps=12 format=4 uid="uid://bbiqswa8jlgf4"]
 
 [ext_resource type="Texture2D" uid="uid://dyp7g3uueei7b" path="res://Art/Background/1.png" id="1_jkiok"]
 [ext_resource type="Texture2D" uid="uid://b78oo2uv55323" path="res://Art/Legacy-Fantasy - High Forest 2.3/Assets/Tiles.png" id="1_yvup7"]
@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://ba7qjhtl3xngu" path="res://Art/Background/2.png" id="2_bhdl6"]
 [ext_resource type="Texture2D" uid="uid://chg5iis7mt3xw" path="res://Art/Background/3.png" id="3_l3eng"]
 [ext_resource type="Texture2D" uid="uid://5tk60ieim8jp" path="res://Art/Background/4.png" id="4_7f61k"]
+[ext_resource type="PackedScene" uid="uid://v6rjjadxrvuy" path="res://Characters/Enemies/Snail/snail.tscn" id="7_l3eng"]
+[ext_resource type="PackedScene" uid="uid://c05jomm5kcfne" path="res://UI/health_text.tscn" id="8_yrlwc"]
+[ext_resource type="PackedScene" uid="uid://dvgpf421071sr" path="res://UI/health_text_label.tscn" id="9_qlusc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_36tc4"]
 texture = ExtResource("1_yvup7")
@@ -1306,3 +1309,29 @@ process_callback = 0
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
+
+[node name="Snail" parent="." instance=ExtResource("7_l3eng")]
+position = Vector2(280, -39)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 253.0
+offset_top = -64.0
+offset_right = 307.0
+offset_bottom = -16.0
+
+[node name="HealthText" parent="Control" instance=ExtResource("8_yrlwc")]
+offset_left = 230.0
+offset_top = -32.0
+offset_right = 270.0
+offset_bottom = 8.0
+
+[node name="HealthTextLabel" parent="Control" instance=ExtResource("9_qlusc")]
+layout_mode = 1
+offset_left = 27.0
+offset_top = -69.0
+offset_right = 27.0
+offset_bottom = -69.0
+text = "
+"
