@@ -13,7 +13,6 @@ var direction : Vector2 = Vector2.ZERO
 
 signal facing_direction_changed(facing_right : bool)
 
-
 func _ready():
 	#VOISI MYÖS VALITA ANIMATION TREESTÄ ACTIVE = ON
 	animation_tree.active = true
