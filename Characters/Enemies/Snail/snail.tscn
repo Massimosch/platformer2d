@@ -1,12 +1,12 @@
 [gd_scene load_steps=18 format=3 uid="uid://v6rjjadxrvuy"]
 
-[ext_resource type="Script" uid="uid://txsse6siyk7k" path="res://Characters/Enemies/Snail/snail.gd" id="1_b3lom"]
+[ext_resource type="Script" uid="uid://txsse6siyk7k" path="res://Scripts/snail.gd" id="1_b3lom"]
 [ext_resource type="Texture2D" uid="uid://dwx1i3fet5j6r" path="res://Art/Legacy-Fantasy - High Forest 2.3/Mob/Snail/walk-Sheet.png" id="1_sbdk2"]
-[ext_resource type="Script" uid="uid://dw7js8ag07nes" path="res://Characters/Enemies/Snail/Damageable.gd" id="2_1j122"]
+[ext_resource type="Script" uid="uid://dw7js8ag07nes" path="res://Scripts/Damageable.gd" id="2_1j122"]
 [ext_resource type="Texture2D" uid="uid://ja77lo1fyggo" path="res://Art/Legacy-Fantasy - High Forest 2.3/Mob/Snail/Dead-Sheet.png" id="2_kafxg"]
-[ext_resource type="Script" uid="uid://blu6jnyrcjnu" path="res://Characters/Player/CharacterStateMachine.gd" id="4_b3lom"]
-[ext_resource type="Script" uid="uid://ds6d4b0flgg5c" path="res://Characters/Player/State.gd" id="5_5si3q"]
-[ext_resource type="Script" uid="uid://bv37n6ejx8x57" path="res://Characters/HitState.gd" id="6_xwxpx"]
+[ext_resource type="Script" uid="uid://blu6jnyrcjnu" path="res://Scripts/CharacterStateMachine.gd" id="4_b3lom"]
+[ext_resource type="Script" uid="uid://ds6d4b0flgg5c" path="res://Scripts/State.gd" id="5_5si3q"]
+[ext_resource type="Script" uid="uid://bv37n6ejx8x57" path="res://Scripts/HitState.gd" id="6_xwxpx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_36tc4"]
 size = Vector2(26, 21)

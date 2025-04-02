@@ -1,6 +1,6 @@
-[gd_scene load_steps=95 format=3 uid="uid://bgsi1vo3el1wv"]
+[gd_scene load_steps=96 format=3 uid="uid://bgsi1vo3el1wv"]
 
-[ext_resource type="Script" uid="uid://bxq1vd4trhlp7" path="res://Characters/Player/player.gd" id="1_eovys"]
+[ext_resource type="Script" uid="uid://bxq1vd4trhlp7" path="res://Scripts/player.gd" id="1_eovys"]
 [ext_resource type="Texture2D" uid="uid://0jbpda2hb614" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-smrslt-00.png" id="3_qysuy"]
 [ext_resource type="Texture2D" uid="uid://kot374he5ye1" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-slide-00.png" id="3_vqjgt"]
 [ext_resource type="Texture2D" uid="uid://5cqwybdjvoyi" path="res://Art/PlayerGraphics/HandCombatSprites/adventurer-punch-00.png" id="3_yee8r"]
@@ -14,10 +14,10 @@
 [ext_resource type="Texture2D" uid="uid://b2qwhuodfke86" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-jump-00.png" id="6_ohm8s"]
 [ext_resource type="Texture2D" uid="uid://21rrnhvthbc" path="res://Art/PlayerGraphics/HandCombatSprites/adventurer-punch-05.png" id="7_bkulq"]
 [ext_resource type="Texture2D" uid="uid://b12ruruloblh" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-idle-00.png" id="7_jec2i"]
-[ext_resource type="Script" uid="uid://blu6jnyrcjnu" path="res://Characters/Player/CharacterStateMachine.gd" id="7_p728j"]
+[ext_resource type="Script" uid="uid://blu6jnyrcjnu" path="res://Scripts/CharacterStateMachine.gd" id="7_p728j"]
 [ext_resource type="Texture2D" uid="uid://dj8avm7tkfj5w" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-jump-01.png" id="7_u5ovo"]
 [ext_resource type="Texture2D" uid="uid://bh2x864rvm5v5" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-run-00.png" id="7_yvl8n"]
-[ext_resource type="Script" uid="uid://dbwdr01nxqe5p" path="res://Characters/Player/GroundState.gd" id="8_5slg2"]
+[ext_resource type="Script" uid="uid://dbwdr01nxqe5p" path="res://Scripts/GroundState.gd" id="8_5slg2"]
 [ext_resource type="Texture2D" uid="uid://cb74o48yc75n" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-jump-02.png" id="8_8b15s"]
 [ext_resource type="Texture2D" uid="uid://be0m2yvs1d5oj" path="res://Art/PlayerGraphics/HandCombatSprites/adventurer-punch-06.png" id="8_e3hdo"]
 [ext_resource type="Texture2D" uid="uid://bk5cw03qfb88a" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-run-01.png" id="8_evul0"]
@@ -26,18 +26,17 @@
 [ext_resource type="Texture2D" uid="uid://uqgp5w3ibwvh" path="res://Art/PlayerGraphics/HandCombatSprites/adventurer-punch-08.png" id="9_8hpgr"]
 [ext_resource type="Texture2D" uid="uid://b76nechdj38fi" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-jump-03.png" id="9_e5va2"]
 [ext_resource type="Texture2D" uid="uid://c504gmevrkv7l" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-run-02.png" id="9_kfh3i"]
-[ext_resource type="Script" uid="uid://5kkng6c3s4q2" path="res://Characters/Player/AirState.gd" id="9_w3rah"]
+[ext_resource type="Script" uid="uid://5kkng6c3s4q2" path="res://Scripts/AirState.gd" id="9_w3rah"]
 [ext_resource type="Texture2D" uid="uid://co6y4wf3xfp76" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-idle-03.png" id="10_5jopl"]
 [ext_resource type="Texture2D" uid="uid://sr87nprnwd2a" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-attack2-02.png" id="10_8kxwp"]
-[ext_resource type="Script" uid="uid://clpmn34kqvjlt" path="res://Characters/Player/AttackState.gd" id="10_642pg"]
-[ext_resource type="Script" uid="uid://d1w14p1bwafxl" path="res://Characters/Player/LandingState.gd" id="10_c4gpq"]
+[ext_resource type="Script" uid="uid://clpmn34kqvjlt" path="res://Scripts/AttackState.gd" id="10_642pg"]
+[ext_resource type="Script" uid="uid://d1w14p1bwafxl" path="res://Scripts/LandingState.gd" id="10_c4gpq"]
 [ext_resource type="Texture2D" uid="uid://bqk3c8dknl3hw" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-run-03.png" id="10_wdgmf"]
-[ext_resource type="Script" uid="uid://ek5gr30p83n8" path="res://Characters/Player/StateDebugLabel.gd" id="11_c4gpq"]
+[ext_resource type="Script" uid="uid://ek5gr30p83n8" path="res://Scripts/StateDebugLabel.gd" id="11_c4gpq"]
 [ext_resource type="Texture2D" uid="uid://b1jw0mty58cl" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-run-04.png" id="11_ldp5e"]
-[ext_resource type="Script" uid="uid://cna8f4biwx67f" path="res://Characters/Player/Sword.gd" id="12_642pg"]
+[ext_resource type="Script" uid="uid://cna8f4biwx67f" path="res://Scripts/Sword.gd" id="12_642pg"]
 [ext_resource type="Texture2D" uid="uid://bl3jylf1jrep4" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-run-05.png" id="12_ohm8s"]
-[ext_resource type="Script" uid="uid://bvtylxhbrjs4s" path="res://Characters/Player/FacingCollisionShape2D.gd" id="13_b71o8"]
-[ext_resource type="Script" uid="uid://ds6d4b0flgg5c" path="res://Characters/Player/State.gd" id="13_blwrb"]
+[ext_resource type="Script" uid="uid://bvtylxhbrjs4s" path="res://Scripts/FacingCollisionShape2D.gd" id="13_b71o8"]
 [ext_resource type="Texture2D" uid="uid://ct1qs1mjewk7q" path="res://Art/PlayerGraphics/HandCombatSprites/adventurer-punch-07.png" id="14_2ichn"]
 [ext_resource type="Texture2D" uid="uid://cyluf8ii4s7ax" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-crouch-00.png" id="16_ahiwk"]
 [ext_resource type="Texture2D" uid="uid://ciyau1i582k5n" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-crouch-01.png" id="17_8nakf"]
@@ -55,6 +54,8 @@
 [ext_resource type="Texture2D" uid="uid://bkyek5rj732qx" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-fall-01.png" id="42_8nakf"]
 [ext_resource type="Texture2D" uid="uid://caf54f0t5aaok" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-attack2-04.png" id="43_e5va2"]
 [ext_resource type="Texture2D" uid="uid://c1tu1nre7g3hx" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-attack2-05.png" id="44_ahiwk"]
+[ext_resource type="Script" uid="uid://cd5qlw7c3yifl" path="res://Scripts/DashState.gd" id="52_ahiwk"]
+[ext_resource type="Script" uid="uid://c4uqbk33ifcrn" path="res://Scripts/WallState.gd" id="53_8nakf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ywxx0"]
 radius = 4.0
@@ -502,9 +503,10 @@ wait_time = 0.05
 one_shot = true
 autostart = true
 
-[node name="Air" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("landing_state")]
+[node name="Air" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("landing_state", "wall_state")]
 script = ExtResource("9_w3rah")
 landing_state = NodePath("../Landing")
+wall_state = NodePath("../OnWall")
 double_jump_animation = "double_jump"
 jump_animation = "jump_start"
 fall_animation = "fall"
@@ -527,7 +529,12 @@ wait_time = 0.3
 one_shot = true
 
 [node name="Dash" type="Node" parent="CharacterStateMachine"]
-script = ExtResource("13_blwrb")
+script = ExtResource("52_ahiwk")
+metadata/_custom_type_script = "uid://ds6d4b0flgg5c"
+
+[node name="OnWall" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("air_state")]
+script = ExtResource("53_8nakf")
+air_state = NodePath("../Air")
 metadata/_custom_type_script = "uid://ds6d4b0flgg5c"
 
 [node name="StateDebugLabel" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
