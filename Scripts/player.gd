@@ -12,6 +12,7 @@ class_name Player
 #hae gravity projekti settingeistä ja synccc rigidbody nodejen kanssa
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var direction : Vector2 = Vector2.ZERO
+var is_dashing = false
 
 signal facing_direction_changed(facing_right : bool)
 
@@ -20,10 +21,19 @@ func _ready():
 	animation_tree.active = true
 
 func _physics_process(delta):
+	if is_dashing:
+		move_and_slide()
+		update_animation_parameters()
+		update_facing_dir()
+		return
+	
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	direction = Input.get_vector("left", "right", "up", "down")
 	if direction.x != 0 && state_machine.check_if_can_move():
+		if(direction.x > 0 and velocity.x < 0) or (direction.x < 0 and velocity.x > 0):
+			velocity.x = 0
+		
 		velocity.x = move_toward(velocity.x, direction.x * speed, speed * acceleration)
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed * deceleration)
@@ -40,5 +50,12 @@ func update_facing_dir():
 		sprite.flip_h = false
 	elif direction.x < 0:
 		sprite.flip_h = true
-	
 	emit_signal("facing_direction_changed", !sprite.flip_h)
+		
+func start_dashing():
+	is_dashing = true
+	
+func stop_dashing():
+	is_dashing = false
+	
+	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=96 format=3 uid="uid://bgsi1vo3el1wv"]
+[gd_scene load_steps=104 format=3 uid="uid://bgsi1vo3el1wv"]
 
 [ext_resource type="Script" uid="uid://bxq1vd4trhlp7" path="res://Scripts/player.gd" id="1_eovys"]
 [ext_resource type="Texture2D" uid="uid://0jbpda2hb614" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-smrslt-00.png" id="3_qysuy"]
@@ -416,6 +416,15 @@ blend_point_2/node = SubResource("AnimationNodeAnimation_642pg")
 blend_point_2/pos = -1.0
 blend_mode = 1
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8nakf"]
+animation = &"slide_end"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5xyon"]
+animation = &"slide_loop"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rqqk7"]
+animation = &"slide_start"
+
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_22qw1"]
 advance_mode = 2
 
@@ -441,6 +450,15 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rqqk7"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ksedy"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8hin0"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ws4wl"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c45mi"]
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_mevwr"]
 states/attack1/node = SubResource("AnimationNodeAnimation_q6x5r")
 states/attack1/position = Vector2(410, 223)
@@ -456,8 +474,18 @@ states/land/node = SubResource("AnimationNodeAnimation_mevwr")
 states/land/position = Vector2(684, 41)
 states/move/node = SubResource("AnimationNodeBlendSpace1D_q6x5r")
 states/move/position = Vector2(410, 112)
-transitions = ["Start", "move", SubResource("AnimationNodeStateMachineTransition_22qw1"), "move", "jump_start", SubResource("AnimationNodeStateMachineTransition_y0e2x"), "land", "move", SubResource("AnimationNodeStateMachineTransition_0qaj4"), "jump_start", "double_jump", SubResource("AnimationNodeStateMachineTransition_h3pa0"), "move", "attack1", SubResource("AnimationNodeStateMachineTransition_aw3oq"), "attack1", "attack2", SubResource("AnimationNodeStateMachineTransition_0l7lf"), "attack1", "move", SubResource("AnimationNodeStateMachineTransition_0rrrc"), "attack2", "move", SubResource("AnimationNodeStateMachineTransition_4heda"), "jump_start", "fall", SubResource("AnimationNodeStateMachineTransition_8nakf"), "double_jump", "fall", SubResource("AnimationNodeStateMachineTransition_5xyon"), "fall", "land", SubResource("AnimationNodeStateMachineTransition_rqqk7")]
-graph_offset = Vector2(-217, -120)
+states/slide_end/node = SubResource("AnimationNodeAnimation_8nakf")
+states/slide_end/position = Vector2(239, -86)
+states/slide_loop/node = SubResource("AnimationNodeAnimation_5xyon")
+states/slide_loop/position = Vector2(115, -33)
+states/slide_start/node = SubResource("AnimationNodeAnimation_rqqk7")
+states/slide_start/position = Vector2(179, 34)
+transitions = ["Start", "move", SubResource("AnimationNodeStateMachineTransition_22qw1"), "move", "jump_start", SubResource("AnimationNodeStateMachineTransition_y0e2x"), "land", "move", SubResource("AnimationNodeStateMachineTransition_0qaj4"), "jump_start", "double_jump", SubResource("AnimationNodeStateMachineTransition_h3pa0"), "move", "attack1", SubResource("AnimationNodeStateMachineTransition_aw3oq"), "attack1", "attack2", SubResource("AnimationNodeStateMachineTransition_0l7lf"), "attack1", "move", SubResource("AnimationNodeStateMachineTransition_0rrrc"), "attack2", "move", SubResource("AnimationNodeStateMachineTransition_4heda"), "jump_start", "fall", SubResource("AnimationNodeStateMachineTransition_8nakf"), "double_jump", "fall", SubResource("AnimationNodeStateMachineTransition_5xyon"), "fall", "land", SubResource("AnimationNodeStateMachineTransition_rqqk7"), "move", "slide_start", SubResource("AnimationNodeStateMachineTransition_ksedy"), "slide_start", "slide_loop", SubResource("AnimationNodeStateMachineTransition_8hin0"), "slide_loop", "slide_end", SubResource("AnimationNodeStateMachineTransition_ws4wl"), "slide_end", "move", SubResource("AnimationNodeStateMachineTransition_c45mi")]
+graph_offset = Vector2(-291, -188)
+
+[sub_resource type="Curve" id="Curve_5xyon"]
+_data = [Vector2(0.308642, 0.994988), 0.0, -1.9317, 0, 0, Vector2(0.565844, 0.699306), -1.1071, -1.1071, 0, 0, Vector2(0.753086, 0.538936), -0.532792, -0.532792, 0, 0, Vector2(0.876543, 0.413647), 0.0, 0.0, 0, 0, Vector2(1, 0.273323), 0.0, 0.0, 0, 0]
+point_count = 5
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b71o8"]
 size = Vector2(26, 35)
@@ -491,12 +519,14 @@ character = NodePath("..")
 animation_tree = NodePath("../AnimationTree")
 current_state = NodePath("Ground")
 
-[node name="Ground" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("air_state", "attack_state")]
+[node name="Ground" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("air_state", "attack_state", "dash_state")]
 script = ExtResource("8_5slg2")
 air_state = NodePath("../Air")
-jump_animation = "jump_start"
 attack_state = NodePath("../Attack")
+dash_state = NodePath("../Dash")
+jump_animation = "jump_start"
 attack_animation = "attack1"
+dash_animation = "slide_start"
 
 [node name="BufferTimer" type="Timer" parent="CharacterStateMachine/Ground"]
 wait_time = 0.05
@@ -528,8 +558,13 @@ metadata/_custom_type_script = "uid://ds6d4b0flgg5c"
 wait_time = 0.3
 one_shot = true
 
-[node name="Dash" type="Node" parent="CharacterStateMachine"]
+[node name="Dash" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("ground_state", "air_state", "player")]
 script = ExtResource("52_ahiwk")
+dash_curve = SubResource("Curve_5xyon")
+ground_state = NodePath("../Ground")
+air_state = NodePath("../Air")
+dash_animation = "slide_start"
+player = NodePath("../..")
 metadata/_custom_type_script = "uid://ds6d4b0flgg5c"
 
 [node name="OnWall" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("air_state")]

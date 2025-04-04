@@ -1,0 +1,44 @@
+[gd_resource type="BehaviorTree" load_steps=12 format=3 uid="uid://utos5k1fndmq"]
+
+[ext_resource type="Script" uid="uid://d5dc3wfq8j3s" path="res://ai/tasks/choose_move_point.gd" id="1_xja6p"]
+[ext_resource type="Script" uid="uid://3jdhodr2qcqh" path="res://ai/tasks/Move_To_Point.gd" id="2_w3558"]
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_6e3ig"]
+
+[sub_resource type="BTConsolePrint" id="BTConsolePrint_6e3ig"]
+text = "Random Move"
+
+[sub_resource type="BTAction" id="BTAction_w3558"]
+script = ExtResource("1_xja6p")
+range_min_in_dir = 40.0
+range_max_in_dir = 100.0
+position_var = &"pos"
+dir_var = &"dir"
+
+[sub_resource type="BTAction" id="BTAction_fxfwv"]
+script = ExtResource("2_w3558")
+target_pos_var = &"pos"
+dir_var = &"dir"
+speed_var = 40
+tolerance = 10
+
+[sub_resource type="BTRandomWait" id="BTRandomWait_w3558"]
+max_duration = 4.0
+
+[sub_resource type="BTSequence" id="BTSequence_fxfwv"]
+custom_name = "Idle Sequency"
+children = [SubResource("BTRandomWait_w3558")]
+
+[sub_resource type="BTSequence" id="BTSequence_xja6p"]
+custom_name = "Random Move Sequency"
+children = [SubResource("BTConsolePrint_6e3ig"), SubResource("BTAction_w3558"), SubResource("BTAction_fxfwv"), SubResource("BTSequence_fxfwv")]
+
+[sub_resource type="BTSequence" id="BTSequence_s3dnj"]
+custom_name = "Move To Enemy Sequency"
+
+[sub_resource type="BTSelector" id="BTSelector_xja6p"]
+children = [SubResource("BTSequence_xja6p"), SubResource("BTSequence_s3dnj")]
+
+[resource]
+blackboard_plan = SubResource("BlackboardPlan_6e3ig")
+root_task = SubResource("BTSelector_xja6p")
