@@ -490,7 +490,7 @@ point_count = 5
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b71o8"]
 size = Vector2(26, 35)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 10
 script = ExtResource("1_eovys")
 

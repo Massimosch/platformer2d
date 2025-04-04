@@ -5,7 +5,7 @@ extends CharacterBody2D
 const jump_power = -500
 const gravity = 50
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if is_on_wall() and is_on_floor():
 		velocity.y = jump_power
 	else:
@@ -34,3 +34,8 @@ func handle_animation():
 		animation_sprite.play("idle")
 	
 	
+func check_for_self(node):
+	if node == self:
+		return true
+	else:
+		return false

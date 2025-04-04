@@ -29,6 +29,11 @@ window/stretch/scale=4.0
 
 enabled=PackedStringArray("res://addons/ovani_auto_footsteps/plugin.cfg")
 
+[global_group]
+
+enemy=""
+player=""
+
 [input]
 
 up={

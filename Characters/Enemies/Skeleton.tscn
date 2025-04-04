@@ -348,7 +348,7 @@ height = 52.0
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_6huwf"]
 
-[node name="Skeleton" type="CharacterBody2D"]
+[node name="Skeleton" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("1_2lpyg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
