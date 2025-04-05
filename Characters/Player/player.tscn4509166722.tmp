@@ -521,7 +521,6 @@ current_state = NodePath("Ground")
 
 [node name="Ground" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("air_state", "attack_state", "dash_state")]
 script = ExtResource("8_5slg2")
-jump_velocity = -250.0
 air_state = NodePath("../Air")
 attack_state = NodePath("../Attack")
 dash_state = NodePath("../Dash")
@@ -538,7 +537,6 @@ autostart = true
 script = ExtResource("9_w3rah")
 landing_state = NodePath("../Landing")
 wall_state = NodePath("../OnWall")
-double_jump_velocity = -200.0
 double_jump_animation = "double_jump"
 jump_animation = "jump_start"
 fall_animation = "fall"

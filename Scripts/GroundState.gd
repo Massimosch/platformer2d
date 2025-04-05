@@ -11,6 +11,8 @@ class_name GroundState
 @export_range(0, 1) var decelerate_on_jump = 0.5
 @onready var buffer_timer : Timer = $BufferTimer
 
+var jump_multiplier = 0.4
+
 
 func state_process(_delta):
 	if (!character.is_on_floor() && buffer_timer.is_stopped()):
@@ -18,7 +20,9 @@ func state_process(_delta):
 		
 func state_input(event : InputEvent):
 	if(event.is_action_pressed("jump")):
-		jump()
+		character.velocity.y = jump_velocity
+		next_state = air_state
+		playback.travel(jump_animation)
 		
 	if(event.is_action_pressed("attack")):
 		attack()

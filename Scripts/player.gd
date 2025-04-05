@@ -14,6 +14,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var direction : Vector2 = Vector2.ZERO
 var is_dashing = false
 
+
 signal facing_direction_changed(facing_right : bool)
 
 func _ready():
@@ -26,7 +27,7 @@ func _physics_process(delta):
 		update_animation_parameters()
 		update_facing_dir()
 		return
-	
+		
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	direction = Input.get_vector("left", "right", "up", "down")

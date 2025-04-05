@@ -3,7 +3,7 @@ extends CharacterBody2D
 @onready var animation_sprite = $AnimatedSprite2D
 
 const jump_power = -500
-const gravity = 50
+var gravity = 50
 
 func _physics_process(_delta):
 	if is_on_wall() and is_on_floor():
@@ -39,3 +39,6 @@ func check_for_self(node):
 		return true
 	else:
 		return false
+
+func attack():
+	animation_sprite.play("attack")

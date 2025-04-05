@@ -12,6 +12,7 @@ class_name AirState
 
 var has_double_jumped = false
 var anim_player : AnimationPlayer
+var can_transition_to_fall = true
 
 
 func on_enter():
@@ -23,7 +24,7 @@ func state_process(_delta):
 		next_state = landing_state
 	elif (character.is_on_wall()):
 		next_state = wall_state
-	elif character.velocity.y > 0 and playback.get_current_node() != fall_animation:
+	elif character.velocity.y > 0 and playback.get_current_node() != fall_animation and can_transition_to_fall:
 		playback.travel(fall_animation)
 		
 func state_input(event : InputEvent):
@@ -39,4 +40,6 @@ func double_jump():
 	character.velocity.y = double_jump_velocity
 	playback.travel(double_jump_animation)
 	has_double_jumped = true
+	can_transition_to_fall = false
 	await get_tree().create_timer(0.5).timeout
+	can_transition_to_fall = true
