@@ -1,6 +1,7 @@
-[gd_scene load_steps=104 format=3 uid="uid://bgsi1vo3el1wv"]
+[gd_scene load_steps=100 format=3 uid="uid://bgsi1vo3el1wv"]
 
 [ext_resource type="Script" uid="uid://bxq1vd4trhlp7" path="res://Scripts/player.gd" id="1_eovys"]
+[ext_resource type="Resource" uid="uid://bcmksavmvf6yb" path="res://Characters/Player/PlayerLimbo/PlayerStats.tres" id="3_8b15s"]
 [ext_resource type="Texture2D" uid="uid://0jbpda2hb614" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-smrslt-00.png" id="3_qysuy"]
 [ext_resource type="Texture2D" uid="uid://kot374he5ye1" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-slide-00.png" id="3_vqjgt"]
 [ext_resource type="Texture2D" uid="uid://5cqwybdjvoyi" path="res://Art/PlayerGraphics/HandCombatSprites/adventurer-punch-00.png" id="3_yee8r"]
@@ -14,10 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://b2qwhuodfke86" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-jump-00.png" id="6_ohm8s"]
 [ext_resource type="Texture2D" uid="uid://21rrnhvthbc" path="res://Art/PlayerGraphics/HandCombatSprites/adventurer-punch-05.png" id="7_bkulq"]
 [ext_resource type="Texture2D" uid="uid://b12ruruloblh" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-idle-00.png" id="7_jec2i"]
-[ext_resource type="Script" uid="uid://blu6jnyrcjnu" path="res://Scripts/CharacterStateMachine.gd" id="7_p728j"]
 [ext_resource type="Texture2D" uid="uid://dj8avm7tkfj5w" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-jump-01.png" id="7_u5ovo"]
 [ext_resource type="Texture2D" uid="uid://bh2x864rvm5v5" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-run-00.png" id="7_yvl8n"]
-[ext_resource type="Script" uid="uid://dbwdr01nxqe5p" path="res://Scripts/GroundState.gd" id="8_5slg2"]
 [ext_resource type="Texture2D" uid="uid://cb74o48yc75n" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-jump-02.png" id="8_8b15s"]
 [ext_resource type="Texture2D" uid="uid://be0m2yvs1d5oj" path="res://Art/PlayerGraphics/HandCombatSprites/adventurer-punch-06.png" id="8_e3hdo"]
 [ext_resource type="Texture2D" uid="uid://bk5cw03qfb88a" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-run-01.png" id="8_evul0"]
@@ -26,17 +25,12 @@
 [ext_resource type="Texture2D" uid="uid://uqgp5w3ibwvh" path="res://Art/PlayerGraphics/HandCombatSprites/adventurer-punch-08.png" id="9_8hpgr"]
 [ext_resource type="Texture2D" uid="uid://b76nechdj38fi" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-jump-03.png" id="9_e5va2"]
 [ext_resource type="Texture2D" uid="uid://c504gmevrkv7l" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-run-02.png" id="9_kfh3i"]
-[ext_resource type="Script" uid="uid://5kkng6c3s4q2" path="res://Scripts/AirState.gd" id="9_w3rah"]
 [ext_resource type="Texture2D" uid="uid://co6y4wf3xfp76" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-idle-03.png" id="10_5jopl"]
 [ext_resource type="Texture2D" uid="uid://sr87nprnwd2a" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-attack2-02.png" id="10_8kxwp"]
-[ext_resource type="Script" uid="uid://clpmn34kqvjlt" path="res://Scripts/AttackState.gd" id="10_642pg"]
-[ext_resource type="Script" uid="uid://d1w14p1bwafxl" path="res://Scripts/LandingState.gd" id="10_c4gpq"]
 [ext_resource type="Texture2D" uid="uid://bqk3c8dknl3hw" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-run-03.png" id="10_wdgmf"]
 [ext_resource type="Script" uid="uid://ek5gr30p83n8" path="res://Scripts/StateDebugLabel.gd" id="11_c4gpq"]
 [ext_resource type="Texture2D" uid="uid://b1jw0mty58cl" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-run-04.png" id="11_ldp5e"]
-[ext_resource type="Script" uid="uid://cna8f4biwx67f" path="res://Scripts/Sword.gd" id="12_642pg"]
 [ext_resource type="Texture2D" uid="uid://bl3jylf1jrep4" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-run-05.png" id="12_ohm8s"]
-[ext_resource type="Script" uid="uid://bvtylxhbrjs4s" path="res://Scripts/FacingCollisionShape2D.gd" id="13_b71o8"]
 [ext_resource type="Texture2D" uid="uid://ct1qs1mjewk7q" path="res://Art/PlayerGraphics/HandCombatSprites/adventurer-punch-07.png" id="14_2ichn"]
 [ext_resource type="Texture2D" uid="uid://cyluf8ii4s7ax" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-crouch-00.png" id="16_ahiwk"]
 [ext_resource type="Texture2D" uid="uid://ciyau1i582k5n" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-crouch-01.png" id="17_8nakf"]
@@ -54,8 +48,11 @@
 [ext_resource type="Texture2D" uid="uid://bkyek5rj732qx" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-fall-01.png" id="42_8nakf"]
 [ext_resource type="Texture2D" uid="uid://caf54f0t5aaok" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-attack2-04.png" id="43_e5va2"]
 [ext_resource type="Texture2D" uid="uid://c1tu1nre7g3hx" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-attack2-05.png" id="44_ahiwk"]
-[ext_resource type="Script" uid="uid://cd5qlw7c3yifl" path="res://Scripts/DashState.gd" id="52_ahiwk"]
-[ext_resource type="Script" uid="uid://c4uqbk33ifcrn" path="res://Scripts/WallState.gd" id="53_8nakf"]
+[ext_resource type="Script" uid="uid://door32q7fm0n3" path="res://Characters/Player/PlayerLimbo/limbo_hsm.gd" id="50_ohm8s"]
+[ext_resource type="Script" uid="uid://bojbi7rvg6fcu" path="res://Characters/Player/PlayerLimbo/ground_state.gd" id="51_u5ovo"]
+[ext_resource type="Script" uid="uid://ht5ly3no1o8y" path="res://Characters/Player/PlayerLimbo/air_state.gd" id="52_8b15s"]
+[ext_resource type="Script" uid="uid://cyhk8gtwnow1e" path="res://Characters/Player/player_input_system.gd" id="53_8b15s"]
+[ext_resource type="Resource" uid="uid://0unku0pgpd6r" path="res://Characters/Player/PlayerLimbo/PlayerActions.tres" id="54_e5va2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ywxx0"]
 radius = 4.0
@@ -66,22 +63,10 @@ step = 0.07
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sword:monitoring")
+tracks/0/path = NodePath("Sprite2D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:texture")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -182,22 +167,10 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sword:monitoring")
+tracks/0/path = NodePath("Sprite2D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:texture")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
@@ -212,22 +185,10 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sword:monitoring")
+tracks/0/path = NodePath("Sprite2D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:texture")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
@@ -311,22 +272,10 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sword:monitoring")
+tracks/0/path = NodePath("Sprite2D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:texture")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
@@ -340,22 +289,10 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sword:monitoring")
+tracks/0/path = NodePath("Sprite2D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:texture")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
@@ -483,16 +420,29 @@ states/slide_start/position = Vector2(179, 34)
 transitions = ["Start", "move", SubResource("AnimationNodeStateMachineTransition_22qw1"), "move", "jump_start", SubResource("AnimationNodeStateMachineTransition_y0e2x"), "land", "move", SubResource("AnimationNodeStateMachineTransition_0qaj4"), "jump_start", "double_jump", SubResource("AnimationNodeStateMachineTransition_h3pa0"), "move", "attack1", SubResource("AnimationNodeStateMachineTransition_aw3oq"), "attack1", "attack2", SubResource("AnimationNodeStateMachineTransition_0l7lf"), "attack1", "move", SubResource("AnimationNodeStateMachineTransition_0rrrc"), "attack2", "move", SubResource("AnimationNodeStateMachineTransition_4heda"), "jump_start", "fall", SubResource("AnimationNodeStateMachineTransition_8nakf"), "double_jump", "fall", SubResource("AnimationNodeStateMachineTransition_5xyon"), "fall", "land", SubResource("AnimationNodeStateMachineTransition_rqqk7"), "move", "slide_start", SubResource("AnimationNodeStateMachineTransition_ksedy"), "slide_start", "slide_loop", SubResource("AnimationNodeStateMachineTransition_8hin0"), "slide_loop", "slide_end", SubResource("AnimationNodeStateMachineTransition_ws4wl"), "slide_end", "move", SubResource("AnimationNodeStateMachineTransition_c45mi")]
 graph_offset = Vector2(-291, -188)
 
-[sub_resource type="Curve" id="Curve_5xyon"]
-_data = [Vector2(0.308642, 0.994988), 0.0, -1.9317, 0, 0, Vector2(0.565844, 0.699306), -1.1071, -1.1071, 0, 0, Vector2(0.753086, 0.538936), -0.532792, -0.532792, 0, 0, Vector2(0.876543, 0.413647), 0.0, 0.0, 0, 0, Vector2(1, 0.273323), 0.0, 0.0, 0, 0]
-point_count = 5
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_e5va2"]
+var/direction/name = &"direction"
+var/direction/type = 5
+var/direction/value = Vector2(0, 0)
+var/direction/hint = 0
+var/direction/hint_string = "The direction the character is trying to move."
+var/jump/name = &"jump"
+var/jump/type = 1
+var/jump/value = false
+var/jump/hint = 0
+var/jump/hint_string = "Whether the character is trying to jump."
+var/jumps_made/name = &"jumps_made"
+var/jumps_made/type = 2
+var/jumps_made/value = 0
+var/jumps_made/hint = 0
+var/jumps_made/hint_string = "How many jumps the character has made."
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_b71o8"]
-size = Vector2(26, 35)
-
-[node name="Player" type="CharacterBody2D" groups=["player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animation_player") groups=["player"]]
 collision_layer = 10
 script = ExtResource("1_eovys")
+animation_player = NodePath("AnimationPlayer")
+player_actions = ExtResource("54_e5va2")
+player_stats = ExtResource("3_8b15s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -14)
@@ -513,92 +463,33 @@ tree_root = SubResource("AnimationNodeStateMachine_mevwr")
 anim_player = NodePath("../AnimationPlayer")
 parameters/move/blend_position = -0.00118065
 
-[node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "animation_tree", "current_state")]
-script = ExtResource("7_p728j")
-character = NodePath("..")
-animation_tree = NodePath("../AnimationTree")
-current_state = NodePath("Ground")
-
-[node name="Ground" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("air_state", "attack_state", "dash_state")]
-script = ExtResource("8_5slg2")
-jump_velocity = -250.0
-air_state = NodePath("../Air")
-attack_state = NodePath("../Attack")
-dash_state = NodePath("../Dash")
-jump_animation = "jump_start"
-attack_animation = "attack1"
-dash_animation = "slide_start"
-
-[node name="BufferTimer" type="Timer" parent="CharacterStateMachine/Ground"]
-wait_time = 0.05
-one_shot = true
-autostart = true
-
-[node name="Air" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("landing_state", "wall_state")]
-script = ExtResource("9_w3rah")
-landing_state = NodePath("../Landing")
-wall_state = NodePath("../OnWall")
-double_jump_velocity = -200.0
-double_jump_animation = "double_jump"
-jump_animation = "jump_start"
-fall_animation = "fall"
-landing_animation = "land"
-
-[node name="Landing" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("ground_state")]
-script = ExtResource("10_c4gpq")
-landing_animation_name = "land"
-ground_state = NodePath("../Ground")
-can_move = false
-
-[node name="Attack" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("return_state")]
-script = ExtResource("10_642pg")
-return_state = NodePath("../Ground")
-can_move = false
-metadata/_custom_type_script = "uid://ds6d4b0flgg5c"
-
-[node name="Timer" type="Timer" parent="CharacterStateMachine/Attack"]
-wait_time = 0.3
-one_shot = true
-
-[node name="Dash" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("ground_state", "air_state", "player")]
-script = ExtResource("52_ahiwk")
-dash_curve = SubResource("Curve_5xyon")
-ground_state = NodePath("../Ground")
-air_state = NodePath("../Air")
-dash_animation = "slide_start"
-player = NodePath("../..")
-metadata/_custom_type_script = "uid://ds6d4b0flgg5c"
-
-[node name="OnWall" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("air_state")]
-script = ExtResource("53_8nakf")
-air_state = NodePath("../Air")
-metadata/_custom_type_script = "uid://ds6d4b0flgg5c"
-
-[node name="StateDebugLabel" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
-offset_left = -58.0
-offset_top = -80.0
-offset_right = 80.0
-offset_bottom = -57.0
-text = "State: "
+[node name="StateDebugLabel" type="Label" parent="." node_paths=PackedStringArray("limbo_hsm")]
+offset_left = -52.0
+offset_top = -63.0
+offset_right = 58.0
+offset_bottom = -38.0
 script = ExtResource("11_c4gpq")
-state_machine = NodePath("../CharacterStateMachine")
+limbo_hsm = NodePath("../LimboHSM")
 
-[node name="Sword" type="Area2D" parent="." node_paths=PackedStringArray("player", "facing_shape")]
-collision_layer = 0
-collision_mask = 4
-monitoring = false
-script = ExtResource("12_642pg")
-player = NodePath("..")
-facing_shape = NodePath("FacingCollisionShape2D")
+[node name="LimboHSM" type="LimboHSM" parent="." node_paths=PackedStringArray("character", "states")]
+blackboard_plan = SubResource("BlackboardPlan_e5va2")
+script = ExtResource("50_ohm8s")
+character = NodePath("..")
+states = {
+"idle": NodePath(""),
+"move": NodePath("GroundState")
+}
 
-[node name="FacingCollisionShape2D" type="CollisionShape2D" parent="Sword"]
-position = Vector2(-40, -24)
-shape = SubResource("RectangleShape2D_b71o8")
-script = ExtResource("13_b71o8")
-facing_left_position = Vector2(-25, -20)
-facing_right_position = Vector2(25, -20)
-metadata/_custom_type_script = "uid://bvtylxhbrjs4s"
+[node name="GroundState" type="LimboState" parent="LimboHSM"]
+script = ExtResource("51_u5ovo")
+animation_name = &"idle"
+metadata/_custom_type_script = "uid://chct237if0n23"
 
-[connection signal="animation_finished" from="AnimationTree" to="CharacterStateMachine/Landing" method="_on_animation_tree_animation_finished"]
-[connection signal="animation_finished" from="AnimationTree" to="CharacterStateMachine/Attack" method="_on_animation_tree_animation_finished"]
-[connection signal="body_entered" from="Sword" to="Sword" method="_on_body_entered"]
+[node name="AirState" type="LimboState" parent="LimboHSM"]
+script = ExtResource("52_8b15s")
+metadata/_custom_type_script = "uid://chct237if0n23"
+
+[node name="PlayerInputSystem" type="Node" parent="." node_paths=PackedStringArray("limbo_hsm")]
+script = ExtResource("53_8b15s")
+player_actions = ExtResource("54_e5va2")
+limbo_hsm = NodePath("../LimboHSM")

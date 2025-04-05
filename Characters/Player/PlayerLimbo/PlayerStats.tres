@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bcmksavmvf6yb"]
+
+[ext_resource type="Script" uid="uid://bbxqy4aelklo7" path="res://Characters/Player/PlayerLimbo/player_stats.gd" id="1_6cuv0"]
+
+[resource]
+script = ExtResource("1_6cuv0")

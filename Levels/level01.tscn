@@ -1299,7 +1299,6 @@ tile_set = SubResource("TileSet_jkiok")
 
 [node name="Player" parent="." instance=ExtResource("2_36tc4")]
 position = Vector2(483, -73)
-speed = 150.0
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../Camera2D")
