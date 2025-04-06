@@ -1,11 +1,11 @@
 class_name Player
-extends CharacterBody2D
+extends BaseCharacter
 
-@export var animation_player : AnimationPlayer
 @export var player_actions : PlayerActions
 @export var player_stats : PlayerStats
-var animation_state_machine = $AnimationTree.get("parameters/playback")
 
+func _ready():
+	character_stats = player_stats
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
