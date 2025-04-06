@@ -1,7 +1,6 @@
 extends CharacterState
 
 func _update(_delta: float) -> void:
-	_apply_gravity(_delta)
 	character.move_and_slide()
 	air_moving()
 	
@@ -16,8 +15,9 @@ func air_moving() -> Vector2:
 	if direction.x > 0:
 		var attempted_velocity_x = min(character_stats.max_air_speed, character.velocity.x + character_stats.air_acceleration)
 		character.velocity.x = max(character.velocity.x, attempted_velocity_x)
+
 	elif direction.x < 0:
-		var attempted_velocity_x = max(-1 * character_stats.max_air_speed, character.velocity.x - character_stats.air_acceleration)
+		var attempted_velocity_x = max(- character_stats.max_air_speed, character.velocity.x - character_stats.air_acceleration)
 		character.velocity.x = min(character.velocity.x, attempted_velocity_x)
 		
 	character.move_and_slide()

@@ -4,16 +4,12 @@ extends CharacterState
 @export var idle_anim : StringName = "idle"
 @export var move_anim : StringName = "run"
 
-var _on_first_frame = true
-
 func _enter() -> void:
 	super()
-	_on_first_frame = true
 	blackboard.set_var(BBNames.jumps_made_var, 0)
 	
 
 func _update(_delta: float) -> void:
-	_apply_gravity(_delta)
 	var velocity : Vector2 = move()
 	
 	if Vector2.ZERO.is_equal_approx(velocity):
@@ -24,9 +20,8 @@ func _update(_delta: float) -> void:
 	if character.is_on_floor():
 		if blackboard.get_var(BBNames.jump_var) && blackboard.get_var(BBNames.jumps_made_var) == 0:
 			jump()
-	elif not _on_first_frame:
+	else:
 		dispatch("in_air")
-	_on_first_frame = false
 
 
 func move() -> Vector2:

@@ -14,6 +14,3 @@ func _enter() -> void:
 	else:
 		print("Warning: animation_state_machine is nil!")
 		
-func _apply_gravity(p_delta : float):
-	if not character.is_on_floor():
-		character.velocity += character.get_gravity() * p_delta	

@@ -8,5 +8,4 @@ func _ready():
 	character_stats = player_stats
 
 func _physics_process(delta: float) -> void:
-	if not is_on_floor():
-		velocity += get_gravity() * delta
+	velocity += get_gravity() * delta
