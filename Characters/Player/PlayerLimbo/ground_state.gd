@@ -40,3 +40,5 @@ func jump():
 	character.velocity.y = -character_stats.jump_velocity
 	var current_jumps : int = blackboard.get_var(BBNames.jump_var)
 	blackboard.set_var(BBNames.jumps_made_var, current_jumps + 1)
+	dispatch("jump")
+	

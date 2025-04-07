@@ -13,3 +13,4 @@ func _ready() -> void:
 func _binding_setup():
 	add_transition(states["ground"], states["air"], "in_air")
 	add_transition(states["air"], states["ground"], "on_ground")
+	add_transition(states["ground"], states["air"], "jump")
