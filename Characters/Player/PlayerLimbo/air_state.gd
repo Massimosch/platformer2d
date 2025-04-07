@@ -1,11 +1,25 @@
 extends CharacterState
 
+var have_double_jumped : bool = false
+
+func _enter():
+	super()
+	have_double_jumped = false
+
 func _update(_delta: float) -> void:
 	air_moving()
 	select_animation_state()
 
 	if character.is_on_floor():
 		dispatch("on_ground")
+		
+	if Input.is_action_just_pressed("jump"):
+		blackboard.set_var(BBNames.jump_var, true)
+		try_double_jump()
+	else:
+		blackboard.set_var(BBNames.jump_var, false)
+
+
 		
 func select_animation_state():
 	if character.velocity.y <= 0.0:
@@ -15,9 +29,6 @@ func select_animation_state():
 		
 func air_moving() -> Vector2:
 	var direction : Vector2 = blackboard.get_var(BBNames.direction_var)
-	
-	if try_double_jump():
-		character.animation_state_machine.travel("double_jump")
 	
 	##Air ACCELERATIO JA DECELARATIO tässä
 	if direction.x > 0:
@@ -33,15 +44,13 @@ func air_moving() -> Vector2:
 
 
 #####Double Jump---
-func can_double_jump() -> bool:
-	var jump_pressed = blackboard.get_var(BBNames.jump_var)
-	var jumps_made = blackboard.get_var(BBNames.jumps_made_var)
-	return jump_pressed and jumps_made < 2
-	
-func try_double_jump() -> bool:
-	if can_double_jump():
-		character.velocity.y = -character_stats.jump_velocity
-		var jumps_made = blackboard.get_var(BBNames.jumps_made_var)
-		blackboard.set_var(BBNames.jumps_made_var, jumps_made + 1)
-		return true
-	return false
+func try_double_jump():
+	if have_double_jumped:
+		return
+
+	character.animation_state_machine.travel("double_jump")
+	character.velocity.y = -character_stats.jump_velocity
+	var current_jumps : int = blackboard.get_var(BBNames.jump_var)
+	blackboard.set_var(BBNames.jumps_made_var, current_jumps + 1)
+	have_double_jumped = true
+	dispatch("jump")
