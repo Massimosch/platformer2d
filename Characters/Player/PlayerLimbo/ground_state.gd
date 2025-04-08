@@ -41,3 +41,4 @@ func jump():
 	blackboard.set_var(BBNames.jumps_made_var, current_jumps + 1)
 	dispatch("jump")
 	
+	
