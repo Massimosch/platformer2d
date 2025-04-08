@@ -5,6 +5,5 @@ extends Area2D
 func _on_body_entered(_body: Node2D) -> void:
 	sprite.play("open")
 
-
 func _on_body_exited(body):
 	sprite.play_backwards("open")

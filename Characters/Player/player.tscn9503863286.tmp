@@ -515,7 +515,6 @@ switch_mode = 2
 advance_condition = &"is_falling"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1h52x"]
-advance_mode = 2
 advance_condition = &"double_jump"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xrxj3"]
@@ -533,7 +532,6 @@ switch_mode = 2
 advance_condition = &"is_falling"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8pc77"]
-advance_mode = 2
 advance_condition = &"double_jump"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_mevwr"]
@@ -551,7 +549,7 @@ states/land/position = Vector2(-138, -104)
 states/run/node = SubResource("AnimationNodeAnimation_e5va2")
 states/run/position = Vector2(229, -20)
 transitions = ["idle", "run", SubResource("AnimationNodeStateMachineTransition_ahiwk"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_8nakf"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_c45mi"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_hrv8i"), "run", "jump", SubResource("AnimationNodeStateMachineTransition_3snk1"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_kjbmj"), "fall", "double_jump", SubResource("AnimationNodeStateMachineTransition_1h52x"), "double_jump", "land", SubResource("AnimationNodeStateMachineTransition_xrxj3"), "land", "idle", SubResource("AnimationNodeStateMachineTransition_4760x"), "fall", "land", SubResource("AnimationNodeStateMachineTransition_twepf"), "double_jump", "fall", SubResource("AnimationNodeStateMachineTransition_ws4wl"), "jump", "double_jump", SubResource("AnimationNodeStateMachineTransition_8pc77")]
-graph_offset = Vector2(-494, -223.111)
+graph_offset = Vector2(-494, -387)
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_e5va2"]
 var/direction/name = &"direction"

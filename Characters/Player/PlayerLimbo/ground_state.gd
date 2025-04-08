@@ -8,7 +8,6 @@ func _enter() -> void:
 	super()
 	blackboard.set_var(BBNames.jumps_made_var, 0)
 	
-
 func _update(_delta: float) -> void:
 	var velocity : Vector2 = move()
 	
@@ -16,14 +15,14 @@ func _update(_delta: float) -> void:
 		character.animation_state_machine.travel(idle_anim)
 	else:
 		character.animation_state_machine.travel(move_anim)
-
+		
 	if character.is_on_floor():
 		if blackboard.get_var(BBNames.jump_var) && blackboard.get_var(BBNames.jumps_made_var) == 0:
 			jump()
 	else:
 		dispatch("in_air")
-
-
+		
+		
 func move() -> Vector2:
 	var direction : Vector2 = blackboard.get_var(BBNames.direction_var)
 	
@@ -34,8 +33,8 @@ func move() -> Vector2:
 		
 	character.move_and_slide()
 	return character.velocity
-
-
+	
+	
 func jump():
 	character.velocity.y = -character_stats.jump_velocity
 	var current_jumps : int = blackboard.get_var(BBNames.jump_var)

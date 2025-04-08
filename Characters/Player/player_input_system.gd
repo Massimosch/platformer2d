@@ -6,6 +6,7 @@ extends Node
 var blackboard : Blackboard
 var input_direction : Vector2
 var is_jumping : bool = false
+var air_jump : bool = false
 
 func _ready() -> void:
 	blackboard = limbo_hsm.blackboard
@@ -14,7 +15,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	input_direction = Input.get_vector(player_actions.move_left, player_actions.move_right, player_actions.move_up, player_actions.move_down)
-	prints(blackboard.get_var("direction"))
+	#prints(blackboard.get_var("direction"))
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed(player_actions.jump):

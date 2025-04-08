@@ -13,4 +13,3 @@ func _enter() -> void:
 		character.animation_state_machine.travel(animation_name)
 	else:
 		print("Warning: animation_state_machine is nil!")
-		
