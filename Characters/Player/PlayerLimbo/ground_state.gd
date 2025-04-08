@@ -7,6 +7,7 @@ extends CharacterState
 func _enter() -> void:
 	super()
 	blackboard.set_var(BBNames.jumps_made_var, 0)
+	#await get_tree().create_timer(1000).timeout
 	
 func _update(_delta: float) -> void:
 	var velocity : Vector2 = move()
