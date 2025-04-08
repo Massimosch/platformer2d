@@ -47,8 +47,7 @@ func air_moving() -> Vector2:
 func try_double_jump():
 	if have_double_jumped:
 		return
-
-	character.animation_state_machine.travel("double_jump")
+		
 	character.velocity.y = -character_stats.jump_velocity
 	var current_jumps : int = blackboard.get_var(BBNames.jump_var)
 	blackboard.set_var(BBNames.jumps_made_var, current_jumps + 1)

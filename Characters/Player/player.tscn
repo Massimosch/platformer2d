@@ -1,4 +1,4 @@
-[gd_scene load_steps=98 format=3 uid="uid://bgsi1vo3el1wv"]
+[gd_scene load_steps=99 format=3 uid="uid://bgsi1vo3el1wv"]
 
 [ext_resource type="Script" uid="uid://bxq1vd4trhlp7" path="res://Scripts/player.gd" id="1_eovys"]
 [ext_resource type="Resource" uid="uid://bcmksavmvf6yb" path="res://Characters/Player/PlayerLimbo/PlayerStats.tres" id="3_8b15s"]
@@ -512,41 +512,43 @@ advance_condition = &"jump"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kjbmj"]
 switch_mode = 2
-advance_mode = 2
+advance_condition = &"is_falling"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1h52x"]
 advance_condition = &"double_jump"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xrxj3"]
-advance_mode = 2
 advance_condition = &"land"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4760x"]
+switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_twepf"]
-advance_mode = 2
 advance_condition = &"land"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ws4wl"]
 switch_mode = 2
-advance_mode = 2
+advance_condition = &"is_falling"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8pc77"]
+advance_condition = &"double_jump"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_mevwr"]
 states/Start/position = Vector2(-86, -20)
 states/double_jump/node = SubResource("AnimationNodeAnimation_c45mi")
-states/double_jump/position = Vector2(61, -282)
+states/double_jump/position = Vector2(25, -224)
 states/fall/node = SubResource("AnimationNodeAnimation_8pc77")
-states/fall/position = Vector2(61, -186)
+states/fall/position = Vector2(25, -111)
 states/idle/node = SubResource("AnimationNodeAnimation_8b15s")
 states/idle/position = Vector2(67, -20)
 states/jump/node = SubResource("AnimationNodeAnimation_ws4wl")
 states/jump/position = Vector2(140, -111)
 states/land/node = SubResource("AnimationNodeAnimation_shr3x")
-states/land/position = Vector2(-46, -170)
+states/land/position = Vector2(-138, -104)
 states/run/node = SubResource("AnimationNodeAnimation_e5va2")
 states/run/position = Vector2(229, -20)
-transitions = ["idle", "run", SubResource("AnimationNodeStateMachineTransition_ahiwk"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_8nakf"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_c45mi"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_hrv8i"), "run", "jump", SubResource("AnimationNodeStateMachineTransition_3snk1"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_kjbmj"), "fall", "double_jump", SubResource("AnimationNodeStateMachineTransition_1h52x"), "double_jump", "land", SubResource("AnimationNodeStateMachineTransition_xrxj3"), "land", "idle", SubResource("AnimationNodeStateMachineTransition_4760x"), "fall", "land", SubResource("AnimationNodeStateMachineTransition_twepf"), "double_jump", "fall", SubResource("AnimationNodeStateMachineTransition_ws4wl")]
+transitions = ["idle", "run", SubResource("AnimationNodeStateMachineTransition_ahiwk"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_8nakf"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_c45mi"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_hrv8i"), "run", "jump", SubResource("AnimationNodeStateMachineTransition_3snk1"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_kjbmj"), "fall", "double_jump", SubResource("AnimationNodeStateMachineTransition_1h52x"), "double_jump", "land", SubResource("AnimationNodeStateMachineTransition_xrxj3"), "land", "idle", SubResource("AnimationNodeStateMachineTransition_4760x"), "fall", "land", SubResource("AnimationNodeStateMachineTransition_twepf"), "double_jump", "fall", SubResource("AnimationNodeStateMachineTransition_ws4wl"), "jump", "double_jump", SubResource("AnimationNodeStateMachineTransition_8pc77")]
 graph_offset = Vector2(-494, -387)
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_e5va2"]
@@ -603,6 +605,7 @@ tree_root = SubResource("AnimationNodeStateMachine_mevwr")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/double_jump = false
 parameters/conditions/idle = false
+parameters/conditions/is_falling = false
 parameters/conditions/jump = false
 parameters/conditions/land = false
 parameters/conditions/run = false
