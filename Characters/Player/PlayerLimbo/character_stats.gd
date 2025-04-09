@@ -6,3 +6,4 @@ extends Resource
 @export var air_acceleration : float = 100.0
 @export var jump_velocity : float = 350.0
 @export var double_jump_velocity : float = 250.0
+@export var max_fall_speed : float = 500.0
