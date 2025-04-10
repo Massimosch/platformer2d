@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=3 uid="uid://bgsi1vo3el1wv"]
+[gd_scene load_steps=108 format=3 uid="uid://bgsi1vo3el1wv"]
 
 [ext_resource type="Script" uid="uid://bxq1vd4trhlp7" path="res://Scripts/player.gd" id="1_eovys"]
 [ext_resource type="Resource" uid="uid://bcmksavmvf6yb" path="res://Characters/Player/PlayerLimbo/PlayerStats.tres" id="3_8b15s"]
@@ -65,6 +65,28 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ywxx0"]
 radius = 4.0
 height = 28.0
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_e5va2"]
+var/direction/name = &"direction"
+var/direction/type = 5
+var/direction/value = Vector2(0, 0)
+var/direction/hint = 0
+var/direction/hint_string = "The direction the character is trying to move."
+var/jump/name = &"jump"
+var/jump/type = 1
+var/jump/value = false
+var/jump/hint = 0
+var/jump/hint_string = "Whether the character is trying to jump."
+var/jumps_made/name = &"jumps_made"
+var/jumps_made/type = 2
+var/jumps_made/value = 0
+var/jumps_made/hint = 0
+var/jumps_made/hint_string = "How many jumps the character has made."
+var/attack/name = &"attack"
+var/attack/type = 1
+var/attack/value = false
+var/attack/hint = 0
+var/attack/hint_string = "Trying to attack currently?"
 
 [sub_resource type="Animation" id="Animation_p728j"]
 step = 0.07
@@ -481,6 +503,15 @@ animation = &"double_jump"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8pc77"]
 animation = &"fall"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hrv8i"]
+animation = &"ground_attack_1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3snk1"]
+animation = &"ground_attack_2"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kjbmj"]
+animation = &"ground_attack_3"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8b15s"]
 animation = &"idle"
 
@@ -536,12 +567,32 @@ advance_condition = &"is_falling"
 advance_mode = 2
 advance_condition = &"double_jump"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_a7i2g"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8cwbr"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_shr3x"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lgudn"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_i1hil"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_o2edd"]
+switch_mode = 2
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_mevwr"]
 states/Start/position = Vector2(-86, -20)
 states/double_jump/node = SubResource("AnimationNodeAnimation_c45mi")
 states/double_jump/position = Vector2(25, -224)
 states/fall/node = SubResource("AnimationNodeAnimation_8pc77")
 states/fall/position = Vector2(25, -111)
+states/ground_attack_1/node = SubResource("AnimationNodeAnimation_hrv8i")
+states/ground_attack_1/position = Vector2(145, 101.889)
+states/ground_attack_2/node = SubResource("AnimationNodeAnimation_3snk1")
+states/ground_attack_2/position = Vector2(142, 189.889)
+states/ground_attack_3/node = SubResource("AnimationNodeAnimation_kjbmj")
+states/ground_attack_3/position = Vector2(330, 137.889)
 states/idle/node = SubResource("AnimationNodeAnimation_8b15s")
 states/idle/position = Vector2(67, -20)
 states/jump/node = SubResource("AnimationNodeAnimation_ws4wl")
@@ -550,25 +601,8 @@ states/land/node = SubResource("AnimationNodeAnimation_shr3x")
 states/land/position = Vector2(-138, -104)
 states/run/node = SubResource("AnimationNodeAnimation_e5va2")
 states/run/position = Vector2(229, -20)
-transitions = ["idle", "run", SubResource("AnimationNodeStateMachineTransition_ahiwk"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_8nakf"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_c45mi"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_hrv8i"), "run", "jump", SubResource("AnimationNodeStateMachineTransition_3snk1"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_kjbmj"), "fall", "double_jump", SubResource("AnimationNodeStateMachineTransition_1h52x"), "double_jump", "land", SubResource("AnimationNodeStateMachineTransition_xrxj3"), "land", "idle", SubResource("AnimationNodeStateMachineTransition_4760x"), "fall", "land", SubResource("AnimationNodeStateMachineTransition_twepf"), "double_jump", "fall", SubResource("AnimationNodeStateMachineTransition_ws4wl"), "jump", "double_jump", SubResource("AnimationNodeStateMachineTransition_8pc77")]
-graph_offset = Vector2(-494, -223.111)
-
-[sub_resource type="BlackboardPlan" id="BlackboardPlan_e5va2"]
-var/direction/name = &"direction"
-var/direction/type = 5
-var/direction/value = Vector2(0, 0)
-var/direction/hint = 0
-var/direction/hint_string = "The direction the character is trying to move."
-var/jump/name = &"jump"
-var/jump/type = 1
-var/jump/value = false
-var/jump/hint = 0
-var/jump/hint_string = "Whether the character is trying to jump."
-var/jumps_made/name = &"jumps_made"
-var/jumps_made/type = 2
-var/jumps_made/value = 0
-var/jumps_made/hint = 0
-var/jumps_made/hint_string = "How many jumps the character has made."
+transitions = ["idle", "run", SubResource("AnimationNodeStateMachineTransition_ahiwk"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_8nakf"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_c45mi"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_hrv8i"), "run", "jump", SubResource("AnimationNodeStateMachineTransition_3snk1"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_kjbmj"), "fall", "double_jump", SubResource("AnimationNodeStateMachineTransition_1h52x"), "double_jump", "land", SubResource("AnimationNodeStateMachineTransition_xrxj3"), "land", "idle", SubResource("AnimationNodeStateMachineTransition_4760x"), "fall", "land", SubResource("AnimationNodeStateMachineTransition_twepf"), "double_jump", "fall", SubResource("AnimationNodeStateMachineTransition_ws4wl"), "jump", "double_jump", SubResource("AnimationNodeStateMachineTransition_8pc77"), "idle", "ground_attack_1", SubResource("AnimationNodeStateMachineTransition_a7i2g"), "run", "ground_attack_1", SubResource("AnimationNodeStateMachineTransition_8cwbr"), "ground_attack_1", "ground_attack_2", SubResource("AnimationNodeStateMachineTransition_shr3x"), "ground_attack_1", "ground_attack_3", SubResource("AnimationNodeStateMachineTransition_lgudn"), "ground_attack_2", "ground_attack_3", SubResource("AnimationNodeStateMachineTransition_i1hil"), "ground_attack_1", "idle", SubResource("AnimationNodeStateMachineTransition_o2edd")]
+graph_offset = Vector2(-607, -62.111)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 10
@@ -597,21 +631,6 @@ disabled = true
 position = Vector2(0, -14)
 shape = SubResource("CapsuleShape2D_ywxx0")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_cbmiu")
-}
-
-[node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource("AnimationNodeStateMachine_mevwr")
-anim_player = NodePath("../AnimationPlayer")
-parameters/conditions/double_jump = false
-parameters/conditions/idle = false
-parameters/conditions/is_falling = false
-parameters/conditions/jump = false
-parameters/conditions/land = false
-parameters/conditions/run = false
-
 [node name="StateDebugLabel" type="Label" parent="." node_paths=PackedStringArray("limbo_hsm")]
 offset_left = -52.0
 offset_top = -63.0
@@ -626,6 +645,7 @@ script = ExtResource("50_ohm8s")
 character = NodePath("..")
 states = {
 "air": NodePath("AirState"),
+"attack": NodePath("GroundAttack"),
 "ground": NodePath("GroundState")
 }
 
@@ -649,3 +669,18 @@ metadata/_custom_type_script = "uid://chct237if0n23"
 script = ExtResource("53_8b15s")
 player_actions = ExtResource("54_e5va2")
 limbo_hsm = NodePath("../LimboHSM")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_cbmiu")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_mevwr")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/double_jump = false
+parameters/conditions/idle = false
+parameters/conditions/is_falling = false
+parameters/conditions/jump = false
+parameters/conditions/land = false
+parameters/conditions/run = false

@@ -6,3 +6,4 @@ extends Resource
 @export var move_up : StringName = "up"
 @export var move_down : StringName = "down"
 @export var jump : StringName = "jump"
+@export var attack : StringName = "attack"

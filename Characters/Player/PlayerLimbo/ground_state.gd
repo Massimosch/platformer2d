@@ -4,12 +4,17 @@ extends CharacterState
 @export var idle_anim : StringName = "idle"
 @export var move_anim : StringName = "run"
 
+var can_move : bool = true
+
 func _enter() -> void:
 	super()
 	blackboard.set_var(BBNames.jumps_made_var, 0)
-	#await get_tree().create_timer(1000).timeout
+	land()
 	
 func _update(_delta: float) -> void:
+	if not can_move:
+		return
+	
 	var velocity : Vector2 = move()
 	
 	if Vector2.ZERO.is_equal_approx(velocity):
@@ -23,6 +28,8 @@ func _update(_delta: float) -> void:
 	else:
 		dispatch("in_air")
 		
+	if blackboard.get_var(BBNames.attack_var):
+		dispatch("attack")
 		
 func move() -> Vector2:
 	var direction : Vector2 = blackboard.get_var(BBNames.direction_var)
@@ -41,5 +48,10 @@ func jump():
 	var current_jumps : int = blackboard.get_var(BBNames.jump_var)
 	blackboard.set_var(BBNames.jumps_made_var, current_jumps + 1)
 	dispatch("jump")
+	
+func land():
+	can_move = false
+	await get_tree().create_timer(0.2).timeout
+	can_move = true
 	
 	

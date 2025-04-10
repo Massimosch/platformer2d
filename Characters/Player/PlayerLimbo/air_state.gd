@@ -11,7 +11,7 @@ func _enter():
 	coyote_timer = 0.0
 	can_coyote_jump = blackboard.get_var(BBNames.jumps_made_var) == 0
 	
-
+	
 func _update(_delta: float) -> void:
 	air_moving()
 	select_animation_state()
@@ -44,7 +44,7 @@ func air_moving() -> Vector2:
 	if direction.x > 0:
 		var attempted_velocity_x = min(character_stats.max_air_speed, character.velocity.x + character_stats.air_acceleration)
 		character.velocity.x = max(character.velocity.x, attempted_velocity_x)
-
+		
 	elif direction.x < 0:
 		var attempted_velocity_x = max(- character_stats.max_air_speed, character.velocity.x - character_stats.air_acceleration)
 		character.velocity.x = min(character.velocity.x, attempted_velocity_x)
@@ -56,9 +56,8 @@ func air_moving() -> Vector2:
 			try_double_jump()
 		
 	return character.velocity
-
-
-#####Double Jump---
+	
+	
 func try_double_jump():
 	character.velocity.y = -character_stats.double_jump_velocity
 	var current_jumps : int = blackboard.get_var(BBNames.jump_var)
