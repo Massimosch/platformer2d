@@ -1,0 +1,56 @@
+[gd_resource type="BehaviorTree" load_steps=12 format=3 uid="uid://dapex2uqv875b"]
+
+[ext_resource type="Script" uid="uid://daivv0fn40s4w" path="res://ai/tasks/Navigation/navigation_to_point.gd" id="1_6lkbj"]
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_ustnv"]
+var/direction/name = &"direction"
+var/direction/type = 5
+var/direction/value = Vector2(0, 0)
+var/direction/hint = 0
+var/direction/hint_string = "Direction the character is trying to move in"
+var/target/name = &"target"
+var/target/type = 24
+var/target/hint = 0
+var/target/hint_string = "Attack target for the character"
+
+[sub_resource type="BBVariant" id="BBVariant_6lkbj"]
+type = 24
+resource_name = "<null>"
+
+[sub_resource type="BTCheckVar" id="BTCheckVar_deged"]
+variable = &"target"
+check_type = 5
+value = SubResource("BBVariant_6lkbj")
+
+[sub_resource type="BBNode" id="BBNode_51ii4"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_ic2kt"]
+await_completion = 0.5
+animation_player = SubResource("BBNode_51ii4")
+animation_name = &"run"
+
+[sub_resource type="BTCooldown" id="BTCooldown_0fcoa"]
+duration = 1.0
+children = [SubResource("BTPlayAnimation_ic2kt")]
+
+[sub_resource type="BTSequence" id="BTSequence_bmbwo"]
+custom_name = "Attack Target Sequence"
+children = [SubResource("BTCheckVar_deged"), SubResource("BTCooldown_0fcoa")]
+
+[sub_resource type="BTAction" id="BTAction_deged"]
+script = ExtResource("1_6lkbj")
+max_distance = 200.0
+
+[sub_resource type="BTSequence" id="BTSequence_iof2e"]
+custom_name = "Find Target Sequency"
+children = [SubResource("BTAction_deged")]
+
+[sub_resource type="BTDynamicSelector" id="BTDynamicSelector_nyvk1"]
+custom_name = "BoarAI"
+children = [SubResource("BTSequence_bmbwo"), SubResource("BTSequence_iof2e")]
+
+[resource]
+blackboard_plan = SubResource("BlackboardPlan_ustnv")
+root_task = SubResource("BTDynamicSelector_nyvk1")

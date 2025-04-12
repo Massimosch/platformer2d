@@ -33,6 +33,7 @@ enabled=PackedStringArray("res://addons/ovani_auto_footsteps/plugin.cfg")
 
 enemy=""
 player=""
+navigation=""
 
 [input]
 

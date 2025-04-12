@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://clti2lou5tfqk"]
+[gd_scene load_steps=41 format=3 uid="uid://clti2lou5tfqk"]
 
 [ext_resource type="Script" uid="uid://coacu2hova4mb" path="res://Characters/Enemies/npc.gd" id="1_bx02t"]
 [ext_resource type="Texture2D" uid="uid://c8nbvokc6cj52" path="res://Art/Legacy-Fantasy - High Forest 2.3/Mob/Boar/Hit-Vanish/Hit-Sheet-Black.png" id="1_oio0r"]
@@ -6,6 +6,9 @@
 [ext_resource type="Script" uid="uid://dqgh3l4d4tk4o" path="res://Characters/Player/PlayerLimbo/character_stats.gd" id="2_ustnv"]
 [ext_resource type="Texture2D" uid="uid://dq7tapb4dmh8k" path="res://Art/Legacy-Fantasy - High Forest 2.3/Mob/Boar/Walk/Walk-Base-SheetBlack.png" id="3_ustnv"]
 [ext_resource type="Texture2D" uid="uid://bxcxk3cnxvu4h" path="res://Art/Legacy-Fantasy - High Forest 2.3/Mob/Boar/Run/Run-Sheet-Black.png" id="4_jkr7a"]
+[ext_resource type="BehaviorTree" uid="uid://dapex2uqv875b" path="res://ai/trees/Boar.tres" id="7_jkr7a"]
+[ext_resource type="Script" uid="uid://blo4ic60j7q6" path="res://Characters/Enemies/detection_zone.gd" id="8_08gh7"]
+[ext_resource type="Script" uid="uid://b7uyrpgh6u8sg" path="res://Characters/Player/facing.gd" id="8_do46g"]
 
 [sub_resource type="Resource" id="Resource_jkr7a"]
 script = ExtResource("2_ustnv")
@@ -181,15 +184,14 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="Animation" id="Animation_jkr7a"]
-resource_name = "idle"
-length = 0.4
-loop_mode = 1
-step = 0.1
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1lahq"]
+
+[sub_resource type="Animation" id="Animation_do46g"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/path = NodePath("Facing/AnimatedSprite2D:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -201,7 +203,37 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/path = NodePath("Facing/AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_bx02t"]
+resource_name = "hit"
+length = 0.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Facing/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"hit"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Facing/AnimatedSprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -211,31 +243,34 @@ tracks/1/keys = {
 "values": [0, 1, 2, 3]
 }
 
-[sub_resource type="Animation" id="Animation_do46g"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_jkr7a"]
+resource_name = "idle"
+length = 0.4
+loop_mode = 1
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/path = NodePath("Facing/AnimatedSprite2D:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"default"]
+"values": [&"idle"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/path = NodePath("Facing/AnimatedSprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [0]
+"values": [0, 1, 2, 3]
 }
 
 [sub_resource type="Animation" id="Animation_6h1yv"]
@@ -246,7 +281,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/path = NodePath("Facing/AnimatedSprite2D:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -258,7 +293,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/path = NodePath("Facing/AnimatedSprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -276,7 +311,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/path = NodePath("Facing/AnimatedSprite2D:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -288,7 +323,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/path = NodePath("Facing/AnimatedSprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -297,35 +332,22 @@ tracks/1/keys = {
 "update": 1,
 "values": [0, 2, 3, 4]
 }
-
-[sub_resource type="Animation" id="Animation_bx02t"]
-resource_name = "hit"
-length = 0.4
-loop_mode = 1
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"hit"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3]
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"lock_animation"
+}, {
+"args": [],
+"method": &"unlock_animation"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_08gh7"]
@@ -337,26 +359,37 @@ _data = {
 &"run": SubResource("Animation_oio0r")
 }
 
-[sub_resource type="BlackboardPlan" id="BlackboardPlan_oio0r"]
-
-[sub_resource type="BehaviorTree" id="BehaviorTree_bx02t"]
-blackboard_plan = SubResource("BlackboardPlan_oio0r")
-
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_1lahq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_katt8"]
 size = Vector2(48, 29)
 
 [node name="BlackBoar" type="CharacterBody2D" node_paths=PackedStringArray("navigation", "animation_player", "sprite")]
+scale = Vector2(-1, 1)
 script = ExtResource("1_bx02t")
 navigation = NodePath("NavigationAgent2D")
 animation_player = NodePath("AnimationPlayer")
 character_stats = SubResource("Resource_jkr7a")
-sprite = NodePath("AnimatedSprite2D")
+sprite = NodePath("Facing/AnimatedSprite2D")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Facing" type="Node2D" parent="." node_paths=PackedStringArray("bt_player")]
+script = ExtResource("8_do46g")
+bt_player = NodePath("../BTPlayer")
+metadata/_custom_type_script = "uid://b7uyrpgh6u8sg"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Facing"]
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_ustnv")
+animation = &"idle"
+
+[node name="DetectionZone" type="Area2D" parent="Facing" node_paths=PackedStringArray("bt_player")]
+collision_mask = 2
+script = ExtResource("8_08gh7")
+bt_player = NodePath("../../BTPlayer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Facing/DetectionZone"]
+position = Vector2(-41, -15)
+shape = SubResource("RectangleShape2D_1lahq")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -364,7 +397,7 @@ libraries = {
 }
 
 [node name="BTPlayer" type="BTPlayer" parent="."]
-behavior_tree = SubResource("BehaviorTree_bx02t")
+behavior_tree = ExtResource("7_jkr7a")
 blackboard_plan = SubResource("BlackboardPlan_1lahq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -372,3 +405,5 @@ position = Vector2(-1, -14.5)
 shape = SubResource("RectangleShape2D_katt8")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 30.0
+debug_enabled = true
