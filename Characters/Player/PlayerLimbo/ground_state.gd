@@ -1,9 +1,5 @@
 extends CharacterState
 
-
-@export var idle_anim : StringName = "idle"
-@export var move_anim : StringName = "run"
-
 var can_move : bool = true
 
 func _enter() -> void:
@@ -14,14 +10,9 @@ func _enter() -> void:
 func _update(_delta: float) -> void:
 	if not can_move:
 		return
-	
-	var velocity : Vector2 = move()
-	
-	if Vector2.ZERO.is_equal_approx(velocity):
-		character.animation_state_machine.travel(idle_anim)
-	else:
-		character.animation_state_machine.travel(move_anim)
 		
+	move()
+	
 	if character.is_on_floor():
 		if blackboard.get_var(BBNames.jump_var) && blackboard.get_var(BBNames.jumps_made_var) == 0:
 			jump()
@@ -33,6 +24,7 @@ func _update(_delta: float) -> void:
 		
 func move() -> Vector2:
 	var direction : Vector2 = blackboard.get_var(BBNames.direction_var)
+	character.animation_tree.set("parameters/Move/blend_position", direction.x)
 	
 	if not is_zero_approx(direction.x):
 		character.velocity.x = direction.x * character_stats.run_speed
@@ -53,5 +45,4 @@ func land():
 	can_move = false
 	await get_tree().create_timer(0.2).timeout
 	can_move = true
-	
 	
