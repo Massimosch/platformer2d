@@ -1,4 +1,4 @@
-[gd_scene load_steps=145 format=3 uid="uid://bgsi1vo3el1wv"]
+[gd_scene load_steps=143 format=3 uid="uid://bgsi1vo3el1wv"]
 
 [ext_resource type="Script" uid="uid://bxq1vd4trhlp7" path="res://Scripts/player.gd" id="1_eovys"]
 [ext_resource type="Resource" uid="uid://bcmksavmvf6yb" path="res://Characters/Player/PlayerLimbo/PlayerStats.tres" id="3_8b15s"]
@@ -31,7 +31,6 @@
 [ext_resource type="Texture2D" uid="uid://bqk3c8dknl3hw" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-run-03.png" id="10_wdgmf"]
 [ext_resource type="Script" uid="uid://ek5gr30p83n8" path="res://Scripts/StateDebugLabel.gd" id="11_c4gpq"]
 [ext_resource type="Texture2D" uid="uid://b1jw0mty58cl" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-run-04.png" id="11_ldp5e"]
-[ext_resource type="Script" uid="uid://d3bu2cwcahnp7" path="res://Characters/Player/PlayerLimbo/air_attack_state.gd" id="11_n34ts"]
 [ext_resource type="Texture2D" uid="uid://bl3jylf1jrep4" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-run-05.png" id="12_ohm8s"]
 [ext_resource type="Texture2D" uid="uid://ct1qs1mjewk7q" path="res://Art/PlayerGraphics/HandCombatSprites/adventurer-punch-07.png" id="14_2ichn"]
 [ext_resource type="Texture2D" uid="uid://cyluf8ii4s7ax" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-crouch-00.png" id="16_ahiwk"]
@@ -57,8 +56,8 @@
 [ext_resource type="Texture2D" uid="uid://dduh7eg4py7ow" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-attack3-04.png" id="44_hrv8i"]
 [ext_resource type="Texture2D" uid="uid://bt6qfbtdtxxmj" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-attack3-05.png" id="45_3snk1"]
 [ext_resource type="Script" uid="uid://door32q7fm0n3" path="res://Characters/Player/PlayerLimbo/limbo_hsm.gd" id="50_ohm8s"]
-[ext_resource type="Script" uid="uid://bojbi7rvg6fcu" path="res://Characters/Player/PlayerLimbo/ground_move_state.gd" id="51_u5ovo"]
-[ext_resource type="Script" uid="uid://ht5ly3no1o8y" path="res://Characters/Player/PlayerLimbo/air_move_state.gd" id="52_8b15s"]
+[ext_resource type="Script" uid="uid://bojbi7rvg6fcu" path="res://Characters/Player/PlayerLimbo/ground_state.gd" id="51_u5ovo"]
+[ext_resource type="Script" uid="uid://ht5ly3no1o8y" path="res://Characters/Player/PlayerLimbo/air_state.gd" id="52_8b15s"]
 [ext_resource type="Script" uid="uid://cyhk8gtwnow1e" path="res://Characters/Player/player_input_system.gd" id="53_8b15s"]
 [ext_resource type="Script" uid="uid://cxvi03gecdyeg" path="res://Characters/Player/attack_chain_state.gd" id="54_ahiwk"]
 [ext_resource type="Resource" uid="uid://0unku0pgpd6r" path="res://Characters/Player/PlayerLimbo/PlayerActions.tres" id="54_e5va2"]
@@ -823,14 +822,12 @@ switch_mode = 2
 switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vxktf"]
+switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_elxsa"]
-switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ycmvp"]
 switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vsgar"]
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_mevwr"]
 states/Move/node = SubResource("AnimationNodeBlendSpace1D_shr3x")
@@ -839,11 +836,11 @@ states/Start/position = Vector2(-86, -20)
 states/air_attack/node = SubResource("AnimationNodeAnimation_we7wg")
 states/air_attack/position = Vector2(504.218, -14.366)
 states/air_attack2/node = SubResource("AnimationNodeAnimation_n34ts")
-states/air_attack2/position = Vector2(504.218, -108.124)
+states/air_attack2/position = Vector2(515.218, -101.124)
 states/air_attack_end/node = SubResource("AnimationNodeAnimation_bn5v0")
-states/air_attack_end/position = Vector2(686.218, 28.876)
+states/air_attack_end/position = Vector2(662.218, 82)
 states/air_attack_loop/node = SubResource("AnimationNodeAnimation_vxktf")
-states/air_attack_loop/position = Vector2(686.218, -112)
+states/air_attack_loop/position = Vector2(696.218, -96.124)
 states/double_jump/node = SubResource("AnimationNodeAnimation_shr3x")
 states/double_jump/position = Vector2(360, -122)
 states/fall/node = SubResource("AnimationNodeAnimation_hrv8i")
@@ -858,7 +855,7 @@ states/jump/node = SubResource("AnimationNodeAnimation_3snk1")
 states/jump/position = Vector2(243, -14.366)
 states/land/node = SubResource("AnimationNodeAnimation_kjbmj")
 states/land/position = Vector2(92, -117)
-transitions = ["Start", "Move", SubResource("AnimationNodeStateMachineTransition_ws4wl"), "Move", "jump", SubResource("AnimationNodeStateMachineTransition_1h52x"), "fall", "land", SubResource("AnimationNodeStateMachineTransition_4760x"), "land", "Move", SubResource("AnimationNodeStateMachineTransition_twepf"), "double_jump", "fall", SubResource("AnimationNodeStateMachineTransition_8cwbr"), "double_jump", "land", SubResource("AnimationNodeStateMachineTransition_8pc77"), "Move", "ground_attack_1", SubResource("AnimationNodeStateMachineTransition_lgudn"), "ground_attack_1", "ground_attack_2", SubResource("AnimationNodeStateMachineTransition_o2edd"), "ground_attack_2", "ground_attack_3", SubResource("AnimationNodeStateMachineTransition_7bokn"), "ground_attack_3", "Move", SubResource("AnimationNodeStateMachineTransition_usk8m"), "ground_attack_1", "Move", SubResource("AnimationNodeStateMachineTransition_shr3x"), "ground_attack_2", "Move", SubResource("AnimationNodeStateMachineTransition_hrv8i"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_xrxj3"), "fall", "air_attack", SubResource("AnimationNodeStateMachineTransition_we7wg"), "air_attack", "fall", SubResource("AnimationNodeStateMachineTransition_n34ts"), "air_attack", "air_attack2", SubResource("AnimationNodeStateMachineTransition_bn5v0"), "double_jump", "air_attack", SubResource("AnimationNodeStateMachineTransition_vxktf"), "air_attack2", "fall", SubResource("AnimationNodeStateMachineTransition_elxsa"), "air_attack2", "air_attack_loop", SubResource("AnimationNodeStateMachineTransition_ycmvp"), "air_attack_loop", "air_attack_end", SubResource("AnimationNodeStateMachineTransition_vsgar")]
+transitions = ["Start", "Move", SubResource("AnimationNodeStateMachineTransition_ws4wl"), "Move", "jump", SubResource("AnimationNodeStateMachineTransition_1h52x"), "fall", "land", SubResource("AnimationNodeStateMachineTransition_4760x"), "land", "Move", SubResource("AnimationNodeStateMachineTransition_twepf"), "double_jump", "fall", SubResource("AnimationNodeStateMachineTransition_8cwbr"), "double_jump", "land", SubResource("AnimationNodeStateMachineTransition_8pc77"), "Move", "ground_attack_1", SubResource("AnimationNodeStateMachineTransition_lgudn"), "ground_attack_1", "ground_attack_2", SubResource("AnimationNodeStateMachineTransition_o2edd"), "ground_attack_2", "ground_attack_3", SubResource("AnimationNodeStateMachineTransition_7bokn"), "ground_attack_3", "Move", SubResource("AnimationNodeStateMachineTransition_usk8m"), "ground_attack_1", "Move", SubResource("AnimationNodeStateMachineTransition_shr3x"), "ground_attack_2", "Move", SubResource("AnimationNodeStateMachineTransition_hrv8i"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_xrxj3"), "fall", "air_attack", SubResource("AnimationNodeStateMachineTransition_we7wg"), "air_attack", "fall", SubResource("AnimationNodeStateMachineTransition_n34ts"), "air_attack", "air_attack2", SubResource("AnimationNodeStateMachineTransition_bn5v0"), "air_attack2", "air_attack_loop", SubResource("AnimationNodeStateMachineTransition_vxktf"), "air_attack_loop", "air_attack_end", SubResource("AnimationNodeStateMachineTransition_elxsa"), "air_attack_end", "Move", SubResource("AnimationNodeStateMachineTransition_ycmvp")]
 graph_offset = Vector2(-336.782, -180.124)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
@@ -867,9 +864,9 @@ script = ExtResource("1_eovys")
 player_actions = ExtResource("54_e5va2")
 player_stats = ExtResource("3_8b15s")
 
-[node name="Facing" type="Node2D" parent="." node_paths=PackedStringArray("limbo_hsm")]
+[node name="Facing" type="Node2D" parent="." node_paths=PackedStringArray("character")]
 script = ExtResource("4_e5va2")
-limbo_hsm = NodePath("../LimboHSM")
+character = NodePath("..")
 
 [node name="Sprite2D" type="Sprite2D" parent="Facing"]
 position = Vector2(0, -18)
@@ -901,18 +898,18 @@ blackboard_plan = SubResource("BlackboardPlan_e5va2")
 script = ExtResource("50_ohm8s")
 character = NodePath("..")
 states = {
-"air": NodePath("AirMoveState"),
+"air": NodePath("AirState"),
 "air_attack": NodePath("AirAttackState"),
 "attack": NodePath("GroundAttack"),
-"ground": NodePath("GroundMoveState")
+"ground": NodePath("GroundState")
 }
 
-[node name="GroundMoveState" type="LimboState" parent="LimboHSM"]
+[node name="GroundState" type="LimboState" parent="LimboHSM"]
 script = ExtResource("51_u5ovo")
 animation_name = &"Move"
 metadata/_custom_type_script = "uid://chct237if0n23"
 
-[node name="AirMoveState" type="LimboState" parent="LimboHSM"]
+[node name="AirState" type="LimboState" parent="LimboHSM"]
 script = ExtResource("52_8b15s")
 metadata/_custom_type_script = "uid://chct237if0n23"
 
@@ -920,13 +917,11 @@ metadata/_custom_type_script = "uid://chct237if0n23"
 script = ExtResource("54_ahiwk")
 attack_2 = &"ground_attack_2"
 attack_3 = &"ground_attack_3"
-can_jump = false
-movement_speed_var = "attacking_move_speed"
 animation_name = &"ground_attack_1"
 metadata/_custom_type_script = "uid://chct237if0n23"
 
 [node name="AirAttackState" type="LimboState" parent="LimboHSM"]
-script = ExtResource("11_n34ts")
+script = ExtResource("54_ahiwk")
 attack_2 = &"air_attack2"
 attack_3 = &"air_attack_loop"
 animation_name = &"air_attack"

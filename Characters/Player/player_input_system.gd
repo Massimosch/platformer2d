@@ -25,10 +25,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event.is_action_released(player_actions.jump):
 		is_jumping = false
 		
-	if event.is_action(player_actions.attack):
+	if Input.is_action_just_pressed(player_actions.attack):
 		attack = true
-	elif event.is_action_released(player_actions.attack):
-		attack = false
 	
 		
 		

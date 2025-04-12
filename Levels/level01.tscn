@@ -1353,7 +1353,7 @@ position = Vector2(344, -117)
 position = Vector2(178, -118)
 
 [node name="Skeleton" parent="." instance=ExtResource("10_qlusc")]
-position = Vector2(596, -42)
+position = Vector2(340, -138)
 
 [node name="Skeleton2" parent="." instance=ExtResource("10_qlusc")]
-position = Vector2(667, -47)
+position = Vector2(503, -135)

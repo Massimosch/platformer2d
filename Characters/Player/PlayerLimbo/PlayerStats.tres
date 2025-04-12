@@ -1,6 +1,13 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bcmksavmvf6yb"]
+[gd_resource type="Resource" script_class="PlayerStats" load_steps=2 format=3 uid="uid://bcmksavmvf6yb"]
 
 [ext_resource type="Script" uid="uid://bbxqy4aelklo7" path="res://Characters/Player/PlayerLimbo/player_stats.gd" id="1_6cuv0"]
 
 [resource]
 script = ExtResource("1_6cuv0")
+run_speed = 150.0
+attacking_move_speed = 25.0
+max_air_speed = 100.0
+air_acceleration = 200.0
+jump_velocity = 350.0
+double_jump_velocity = 250.0
+max_fall_speed = 500.0
