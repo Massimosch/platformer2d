@@ -1,18 +1,12 @@
-class_name HurtBox
+class_name Hurtbox
 extends Area2D
 
-func _init() -> void:
-	collision_layer = 16
-	collision_mask = 16
+@export var health: Health
 
+var last_attack_vector: Vector2
 
-func _ready() -> void:
-	connect("area_entered", self._on_area_entered)
-	
-func _on_area_entered(hitbox) -> void:
+func take_damage(amount: float, knockback: Vector2) -> void:
+	last_attack_vector = knockback
 
-	if hitbox == null:
-		return
-	
-	if owner.has_method("take_damage"):
-		owner.take_damage(hitbox.damage)
+	if health:
+		health.take_damage(amount, knockback)

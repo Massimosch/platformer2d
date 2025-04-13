@@ -1,46 +1,21 @@
-#*
-#* health.gd
-#* =============================================================================
-#* Copyright (c) 2023-present Serhii Snitsaruk and the LimboAI contributors.
-#*
-#* Use of this source code is governed by an MIT-style
-#* license that can be found in the LICENSE file or at
-#* https://opensource.org/licenses/MIT.
-#* =============================================================================
-#*
 class_name Health
 extends Node
-## Tracks health and emits signal when damaged or dead.
 
-## Emitted when health is reduced to 0.
-signal death
-
-## Emitted when health is damaged.
-signal damaged(amount: float, knockback: Vector2)
-
-## Initial health value.
+@onready var damage_numbers_origin = $DamageNumbersOrigin
 @export var max_health: float = 10.0
-
 var _current: float
-
 
 func _ready() -> void:
 	_current = max_health
 
-
-func take_damage(amount: float, knockback: Vector2) -> void:
-	if _current <= 0.0:
-		return
-
+func take_damage(amount: float, _knockback: Vector2) -> void:
+#	is critical? crit chance ?
 	_current -= amount
-	_current = max(_current, 0.0)
+	#DamageNumbers.display_number(amount, damage_numbers_origin.global_position, false)
+	prints("Health now:", _current)
 
-	if _current <= 0.0:
-		death.emit()
-	else:
-		damaged.emit(amount, knockback)
-
-
-## Returns current health.
+	if _current <= 0:
+		owner.die()
+		
 func get_current() -> float:
 	return _current

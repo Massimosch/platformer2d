@@ -1,4 +1,4 @@
-[gd_scene load_steps=158 format=3 uid="uid://bgsi1vo3el1wv"]
+[gd_scene load_steps=160 format=3 uid="uid://bgsi1vo3el1wv"]
 
 [ext_resource type="Script" uid="uid://bxq1vd4trhlp7" path="res://Scripts/player.gd" id="1_eovys"]
 [ext_resource type="Resource" uid="uid://bcmksavmvf6yb" path="res://Characters/Player/PlayerLimbo/PlayerStats.tres" id="3_8b15s"]
@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://ccv8iheotpvjk" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-smrslt-02.png" id="5_f3npr"]
 [ext_resource type="Texture2D" uid="uid://v3cl42mcy6fm" path="res://Art/PlayerGraphics/HandCombatSprites/adventurer-punch-02.png" id="5_s0xdn"]
 [ext_resource type="Texture2D" uid="uid://drxc6r2teg48h" path="res://Art/PlayerGraphics/HandCombatSprites/adventurer-punch-04.png" id="6_atvgk"]
-[ext_resource type="Script" uid="uid://c8dwabdeywpoc" path="res://Scripts/MyHitBox.gd" id="6_elxsa"]
+[ext_resource type="Script" uid="uid://dntc3c582m5w8" path="res://Scripts/hitbox.gd" id="6_elxsa"]
 [ext_resource type="Texture2D" uid="uid://b7w5rq0cva8xe" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-smrslt-03.png" id="6_n2l6n"]
 [ext_resource type="Texture2D" uid="uid://b2qwhuodfke86" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-jump-00.png" id="6_ohm8s"]
 [ext_resource type="Texture2D" uid="uid://21rrnhvthbc" path="res://Art/PlayerGraphics/HandCombatSprites/adventurer-punch-05.png" id="7_bkulq"]
@@ -87,6 +87,10 @@
 [ext_resource type="Texture2D" uid="uid://crw4kpvf1a5uf" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-hurt-00.png" id="81_we7wg"]
 [ext_resource type="Texture2D" uid="uid://gmlp0exuhhau" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-hurt-01.png" id="82_n34ts"]
 [ext_resource type="Texture2D" uid="uid://cpe0qvs6s15qe" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-hurt-02.png" id="83_bn5v0"]
+[ext_resource type="Script" uid="uid://5byn62y1oa76" path="res://demo/agents/scripts/health.gd" id="88_ycmvp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ycmvp"]
+size = Vector2(24, 36)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ywxx0"]
 radius = 4.0
@@ -140,38 +144,14 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Facing/Sword/CollisionPolygon2D:polygon")
+tracks/1/path = NodePath("Facing/Hitbox:monitoring")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [PackedVector2Array(-1, -13, -14, -16, -28, -11, -11, -4, -8, 4, -10, 19, 1, 19, 6, 15, 7, 7, 5, -5)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Facing/Sword/CollisionPolygon2D:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(21, -22)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Facing/Sword:monitoring")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_morf0"]
@@ -190,18 +170,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [ExtResource("62_0jrn7"), ExtResource("63_51n1v"), ExtResource("64_mac3c"), ExtResource("65_we7wg")]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Facing/Sword/CollisionPolygon2D:polygon")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.1),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [PackedVector2Array(-2, -11, -15, -14, -25, -10, -45, -14, -48, 3, -22, 14, 3, 13, 8, 5, 7, -5)]
-}
 
 [sub_resource type="Animation" id="Animation_m3wrk"]
 resource_name = "air_attack2"
@@ -218,18 +186,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [ExtResource("66_n34ts"), ExtResource("67_bn5v0"), ExtResource("68_vxktf")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Facing/Sword/CollisionPolygon2D:polygon")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [PackedVector2Array(-3, -15, -17, -15, -29, -6, -30, 9, -21, 22, -5, 21, 4, 15, 8, 5, 6, -7)]
 }
 
 [sub_resource type="Animation" id="Animation_khp6d"]
@@ -248,18 +204,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [ExtResource("71_vsgar"), ExtResource("72_gxw5c"), ExtResource("73_3d8qi"), ExtResource("74_8dpgu")]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Facing/Sword/CollisionPolygon2D:polygon")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [PackedVector2Array(-11, -19, -30, 22, -21, 22, -8, 22, -8, 13, -8, 2), PackedVector2Array(-45, -1, -45, 22, -21, 22, -4, 22, -3, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_b163t"]
 resource_name = "air_attack_loop"
@@ -277,18 +221,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [ExtResource("69_elxsa"), ExtResource("70_ycmvp")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Facing/Sword/CollisionPolygon2D:polygon")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [PackedVector2Array(-11, -19, -30, 22, -21, 22, -8, 22, -8, 13, -8, 2)]
 }
 
 [sub_resource type="Animation" id="Animation_6v1kl"]
@@ -376,38 +308,14 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Facing/Sword/CollisionPolygon2D:polygon")
+tracks/1/path = NodePath("Facing/Hitbox:monitoring")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.10044, 0.30086),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [PackedVector2Array(-1, -13, -14, -16, -28, -11, -11, -4, -8, 4, -10, 19, 1, 19, 6, 15, 7, 7, 5, -5), PackedVector2Array(-1, -13, -15, -18, -28, -11, -10, -1, -2, -7)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Facing/Sword/CollisionPolygon2D:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.100898, 0.30086),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [Vector2(21, -22), Vector2(21, -22)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Facing/Sword:monitoring")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.1, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_evul0"]
@@ -429,38 +337,14 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Facing/Sword/CollisionPolygon2D:polygon")
+tracks/1/path = NodePath("Facing/Hitbox:monitoring")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.299943),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [PackedVector2Array(2, -8, -13, -13, -23, -8, -8, 4, -37, 15, -35, 21, 0, 21, 7, 9)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Facing/Sword/CollisionPolygon2D:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.299943),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(21, -22)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Facing/Sword:monitoring")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.2, 0.5),
-"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true, false]
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_kjbmj"]
@@ -482,26 +366,14 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Facing/Sword/CollisionPolygon2D:disabled")
+tracks/1/path = NodePath("Facing/Hitbox:monitoring")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Facing/Sword:monitoring")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true, false]
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_vxktf"]
@@ -886,14 +758,16 @@ position = Vector2(0, -18)
 texture = ExtResource("7_jec2i")
 region_rect = Rect2(0, -3, 256, 259)
 
-[node name="Sword" type="Area2D" parent="Facing"]
-collision_layer = 16
+[node name="Hitbox" type="Area2D" parent="Facing"]
+collision_layer = 0
 collision_mask = 16
+monitoring = false
 script = ExtResource("6_elxsa")
+metadata/_custom_type_script = "uid://dntc3c582m5w8"
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Facing/Sword"]
-position = Vector2(21, -22)
-polygon = PackedVector2Array(-1, -13, -14, -16, -28, -11, -11, -4, -8, 4, -10, 19, 1, 19, 6, 15, 7, 7, 5, -5)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Facing/Hitbox"]
+position = Vector2(23, -20)
+shape = SubResource("RectangleShape2D_ycmvp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -14)
@@ -975,3 +849,8 @@ tree_root = SubResource("AnimationNodeStateMachine_mevwr")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/land = false
 parameters/Move/blend_position = 0
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("88_ycmvp")
+max_health = 100.0
+metadata/_custom_type_script = "uid://5byn62y1oa76"

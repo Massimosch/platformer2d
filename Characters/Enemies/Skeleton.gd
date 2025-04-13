@@ -44,14 +44,12 @@ func check_for_self(node):
 func attack():
 	animation_sprite.play("attack")
 
-func take_damage(amount: int) -> void:
-	health -= amount
-	print("Skeleton took ", amount, " damage. Remaining HP: ", health)
-	
-	if health <= 0:
-		die()
+func knockback(direction: int) -> void:
+	velocity.y = jump_power / 2
 
 func die():
 	print("Skeleton died!")
 	# Later: play death animation, spawn particles, give XP, etc.
 	queue_free()
+	
+	

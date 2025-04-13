@@ -35,9 +35,6 @@ func get_dash_direction() -> Vector2:
 
 func handle_dash_movement(delta):
 	dash_timer += delta
-	var t = clamp(dash_timer / dash_duration, 0.0, 1.0)
-	var speed_multiplier = dash_curve.sample(t)
-	#var dash_speed = max_dash_distance * speed_multiplier
 	if dash_timer >= dash_duration:
 		dash_timer = 0.0
 		can_dash = true
