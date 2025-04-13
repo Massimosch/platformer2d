@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://bbiqswa8jlgf4"]
+[gd_scene load_steps=14 format=4 uid="uid://bbiqswa8jlgf4"]
 
 [ext_resource type="Texture2D" uid="uid://dyp7g3uueei7b" path="res://Art/Background/1.png" id="1_jkiok"]
 [ext_resource type="Texture2D" uid="uid://b78oo2uv55323" path="res://Art/Legacy-Fantasy - High Forest 2.3/Assets/Tiles.png" id="1_yvup7"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dvgpf421071sr" path="res://UI/health_text_label.tscn" id="9_qlusc"]
 [ext_resource type="PackedScene" uid="uid://du17cfsm7fijq" path="res://Objects/Platform Objects/Bridge/bridge.tscn" id="9_yrlwc"]
 [ext_resource type="PackedScene" uid="uid://cwrrv8epkwkp1" path="res://Characters/Enemies/Skeleton.tscn" id="10_qlusc"]
+[ext_resource type="PackedScene" uid="uid://v6rjjadxrvuy" path="res://Characters/Enemies/Snail/snail.tscn" id="11_qvap4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_36tc4"]
 texture = ExtResource("1_yvup7")
@@ -1358,3 +1359,9 @@ position = Vector2(596, -42)
 
 [node name="Skeleton2" parent="." instance=ExtResource("10_qlusc")]
 position = Vector2(667, -47)
+
+[node name="Snail" parent="." instance=ExtResource("11_qvap4")]
+position = Vector2(428, -28)
+
+[node name="Snail2" parent="." instance=ExtResource("11_qvap4")]
+position = Vector2(281, -31)

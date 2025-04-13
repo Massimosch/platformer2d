@@ -14,6 +14,7 @@ class_name DashState
 var dash_start_pos = 0
 var dash_direction = 0
 var dash_timer = 0
+var gravity = 980
 
 func on_enter():
 	if abs(player.velocity.x) > 0:
@@ -38,7 +39,8 @@ func state_process(delta):
 			dash_animation = "slide_loop"
 			playback.travel(dash_animation)
 			var speed_factor = dash_curve.sample(current_distance / dash_max_distance)
-			character.velocity = Vector2(dash_direction * dash_speed * speed_factor, 0)
+			character.velocity.x = dash_direction * dash_speed * speed_factor
+			character.velocity.y += gravity * delta 
 	if dash_timer > 0:
 		dash_timer -= delta
 		
