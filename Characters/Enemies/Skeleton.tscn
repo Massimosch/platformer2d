@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://cwrrv8epkwkp1"]
+[gd_scene load_steps=51 format=3 uid="uid://cwrrv8epkwkp1"]
 
 [ext_resource type="Script" uid="uid://debcog0v476s1" path="res://Characters/Enemies/Skeleton.gd" id="1_2lpyg"]
 [ext_resource type="Texture2D" uid="uid://bjis3oekm525b" path="res://Art/Monsters_Creatures_Fantasy/Skeleton/Attack.png" id="1_dlowh"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://ifujcd1v80et" path="res://Art/4-Interrogation Dialog/1-Opening/4.png" id="15_snmyw"]
 [ext_resource type="Texture2D" uid="uid://cu2e7mhg700ho" path="res://Art/4-Interrogation Dialog/2-Closing/1.png" id="16_wfpfj"]
 [ext_resource type="BehaviorTree" uid="uid://utos5k1fndmq" path="res://ai/trees/Skeleton.tres" id="17_q0jaa"]
+[ext_resource type="Script" uid="uid://dw7js8ag07nes" path="res://Scripts/Damageable.gd" id="18_u5m5t"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ylejg"]
 atlas = ExtResource("1_dlowh")
@@ -391,8 +392,7 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5lv3d"]
-radius = 7.0
-height = 52.0
+height = 38.0
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_6huwf"]
 
@@ -401,7 +401,8 @@ collision_layer = 4
 script = ExtResource("1_2lpyg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-4, -26)
+position = Vector2(-2, -21)
+scale = Vector2(0.8, 0.8)
 sprite_frames = SubResource("SpriteFrames_ohv7j")
 animation = &"idle"
 autoplay = "idle"
@@ -422,9 +423,13 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -26)
+position = Vector2(2, -20)
 shape = SubResource("CapsuleShape2D_5lv3d")
 
 [node name="BTPlayer" type="BTPlayer" parent="."]
 behavior_tree = ExtResource("17_q0jaa")
 blackboard_plan = SubResource("BlackboardPlan_6huwf")
+
+[node name="Damageable" type="Node" parent="."]
+script = ExtResource("18_u5m5t")
+metadata/_custom_type_script = "uid://dw7js8ag07nes"

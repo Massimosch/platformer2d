@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://bbiqswa8jlgf4"]
+[gd_scene load_steps=13 format=4 uid="uid://bbiqswa8jlgf4"]
 
 [ext_resource type="Texture2D" uid="uid://dyp7g3uueei7b" path="res://Art/Background/1.png" id="1_jkiok"]
 [ext_resource type="Texture2D" uid="uid://b78oo2uv55323" path="res://Art/Legacy-Fantasy - High Forest 2.3/Assets/Tiles.png" id="1_yvup7"]
@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c05jomm5kcfne" path="res://UI/health_text.tscn" id="8_yrlwc"]
 [ext_resource type="PackedScene" uid="uid://dvgpf421071sr" path="res://UI/health_text_label.tscn" id="9_qlusc"]
 [ext_resource type="PackedScene" uid="uid://du17cfsm7fijq" path="res://Objects/Platform Objects/Bridge/bridge.tscn" id="9_yrlwc"]
-[ext_resource type="PackedScene" uid="uid://clti2lou5tfqk" path="res://Characters/Enemies/Boar.tscn" id="10_qlusc"]
+[ext_resource type="PackedScene" uid="uid://cwrrv8epkwkp1" path="res://Characters/Enemies/Skeleton.tscn" id="10_qlusc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_36tc4"]
 texture = ExtResource("1_yvup7")
@@ -1250,13 +1250,6 @@ terrain_set_0/terrain_2/name = "water"
 terrain_set_0/terrain_2/color = Color(0.682895, 0.860611, 0.995948, 1)
 sources/1 = SubResource("TileSetAtlasSource_36tc4")
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_qlusc"]
-vertices = PackedVector2Array(757, -38, 641, -38, 568, -39, 568, -66, 239, -35, 444, -39, 641, -6, -27, -6, 571, -113, 1257.99, -613.977, 1257.51, -6, 1046.26, -22, 571, -140, -718.008, -611.008, 447, -140, 282, -140, 282, -113, 240, -114, 240, -141, 444, -66, 239, -62, 115, -35, -27, -134, 115, -62, -207, 238, 1257.31, 238, 1257, 616, -719.977, 617.977, -207, -6, 447, -113, 406, -113, 406, -140, 116, -141, 871.594, -6, 757, -6, 874.383, -8.14844, -143, -134, -143, -6, 116, -114, 1051.95, -18.5781, 1051.36, -18.2813, 889.844, -20.0391, 895.469, -19.4609, 893.07, -18.4375, 1069.82, -6, 1065.67, -8.53125, 905.789, -22)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 2, 1, 6, 7), PackedInt32Array(3, 8, 9, 10, 11), PackedInt32Array(9, 8, 12), PackedInt32Array(13, 9, 12, 14), PackedInt32Array(15, 16, 17, 18), PackedInt32Array(19, 5, 4, 20, 17, 16), PackedInt32Array(21, 4, 7), PackedInt32Array(21, 7, 22, 23), PackedInt32Array(24, 25, 26, 27), PackedInt32Array(24, 27, 13, 28), PackedInt32Array(14, 29, 19, 30, 31), PackedInt32Array(13, 14, 31), PackedInt32Array(13, 31, 15, 18), PackedInt32Array(13, 18, 32), PackedInt32Array(33, 34, 0, 35), PackedInt32Array(36, 37, 28, 13), PackedInt32Array(36, 13, 32, 22), PackedInt32Array(23, 22, 32, 38), PackedInt32Array(20, 23, 38, 17), PackedInt32Array(19, 16, 30), PackedInt32Array(3, 19, 29, 8), PackedInt32Array(39, 40, 11), PackedInt32Array(41, 35, 0), PackedInt32Array(42, 43, 41), PackedInt32Array(10, 44, 45, 39), PackedInt32Array(10, 39, 11), PackedInt32Array(0, 3, 11, 46), PackedInt32Array(41, 0, 46, 42)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-728, -621, -730, 628, 1267, 626, 1268, -624)])
-source_geometry_mode = 1
-source_geometry_group_name = &"navigation"
-
 [node name="TestLevel" type="Node2D"]
 
 [node name="Background" type="Node2D" parent="."]
@@ -1318,7 +1311,7 @@ position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
-[node name="Control" type="Control" parent="."]
+[node name="HealthChangeManager" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 253.0
@@ -1326,13 +1319,13 @@ offset_top = -64.0
 offset_right = 307.0
 offset_bottom = -16.0
 
-[node name="HealthText" parent="Control" instance=ExtResource("8_yrlwc")]
+[node name="HealthText" parent="HealthChangeManager" instance=ExtResource("8_yrlwc")]
 offset_left = 230.0
 offset_top = -32.0
 offset_right = 270.0
 offset_bottom = 8.0
 
-[node name="HealthTextLabel" parent="Control" instance=ExtResource("9_qlusc")]
+[node name="HealthTextLabel" parent="HealthChangeManager" instance=ExtResource("9_qlusc")]
 layout_mode = 1
 offset_left = 27.0
 offset_top = -69.0
@@ -1359,8 +1352,5 @@ position = Vector2(344, -117)
 [node name="Bridge6" parent="." groups=["navigation"] instance=ExtResource("9_yrlwc")]
 position = Vector2(178, -118)
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-navigation_polygon = SubResource("NavigationPolygon_qlusc")
-
-[node name="BlackBoar" parent="." instance=ExtResource("10_qlusc")]
-position = Vector2(421, 2)
+[node name="Skeleton" parent="." instance=ExtResource("10_qlusc")]
+position = Vector2(605, -15)

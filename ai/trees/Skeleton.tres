@@ -101,7 +101,7 @@ node = SubResource("BBNode_gvbbb")
 method = &"attack"
 
 [sub_resource type="BTWait" id="BTWait_s3dnj"]
-duration = 2.0
+duration = 0.8
 
 [sub_resource type="BTSequence" id="BTSequence_gvbbb"]
 custom_name = "Move To Player"
