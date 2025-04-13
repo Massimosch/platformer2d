@@ -12,10 +12,5 @@ signal health_depleted()
 @export var max_fall_speed : float = 500.0
 
 @export var max_health : int = 20
-@export var health : int = 20 :
-	set(value):
-		var old_value = health
-		health = value
-		
-		if health <= 0 && old_value > 0:
-			health_depleted.emit()
+@export var health : int = 20
+@export var damage : int = 10

@@ -11,8 +11,11 @@ func _update(delta: float) -> void:
 	if blackboard.get_var(BBNames.attack_var):
 		dispatch("attack")
 		
+	if blackboard.get_var(BBNames.dash_var):
+		dispatch("dash")
+		
 func land():
 	can_move = false
-	await get_tree().create_timer(0.2).timeout
+	await get_tree().create_timer(0.3).timeout
 	can_move = true
 	

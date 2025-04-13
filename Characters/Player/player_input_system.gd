@@ -7,12 +7,15 @@ var blackboard : Blackboard
 var input_direction : Vector2
 var is_jumping : bool = false
 var attack : bool = false
+var dash : bool = false
 
 func _ready() -> void:
 	blackboard = limbo_hsm.blackboard
 	blackboard.bind_var_to_property(BBNames.direction_var, self, "input_direction", false)
 	blackboard.bind_var_to_property(BBNames.jump_var, self, "is_jumping", false)
 	blackboard.bind_var_to_property(BBNames.attack_var, self, "attack", false)
+	blackboard.bind_var_to_property(BBNames.dash_var, self, "dash", false)
+	
 
 func _process(_delta: float) -> void:
 	input_direction = Input.get_vector(player_actions.move_left, player_actions.move_right, player_actions.move_up, player_actions.move_down)
@@ -24,6 +27,12 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 	elif event.is_action_released(player_actions.jump):
 		is_jumping = false
+		
+	elif event.is_action_pressed(player_actions.dash):
+		dash = true
+	
+	elif event.is_action_released(player_actions.dash):
+		dash = false
 		
 	if Input.is_action_just_pressed(player_actions.attack):
 		attack = true

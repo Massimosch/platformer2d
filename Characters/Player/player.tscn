@@ -1,4 +1,4 @@
-[gd_scene load_steps=149 format=3 uid="uid://bgsi1vo3el1wv"]
+[gd_scene load_steps=158 format=3 uid="uid://bgsi1vo3el1wv"]
 
 [ext_resource type="Script" uid="uid://bxq1vd4trhlp7" path="res://Scripts/player.gd" id="1_eovys"]
 [ext_resource type="Resource" uid="uid://bcmksavmvf6yb" path="res://Characters/Player/PlayerLimbo/PlayerStats.tres" id="3_8b15s"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://ccv8iheotpvjk" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-smrslt-02.png" id="5_f3npr"]
 [ext_resource type="Texture2D" uid="uid://v3cl42mcy6fm" path="res://Art/PlayerGraphics/HandCombatSprites/adventurer-punch-02.png" id="5_s0xdn"]
 [ext_resource type="Texture2D" uid="uid://drxc6r2teg48h" path="res://Art/PlayerGraphics/HandCombatSprites/adventurer-punch-04.png" id="6_atvgk"]
+[ext_resource type="Script" uid="uid://c8dwabdeywpoc" path="res://Scripts/MyHitBox.gd" id="6_elxsa"]
 [ext_resource type="Texture2D" uid="uid://b7w5rq0cva8xe" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-smrslt-03.png" id="6_n2l6n"]
 [ext_resource type="Texture2D" uid="uid://b2qwhuodfke86" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-jump-00.png" id="6_ohm8s"]
 [ext_resource type="Texture2D" uid="uid://21rrnhvthbc" path="res://Art/PlayerGraphics/HandCombatSprites/adventurer-punch-05.png" id="7_bkulq"]
@@ -34,6 +35,7 @@
 [ext_resource type="Script" uid="uid://d3bu2cwcahnp7" path="res://Characters/Player/PlayerLimbo/air_attack_state.gd" id="11_n34ts"]
 [ext_resource type="Script" uid="uid://chct237if0n23" path="res://Characters/Player/PlayerLimbo/character_state.gd" id="12_bn5v0"]
 [ext_resource type="Texture2D" uid="uid://bl3jylf1jrep4" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-run-05.png" id="12_ohm8s"]
+[ext_resource type="Script" uid="uid://bovb0effgyi4l" path="res://Characters/Player/dash_state.gd" id="13_elxsa"]
 [ext_resource type="Texture2D" uid="uid://ct1qs1mjewk7q" path="res://Art/PlayerGraphics/HandCombatSprites/adventurer-punch-07.png" id="14_2ichn"]
 [ext_resource type="Texture2D" uid="uid://cyluf8ii4s7ax" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-crouch-00.png" id="16_ahiwk"]
 [ext_resource type="Texture2D" uid="uid://ciyau1i582k5n" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-crouch-01.png" id="17_8nakf"]
@@ -85,7 +87,6 @@
 [ext_resource type="Texture2D" uid="uid://crw4kpvf1a5uf" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-hurt-00.png" id="81_we7wg"]
 [ext_resource type="Texture2D" uid="uid://gmlp0exuhhau" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-hurt-01.png" id="82_n34ts"]
 [ext_resource type="Texture2D" uid="uid://cpe0qvs6s15qe" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-hurt-02.png" id="83_bn5v0"]
-[ext_resource type="Script" uid="uid://dw7js8ag07nes" path="res://Scripts/Damageable.gd" id="86_vxktf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ywxx0"]
 radius = 4.0
@@ -112,6 +113,15 @@ var/attack/type = 1
 var/attack/value = false
 var/attack/hint = 0
 var/attack/hint_string = "Trying to attack currently?"
+var/dash/name = &"dash"
+var/dash/type = 1
+var/dash/value = false
+var/dash/hint = 0
+var/dash/hint_string = "Player try to dash"
+
+[sub_resource type="Curve" id="Curve_vxktf"]
+_data = [Vector2(0.0533881, 1), 0.0, 0.0, 0, 0, Vector2(0.572895, 0.405), -0.987162, -0.987162, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="Animation" id="Animation_p728j"]
 step = 0.07
@@ -130,38 +140,38 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Facing/Sword/CollisionPolygon2D:disabled")
+tracks/1/path = NodePath("Facing/Sword/CollisionPolygon2D:polygon")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [true]
+"values": [PackedVector2Array(-1, -13, -14, -16, -28, -11, -11, -4, -8, 4, -10, 19, 1, 19, 6, 15, 7, 7, 5, -5)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Facing/Sword/CollisionPolygon2D:polygon")
+tracks/2/path = NodePath("Facing/Sword/CollisionPolygon2D:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [PackedVector2Array(-1, -13, -14, -16, -28, -11, -11, -4, -8, 4, -10, 19, 1, 19, 6, 15, 7, 7, 5, -5)]
+"values": [Vector2(21, -22)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Facing/Sword/CollisionPolygon2D:position")
+tracks/3/path = NodePath("Facing/Sword:monitoring")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(21, -22)]
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_morf0"]
@@ -192,18 +202,6 @@ tracks/1/keys = {
 "update": 1,
 "values": [PackedVector2Array(-2, -11, -15, -14, -25, -10, -45, -14, -48, 3, -22, 14, 3, 13, 8, 5, 7, -5)]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Facing/Sword/CollisionPolygon2D:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.1),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
 
 [sub_resource type="Animation" id="Animation_m3wrk"]
 resource_name = "air_attack2"
@@ -232,18 +230,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [PackedVector2Array(-3, -15, -17, -15, -29, -6, -30, 9, -21, 22, -5, 21, 4, 15, 8, 5, 6, -7)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Facing/Sword/CollisionPolygon2D:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_khp6d"]
@@ -274,18 +260,6 @@ tracks/1/keys = {
 "update": 0,
 "values": [PackedVector2Array(-11, -19, -30, 22, -21, 22, -8, 22, -8, 13, -8, 2), PackedVector2Array(-45, -1, -45, 22, -21, 22, -4, 22, -3, 0)]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Facing/Sword/CollisionPolygon2D:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [false]
-}
 
 [sub_resource type="Animation" id="Animation_b163t"]
 resource_name = "air_attack_loop"
@@ -315,18 +289,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [PackedVector2Array(-11, -19, -30, 22, -21, 22, -8, 22, -8, 13, -8, 2)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Facing/Sword/CollisionPolygon2D:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_6v1kl"]
@@ -414,38 +376,38 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Facing/Sword/CollisionPolygon2D:disabled")
+tracks/1/path = NodePath("Facing/Sword/CollisionPolygon2D:polygon")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.00183452),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [false]
+"times": PackedFloat32Array(0.10044, 0.30086),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [PackedVector2Array(-1, -13, -14, -16, -28, -11, -11, -4, -8, 4, -10, 19, 1, 19, 6, 15, 7, 7, 5, -5), PackedVector2Array(-1, -13, -15, -18, -28, -11, -10, -1, -2, -7)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Facing/Sword/CollisionPolygon2D:polygon")
+tracks/2/path = NodePath("Facing/Sword/CollisionPolygon2D:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.10044, 0.30086),
+"times": PackedFloat32Array(0.100898, 0.30086),
 "transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [PackedVector2Array(-1, -13, -14, -16, -28, -11, -11, -4, -8, 4, -10, 19, 1, 19, 6, 15, 7, 7, 5, -5), PackedVector2Array(-1, -13, -15, -18, -28, -11, -10, -1, -2, -7)]
+"update": 1,
+"values": [Vector2(21, -22), Vector2(21, -22)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Facing/Sword/CollisionPolygon2D:position")
+tracks/3/path = NodePath("Facing/Sword:monitoring")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.100898, 0.30086),
+"times": PackedFloat32Array(0.1, 0.3),
 "transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(21, -22), Vector2(21, -22)]
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_evul0"]
@@ -467,38 +429,38 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Facing/Sword/CollisionPolygon2D:disabled")
+tracks/1/path = NodePath("Facing/Sword/CollisionPolygon2D:polygon")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.000458629),
+"times": PackedFloat32Array(0.299943),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [false]
+"values": [PackedVector2Array(2, -8, -13, -13, -23, -8, -8, 4, -37, 15, -35, 21, 0, 21, 7, 9)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Facing/Sword/CollisionPolygon2D:polygon")
+tracks/2/path = NodePath("Facing/Sword/CollisionPolygon2D:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0.299943),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [PackedVector2Array(2, -8, -13, -13, -23, -8, -8, 4, -37, 15, -35, 21, 0, 21, 7, 9)]
+"values": [Vector2(21, -22)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Facing/Sword/CollisionPolygon2D:position")
+tracks/3/path = NodePath("Facing/Sword:monitoring")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.299943),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(21, -22)]
+"times": PackedFloat32Array(0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_kjbmj"]
@@ -520,26 +482,26 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Facing/Sword/CollisionPolygon2D:polygon")
+tracks/1/path = NodePath("Facing/Sword/CollisionPolygon2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.000458629, 0.2, 0.300402, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [PackedVector2Array(), PackedVector2Array(-2, -2, -24, -7, -29, -3, -33, 4, -47, 11, -48, 20, 0, 21, 11, 10), PackedVector2Array(-47, 4, -47, 19, -7, 20, -5, 10, -23, 4), PackedVector2Array(-47, 4, -47, 19, -28, 15, -23, 4)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Facing/Sword/CollisionPolygon2D:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Facing/Sword:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_vxktf"]
@@ -666,8 +628,8 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_8fwmd"]
 resource_name = "slide_end"
-length = 0.3
-step = 0.1
+length = 0.2
+step = 0.07
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -675,7 +637,7 @@ tracks/0/path = NodePath("Facing/Sprite2D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
+"times": PackedFloat32Array(0, 0.0714286, 0.142857),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [ExtResource("30_rjase"), ExtResource("31_yvl8n"), ExtResource("32_evul0")]
@@ -795,6 +757,15 @@ animation = &"jump"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kjbmj"]
 animation = &"land"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ycmvp"]
+animation = &"slide_end"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vsgar"]
+animation = &"slide_loop"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gxw5c"]
+animation = &"slide_start"
+
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ws4wl"]
 advance_mode = 2
 
@@ -853,6 +824,16 @@ switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gxw5c"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3d8qi"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8dpgu"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sil3o"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s24qw"]
+switch_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_mevwr"]
 states/Move/node = SubResource("AnimationNodeBlendSpace1D_shr3x")
 states/Move/position = Vector2(92, -20)
@@ -872,17 +853,23 @@ states/double_jump/position = Vector2(360, -122)
 states/fall/node = SubResource("AnimationNodeAnimation_hrv8i")
 states/fall/position = Vector2(365, -14.366)
 states/ground_attack_1/node = SubResource("AnimationNodeAnimation_1h52x")
-states/ground_attack_1/position = Vector2(-86, 92.465)
+states/ground_attack_1/position = Vector2(-255, 100)
 states/ground_attack_2/node = SubResource("AnimationNodeAnimation_xrxj3")
-states/ground_attack_2/position = Vector2(118, 92.465)
+states/ground_attack_2/position = Vector2(-51, 100)
 states/ground_attack_3/node = SubResource("AnimationNodeAnimation_4760x")
-states/ground_attack_3/position = Vector2(360, 92.465)
+states/ground_attack_3/position = Vector2(191, 100)
 states/jump/node = SubResource("AnimationNodeAnimation_3snk1")
 states/jump/position = Vector2(243, -14.366)
 states/land/node = SubResource("AnimationNodeAnimation_kjbmj")
 states/land/position = Vector2(92, -117)
-transitions = ["Start", "Move", SubResource("AnimationNodeStateMachineTransition_ws4wl"), "Move", "jump", SubResource("AnimationNodeStateMachineTransition_1h52x"), "fall", "land", SubResource("AnimationNodeStateMachineTransition_4760x"), "land", "Move", SubResource("AnimationNodeStateMachineTransition_twepf"), "double_jump", "fall", SubResource("AnimationNodeStateMachineTransition_8cwbr"), "double_jump", "land", SubResource("AnimationNodeStateMachineTransition_8pc77"), "Move", "ground_attack_1", SubResource("AnimationNodeStateMachineTransition_lgudn"), "ground_attack_1", "ground_attack_2", SubResource("AnimationNodeStateMachineTransition_o2edd"), "ground_attack_2", "ground_attack_3", SubResource("AnimationNodeStateMachineTransition_7bokn"), "ground_attack_3", "Move", SubResource("AnimationNodeStateMachineTransition_usk8m"), "ground_attack_1", "Move", SubResource("AnimationNodeStateMachineTransition_shr3x"), "ground_attack_2", "Move", SubResource("AnimationNodeStateMachineTransition_hrv8i"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_xrxj3"), "fall", "air_attack", SubResource("AnimationNodeStateMachineTransition_we7wg"), "air_attack", "fall", SubResource("AnimationNodeStateMachineTransition_n34ts"), "air_attack", "air_attack2", SubResource("AnimationNodeStateMachineTransition_bn5v0"), "double_jump", "air_attack", SubResource("AnimationNodeStateMachineTransition_vxktf"), "air_attack2", "fall", SubResource("AnimationNodeStateMachineTransition_elxsa"), "air_attack2", "air_attack_loop", SubResource("AnimationNodeStateMachineTransition_ycmvp"), "air_attack_loop", "air_attack_end", SubResource("AnimationNodeStateMachineTransition_vsgar"), "Move", "die", SubResource("AnimationNodeStateMachineTransition_gxw5c")]
-graph_offset = Vector2(-336.782, -180.124)
+states/slide_end/node = SubResource("AnimationNodeAnimation_ycmvp")
+states/slide_end/position = Vector2(-346.782, -196)
+states/slide_loop/node = SubResource("AnimationNodeAnimation_vsgar")
+states/slide_loop/position = Vector2(-490.782, -91)
+states/slide_start/node = SubResource("AnimationNodeAnimation_gxw5c")
+states/slide_start/position = Vector2(-346.782, -91)
+transitions = ["Start", "Move", SubResource("AnimationNodeStateMachineTransition_ws4wl"), "Move", "jump", SubResource("AnimationNodeStateMachineTransition_1h52x"), "fall", "land", SubResource("AnimationNodeStateMachineTransition_4760x"), "land", "Move", SubResource("AnimationNodeStateMachineTransition_twepf"), "double_jump", "fall", SubResource("AnimationNodeStateMachineTransition_8cwbr"), "double_jump", "land", SubResource("AnimationNodeStateMachineTransition_8pc77"), "Move", "ground_attack_1", SubResource("AnimationNodeStateMachineTransition_lgudn"), "ground_attack_1", "ground_attack_2", SubResource("AnimationNodeStateMachineTransition_o2edd"), "ground_attack_2", "ground_attack_3", SubResource("AnimationNodeStateMachineTransition_7bokn"), "ground_attack_3", "Move", SubResource("AnimationNodeStateMachineTransition_usk8m"), "ground_attack_1", "Move", SubResource("AnimationNodeStateMachineTransition_shr3x"), "ground_attack_2", "Move", SubResource("AnimationNodeStateMachineTransition_hrv8i"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_xrxj3"), "fall", "air_attack", SubResource("AnimationNodeStateMachineTransition_we7wg"), "air_attack", "fall", SubResource("AnimationNodeStateMachineTransition_n34ts"), "air_attack", "air_attack2", SubResource("AnimationNodeStateMachineTransition_bn5v0"), "double_jump", "air_attack", SubResource("AnimationNodeStateMachineTransition_vxktf"), "air_attack2", "fall", SubResource("AnimationNodeStateMachineTransition_elxsa"), "air_attack2", "air_attack_loop", SubResource("AnimationNodeStateMachineTransition_ycmvp"), "air_attack_loop", "air_attack_end", SubResource("AnimationNodeStateMachineTransition_vsgar"), "Move", "die", SubResource("AnimationNodeStateMachineTransition_gxw5c"), "Move", "slide_start", SubResource("AnimationNodeStateMachineTransition_3d8qi"), "slide_start", "slide_loop", SubResource("AnimationNodeStateMachineTransition_8dpgu"), "slide_loop", "slide_end", SubResource("AnimationNodeStateMachineTransition_sil3o"), "slide_end", "Move", SubResource("AnimationNodeStateMachineTransition_s24qw")]
+graph_offset = Vector2(-1182.78, -276.124)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 10
@@ -900,12 +887,13 @@ texture = ExtResource("7_jec2i")
 region_rect = Rect2(0, -3, 256, 259)
 
 [node name="Sword" type="Area2D" parent="Facing"]
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("6_elxsa")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Facing/Sword"]
 position = Vector2(21, -22)
-build_mode = 1
 polygon = PackedVector2Array(-1, -13, -14, -16, -28, -11, -11, -4, -8, 4, -10, 19, 1, 19, 6, 15, 7, 7, 5, -5)
-disabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -14)
@@ -927,6 +915,7 @@ states = {
 "air": NodePath("AirMoveState"),
 "air_attack": NodePath("AirAttackState"),
 "attack": NodePath("GroundAttack"),
+"dash": NodePath("DashState"),
 "dead": NodePath("DeadState"),
 "ground": NodePath("GroundMoveState")
 }
@@ -956,6 +945,12 @@ attack_3 = &"air_attack_loop"
 animation_name = &"air_attack"
 metadata/_custom_type_script = "uid://chct237if0n23"
 
+[node name="DashState" type="LimboState" parent="LimboHSM"]
+script = ExtResource("13_elxsa")
+dash_curve = SubResource("Curve_vxktf")
+animation_name = &"slide_start"
+metadata/_custom_type_script = "uid://chct237if0n23"
+
 [node name="DeadState" type="LimboState" parent="LimboHSM"]
 script = ExtResource("12_bn5v0")
 animation_name = &"die"
@@ -980,7 +975,3 @@ tree_root = SubResource("AnimationNodeStateMachine_mevwr")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/land = false
 parameters/Move/blend_position = 0
-
-[node name="Damageable" type="Node" parent="."]
-script = ExtResource("86_vxktf")
-metadata/_custom_type_script = "uid://dw7js8ag07nes"

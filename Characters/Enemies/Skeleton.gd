@@ -1,9 +1,10 @@
-extends CharacterBody2D
+extends NPCCharacters
 
 @onready var animation_sprite = $AnimatedSprite2D
 
-const jump_power = -500
+var jump_power : float = -500
 var gravity = 50
+var health : float = 30
 
 func _physics_process(_delta):
 	if is_on_wall() and is_on_floor():
@@ -42,3 +43,15 @@ func check_for_self(node):
 
 func attack():
 	animation_sprite.play("attack")
+
+func take_damage(amount: int) -> void:
+	health -= amount
+	print("Skeleton took ", amount, " damage. Remaining HP: ", health)
+	
+	if health <= 0:
+		die()
+
+func die():
+	print("Skeleton died!")
+	# Later: play death animation, spawn particles, give XP, etc.
+	queue_free()
