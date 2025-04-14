@@ -1,10 +1,18 @@
 extends NPCCharacters
 
 @onready var animation_sprite = $AnimatedSprite2D
+@onready var damage_numbers_origin = $DamageNumbersOrigin
 
 var jump_power : float = -500
 var gravity = 50
-var health : float = 30
+var max_health : int
+var current_health: int
+
+
+func _ready() -> void:
+	max_health = character_stats.max_health
+	current_health = max_health
+	
 
 func _physics_process(_delta):
 	if is_on_wall() and is_on_floor():
@@ -34,7 +42,6 @@ func handle_animation():
 	else:
 		animation_sprite.play("idle")
 	
-	
 func check_for_self(node):
 	if node == self:
 		return true
@@ -44,8 +51,13 @@ func check_for_self(node):
 func attack():
 	animation_sprite.play("attack")
 
-func knockback(direction: int) -> void:
-	velocity.y = jump_power / 2
+func take_damage(damage_amount: int) -> void:
+	DamageNumbers.display_number(damage_amount, damage_numbers_origin.global_position, false)
+	current_health -= damage_amount
+	prints("Health now:", current_health)
+
+	if current_health <= 0:
+		die()
 
 func die():
 	print("Skeleton died!")

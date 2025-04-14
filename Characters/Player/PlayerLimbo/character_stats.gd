@@ -8,3 +8,4 @@ extends Resource
 @export var jump_velocity : float = 300.0
 @export var double_jump_velocity : float = 250.0
 @export var max_fall_speed : float = 500.0
+@export var max_health : int = 100

@@ -12,10 +12,4 @@ func _ready() -> void:
 func _area_entered(hurtbox: Hurtbox) -> void:
 	if hurtbox.owner == owner:
 		return
-	hurtbox.take_damage(damage, get_knockback())
-
-func get_knockback() -> Vector2:
-	var knockback: Vector2
-	if knockback_enabled:
-		knockback = Vector2.RIGHT.rotated(global_rotation) * knockback_strength
-	return knockback
+	hurtbox.take_damage(damage)
