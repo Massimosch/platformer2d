@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cp4sq5foj2ydd"
+path="res://.godot/imported/SynFantasy Oi Cut 60.wav-0a866d218feac683b248d56bb3367397.sample"
+
+[deps]
+
+source_file="res://Music/Oi (RT 3.301)/SynFantasy Oi Cut 60.wav"
+dest_files=["res://.godot/imported/SynFantasy Oi Cut 60.wav-0a866d218feac683b248d56bb3367397.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

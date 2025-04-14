@@ -29,7 +29,7 @@ window/stretch/scale=4.0
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ovani_auto_footsteps/plugin.cfg")
+enabled=PackedStringArray()
 
 [global_group]
 

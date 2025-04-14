@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://cwrrv8epkwkp1"]
+[gd_scene load_steps=66 format=3 uid="uid://cwrrv8epkwkp1"]
 
 [ext_resource type="Script" uid="uid://debcog0v476s1" path="res://Characters/Enemies/Skeleton.gd" id="1_2lpyg"]
 [ext_resource type="Texture2D" uid="uid://bjis3oekm525b" path="res://Art/Monsters_Creatures_Fantasy/Skeleton/Attack.png" id="1_dlowh"]
@@ -21,6 +21,9 @@
 [ext_resource type="Script" uid="uid://b5ik5pbkpba07" path="res://Scripts/hurtbox.gd" id="19_3pbq6"]
 [ext_resource type="Script" uid="uid://5byn62y1oa76" path="res://demo/agents/scripts/health.gd" id="20_kqih6"]
 [ext_resource type="Script" uid="uid://dntc3c582m5w8" path="res://Scripts/hitbox.gd" id="21_wy8i0"]
+[ext_resource type="AudioStream" uid="uid://ber5oanhs3xpo" path="res://Music/SFX/12_Player_Movement_SFX/56_Attack_03.wav" id="22_d4a26"]
+[ext_resource type="AudioStream" uid="uid://h0arfq8w3dal" path="res://Music/SFX/12_Player_Movement_SFX/03_Step_grass_03.wav" id="23_sgpi5"]
+[ext_resource type="PackedScene" uid="uid://cg44pjkp1xpgk" path="res://Characters/healthbar/healthbar.tscn" id="24_sgpi5"]
 
 [sub_resource type="Resource" id="Resource_kqih6"]
 script = ExtResource("2_3pbq6")
@@ -341,117 +344,6 @@ tracks/7/keys = {
 "values": [0]
 }
 
-[sub_resource type="Animation" id="Animation_7fcct"]
-resource_name = "interrogation"
-length = 0.5
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D/interrogationSprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [ExtResource("7_qcg5h"), ExtResource("13_m6dbn"), ExtResource("14_rqnwt"), ExtResource("15_snmyw"), ExtResource("16_wfpfj")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D/interrogationSprite:self_modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AnimatedSprite2D/interrogationSprite:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-
-[sub_resource type="Animation" id="Animation_8aju0"]
-resource_name = "warning"
-length = 0.5
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D/warningSprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [ExtResource("8_q381q"), ExtResource("9_073mr"), ExtResource("10_5ypcc"), ExtResource("11_rifru"), ExtResource("12_y7cil")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D/warningSprite:self_modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AnimatedSprite2D/warningSprite:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-
-[sub_resource type="Animation" id="Animation_wy8i0"]
-resource_name = "death"
-length = 2.0
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"death"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3]
-}
-
 [sub_resource type="Animation" id="Animation_7eypj"]
 resource_name = "attack"
 length = 0.8
@@ -498,10 +390,9 @@ tracks/2/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_d4a26"]
-resource_name = "walk"
-length = 0.4
-loop_mode = 1
+[sub_resource type="Animation" id="Animation_wy8i0"]
+resource_name = "death"
+length = 2.0
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -513,7 +404,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"walk"]
+"values": [&"death"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -558,6 +449,47 @@ tracks/1/keys = {
 "values": [0, 1, 2, 3]
 }
 
+[sub_resource type="Animation" id="Animation_7fcct"]
+resource_name = "interrogation"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D/interrogationSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("7_qcg5h"), ExtResource("13_m6dbn"), ExtResource("14_rqnwt"), ExtResource("15_snmyw"), ExtResource("16_wfpfj")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D/interrogationSprite:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D/interrogationSprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
 [sub_resource type="Animation" id="Animation_ejpg0"]
 resource_name = "take_hit"
 length = 0.4
@@ -587,6 +519,77 @@ tracks/1/keys = {
 "values": [0, 1, 2, 3]
 }
 
+[sub_resource type="Animation" id="Animation_d4a26"]
+resource_name = "walk"
+length = 0.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"walk"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_8aju0"]
+resource_name = "warning"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D/warningSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("8_q381q"), ExtResource("9_073mr"), ExtResource("10_5ypcc"), ExtResource("11_rifru"), ExtResource("12_y7cil")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D/warningSprite:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D/warningSprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0v6nt"]
 _data = {
 &"RESET": SubResource("Animation_ei3mt"),
@@ -609,6 +612,18 @@ size = Vector2(29, 42)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7eypj"]
 size = Vector2(18, 47)
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_ejpg0"]
+clip_count = 3
+clip_0/name = &"attack"
+clip_0/stream = ExtResource("22_d4a26")
+clip_0/auto_advance = 0
+clip_1/name = &"walk"
+clip_1/stream = ExtResource("23_sgpi5")
+clip_1/auto_advance = 0
+clip_2/name = &""
+clip_2/auto_advance = 0
+initial_clip = 1
 
 [node name="Skeleton" type="CharacterBody2D" node_paths=PackedStringArray("animation_player", "sprite") groups=["enemy"]]
 collision_layer = 4
@@ -674,3 +689,12 @@ metadata/_custom_type_script = "uid://dntc3c582m5w8"
 position = Vector2(26, -23.5)
 shape = SubResource("RectangleShape2D_7eypj")
 disabled = true
+
+[node name="AudioStream" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamInteractive_ejpg0")
+
+[node name="Healthbar" parent="." instance=ExtResource("24_sgpi5")]
+offset_left = -19.0
+offset_top = -54.0
+offset_right = 21.0
+offset_bottom = -51.0

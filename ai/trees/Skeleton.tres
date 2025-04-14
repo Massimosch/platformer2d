@@ -1,7 +1,7 @@
 [gd_resource type="BehaviorTree" load_steps=32 format=3 uid="uid://utos5k1fndmq"]
 
 [ext_resource type="Script" uid="uid://d5dc3wfq8j3s" path="res://ai/tasks/choose_move_point.gd" id="1_xja6p"]
-[ext_resource type="Script" uid="uid://3jdhodr2qcqh" path="res://ai/tasks/move_to_point.gd" id="2_w3558"]
+[ext_resource type="Script" uid="uid://3jdhodr2qcqh" path="res://ai/tasks/Move_To_Point.gd" id="2_w3558"]
 [ext_resource type="Script" uid="uid://m0o6r6jxl473" path="res://ai/tasks/find_target.gd" id="3_fxfwv"]
 [ext_resource type="Script" uid="uid://duon7gvta38a1" path="res://ai/tasks/move_to_target.gd" id="4_s3dnj"]
 
@@ -37,38 +37,6 @@ children = [SubResource("BTConsolePrint_6e3ig"), SubResource("BTAction_w3558"), 
 
 [sub_resource type="BTProbability" id="BTProbability_fxfwv"]
 children = [SubResource("BTSequence_xja6p")]
-
-[sub_resource type="BTConsolePrint" id="BTConsolePrint_w3558"]
-text = "Moving to enemy"
-
-[sub_resource type="BTAction" id="BTAction_s3dnj"]
-script = ExtResource("3_fxfwv")
-group = &"enemy"
-target_var = &"target"
-
-[sub_resource type="BTAction" id="BTAction_gvbbb"]
-script = ExtResource("4_s3dnj")
-target_var = &"target"
-speed_var = 60
-tolerance = 30
-
-[sub_resource type="BBNode" id="BBNode_s3dnj"]
-saved_value = NodePath("AnimationPlayer")
-resource_name = "AnimationPlayer"
-
-[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_gvbbb"]
-animation_player = SubResource("BBNode_s3dnj")
-animation_name = &"interrogation"
-
-[sub_resource type="BTWait" id="BTWait_w2pju"]
-duration = 2.0
-
-[sub_resource type="BTSequence" id="BTSequence_s3dnj"]
-custom_name = "Move To Enemy Sequency"
-children = [SubResource("BTConsolePrint_w3558"), SubResource("BTAction_s3dnj"), SubResource("BTAction_gvbbb"), SubResource("BTPlayAnimation_gvbbb"), SubResource("BTWait_w2pju")]
-
-[sub_resource type="BTProbability" id="BTProbability_s3dnj"]
-children = [SubResource("BTSequence_s3dnj")]
 
 [sub_resource type="BTConsolePrint" id="BTConsolePrint_s3dnj"]
 text = "Chase Player"
@@ -110,8 +78,40 @@ children = [SubResource("BTConsolePrint_s3dnj"), SubResource("BTAction_w2pju"), 
 [sub_resource type="BTProbability" id="BTProbability_hexxq"]
 children = [SubResource("BTSequence_gvbbb")]
 
+[sub_resource type="BTConsolePrint" id="BTConsolePrint_w3558"]
+text = "Moving to enemy"
+
+[sub_resource type="BTAction" id="BTAction_s3dnj"]
+script = ExtResource("3_fxfwv")
+group = &"enemy"
+target_var = &"target"
+
+[sub_resource type="BTAction" id="BTAction_gvbbb"]
+script = ExtResource("4_s3dnj")
+target_var = &"target"
+speed_var = 60
+tolerance = 30
+
+[sub_resource type="BBNode" id="BBNode_s3dnj"]
+saved_value = NodePath("AnimationPlayer")
+resource_name = "AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_gvbbb"]
+animation_player = SubResource("BBNode_s3dnj")
+animation_name = &"interrogation"
+
+[sub_resource type="BTWait" id="BTWait_w2pju"]
+duration = 2.0
+
+[sub_resource type="BTSequence" id="BTSequence_s3dnj"]
+custom_name = "Move To Enemy Sequency"
+children = [SubResource("BTConsolePrint_w3558"), SubResource("BTAction_s3dnj"), SubResource("BTAction_gvbbb"), SubResource("BTPlayAnimation_gvbbb"), SubResource("BTWait_w2pju")]
+
+[sub_resource type="BTProbability" id="BTProbability_s3dnj"]
+children = [SubResource("BTSequence_s3dnj")]
+
 [sub_resource type="BTSelector" id="BTSelector_xja6p"]
-children = [SubResource("BTProbability_fxfwv"), SubResource("BTProbability_s3dnj"), SubResource("BTProbability_hexxq")]
+children = [SubResource("BTProbability_fxfwv"), SubResource("BTProbability_hexxq"), SubResource("BTProbability_s3dnj")]
 
 [resource]
 blackboard_plan = SubResource("BlackboardPlan_6e3ig")

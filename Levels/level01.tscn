@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://bbiqswa8jlgf4"]
+[gd_scene load_steps=17 format=4 uid="uid://bbiqswa8jlgf4"]
 
 [ext_resource type="Texture2D" uid="uid://dyp7g3uueei7b" path="res://Art/Background/1.png" id="1_jkiok"]
 [ext_resource type="Texture2D" uid="uid://b78oo2uv55323" path="res://Art/Legacy-Fantasy - High Forest 2.3/Assets/Tiles.png" id="1_yvup7"]
@@ -11,6 +11,9 @@
 [ext_resource type="PackedScene" uid="uid://du17cfsm7fijq" path="res://Objects/Platform Objects/Bridge/bridge.tscn" id="9_yrlwc"]
 [ext_resource type="PackedScene" uid="uid://cwrrv8epkwkp1" path="res://Characters/Enemies/Skeleton.tscn" id="10_qlusc"]
 [ext_resource type="PackedScene" uid="uid://60yrhlyih0fi" path="res://Objects/TreasureChest/treasure_chest.tscn" id="11_qvap4"]
+[ext_resource type="Script" uid="uid://dt75f3rpd32cq" path="res://addons/OvaniPlugin/OvaniPlayer.gd" id="12_o53ws"]
+[ext_resource type="Script" uid="uid://cmlhttw4sefvo" path="res://addons/OvaniPlugin/OvaniSong.gd" id="13_kdp18"]
+[ext_resource type="Resource" uid="uid://d0rxr6t67vbvh" path="res://Music/Oi (RT 3.301)/Oi Song.tres" id="14_6vddt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_36tc4"]
 texture = ExtResource("1_yvup7")
@@ -1304,6 +1307,9 @@ tile_set = SubResource("TileSet_jkiok")
 [node name="Skeleton" parent="." instance=ExtResource("10_qlusc")]
 position = Vector2(605, -15)
 
+[node name="Skeleton2" parent="." instance=ExtResource("10_qlusc")]
+position = Vector2(435, -8)
+
 [node name="Player" parent="." instance=ExtResource("2_36tc4")]
 position = Vector2(269, 1)
 
@@ -1358,3 +1364,11 @@ position = Vector2(344, -117)
 
 [node name="Bridge6" parent="." groups=["navigation"] instance=ExtResource("9_yrlwc")]
 position = Vector2(178, -118)
+
+[node name="OvaniPlayer" type="Node" parent="."]
+script = ExtResource("12_o53ws")
+QueuedSongs = Array[ExtResource("13_kdp18")]([ExtResource("14_6vddt")])
+Volume = -11.203
+Intensity = 1.0
+LoopQueue = true
+metadata/_custom_type_script = "uid://dt75f3rpd32cq"

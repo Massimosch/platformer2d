@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="OvaniSong" load_steps=7 format=3 uid="uid://d0rxr6t67vbvh"]
+
+[ext_resource type="Script" uid="uid://cmlhttw4sefvo" path="res://addons/OvaniPlugin/OvaniSong.gd" id="1_jpf7k"]
+[ext_resource type="AudioStream" uid="uid://di62s5mrax20" path="res://Music/Oi (RT 3.301)/SynFantasy Oi Intensity 1.wav" id="1_oqapg"]
+[ext_resource type="AudioStream" uid="uid://psqcpqvqecno" path="res://Music/Oi (RT 3.301)/SynFantasy Oi Intensity 2.wav" id="2_sno3n"]
+[ext_resource type="AudioStream" uid="uid://dvay6iijeayur" path="res://Music/Oi (RT 3.301)/SynFantasy Oi Main.wav" id="3_01f3l"]
+[ext_resource type="AudioStream" uid="uid://34lv1es0800r" path="res://Music/Oi (RT 3.301)/SynFantasy Oi Cut 30.wav" id="4_c0b8u"]
+[ext_resource type="AudioStream" uid="uid://cp4sq5foj2ydd" path="res://Music/Oi (RT 3.301)/SynFantasy Oi Cut 60.wav" id="5_ucite"]
+
+[resource]
+script = ExtResource("1_jpf7k")
+Intensity1 = ExtResource("1_oqapg")
+Intensity2 = ExtResource("2_sno3n")
+Intensity3 = ExtResource("3_01f3l")
+Loop30 = ExtResource("4_c0b8u")
+Loop60 = ExtResource("5_ucite")
+ReverbTail = 3.301
+SongMode = 0
+metadata/_custom_type_script = "uid://cmlhttw4sefvo"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=162 format=3 uid="uid://bgsi1vo3el1wv"]
+[gd_scene load_steps=163 format=3 uid="uid://bgsi1vo3el1wv"]
 
 [ext_resource type="Script" uid="uid://bxq1vd4trhlp7" path="res://Scripts/player.gd" id="1_eovys"]
 [ext_resource type="Resource" uid="uid://bcmksavmvf6yb" path="res://Characters/Player/PlayerLimbo/PlayerStats.tres" id="3_8b15s"]
@@ -88,7 +88,8 @@
 [ext_resource type="Texture2D" uid="uid://gmlp0exuhhau" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-hurt-01.png" id="82_n34ts"]
 [ext_resource type="Texture2D" uid="uid://cpe0qvs6s15qe" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-hurt-02.png" id="83_bn5v0"]
 [ext_resource type="Script" uid="uid://5byn62y1oa76" path="res://demo/agents/scripts/health.gd" id="88_ycmvp"]
-[ext_resource type="Script" uid="uid://b5ik5pbkpba07" path="res://Scripts/HurtBox.gd" id="89_vsgar"]
+[ext_resource type="Script" uid="uid://b5ik5pbkpba07" path="res://Scripts/hurtbox.gd" id="89_vsgar"]
+[ext_resource type="AudioStream" uid="uid://ber5oanhs3xpo" path="res://Music/SFX/12_Player_Movement_SFX/56_Attack_03.wav" id="90_gxw5c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ycmvp"]
 size = Vector2(24, 36)
@@ -666,7 +667,6 @@ switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_usk8m"]
 switch_mode = 2
-advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_shr3x"]
 switch_mode = 2
@@ -742,7 +742,7 @@ states/slide_loop/position = Vector2(-490.782, -91)
 states/slide_start/node = SubResource("AnimationNodeAnimation_gxw5c")
 states/slide_start/position = Vector2(-346.782, -91)
 transitions = ["Start", "Move", SubResource("AnimationNodeStateMachineTransition_ws4wl"), "Move", "jump", SubResource("AnimationNodeStateMachineTransition_1h52x"), "fall", "land", SubResource("AnimationNodeStateMachineTransition_4760x"), "land", "Move", SubResource("AnimationNodeStateMachineTransition_twepf"), "double_jump", "fall", SubResource("AnimationNodeStateMachineTransition_8cwbr"), "double_jump", "land", SubResource("AnimationNodeStateMachineTransition_8pc77"), "Move", "ground_attack_1", SubResource("AnimationNodeStateMachineTransition_lgudn"), "ground_attack_1", "ground_attack_2", SubResource("AnimationNodeStateMachineTransition_o2edd"), "ground_attack_2", "ground_attack_3", SubResource("AnimationNodeStateMachineTransition_7bokn"), "ground_attack_3", "Move", SubResource("AnimationNodeStateMachineTransition_usk8m"), "ground_attack_1", "Move", SubResource("AnimationNodeStateMachineTransition_shr3x"), "ground_attack_2", "Move", SubResource("AnimationNodeStateMachineTransition_hrv8i"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_xrxj3"), "fall", "air_attack", SubResource("AnimationNodeStateMachineTransition_we7wg"), "air_attack", "fall", SubResource("AnimationNodeStateMachineTransition_n34ts"), "air_attack", "air_attack2", SubResource("AnimationNodeStateMachineTransition_bn5v0"), "double_jump", "air_attack", SubResource("AnimationNodeStateMachineTransition_vxktf"), "air_attack2", "fall", SubResource("AnimationNodeStateMachineTransition_elxsa"), "air_attack2", "air_attack_loop", SubResource("AnimationNodeStateMachineTransition_ycmvp"), "air_attack_loop", "air_attack_end", SubResource("AnimationNodeStateMachineTransition_vsgar"), "Move", "die", SubResource("AnimationNodeStateMachineTransition_gxw5c"), "Move", "slide_start", SubResource("AnimationNodeStateMachineTransition_3d8qi"), "slide_start", "slide_loop", SubResource("AnimationNodeStateMachineTransition_8dpgu"), "slide_loop", "slide_end", SubResource("AnimationNodeStateMachineTransition_sil3o"), "slide_end", "Move", SubResource("AnimationNodeStateMachineTransition_s24qw")]
-graph_offset = Vector2(-1182.78, -276.124)
+graph_offset = Vector2(-685.78, -167.124)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gxw5c"]
 radius = 6.0
@@ -869,3 +869,7 @@ shape = SubResource("CapsuleShape2D_gxw5c")
 
 [node name="DamageNumbersOrigin" type="Node2D" parent="."]
 position = Vector2(-1, -42)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("90_gxw5c")
+pitch_scale = 1.38
