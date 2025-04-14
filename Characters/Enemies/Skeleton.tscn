@@ -18,7 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://ifujcd1v80et" path="res://Art/4-Interrogation Dialog/1-Opening/4.png" id="15_snmyw"]
 [ext_resource type="Texture2D" uid="uid://cu2e7mhg700ho" path="res://Art/4-Interrogation Dialog/2-Closing/1.png" id="16_wfpfj"]
 [ext_resource type="BehaviorTree" uid="uid://utos5k1fndmq" path="res://ai/trees/Skeleton.tres" id="17_q0jaa"]
-[ext_resource type="Script" uid="uid://b5ik5pbkpba07" path="res://Scripts/hurtbox.gd" id="19_3pbq6"]
+[ext_resource type="Script" uid="uid://b5ik5pbkpba07" path="res://Scripts/HurtBox.gd" id="19_3pbq6"]
 [ext_resource type="Script" uid="uid://5byn62y1oa76" path="res://demo/agents/scripts/health.gd" id="20_kqih6"]
 [ext_resource type="Script" uid="uid://dntc3c582m5w8" path="res://Scripts/hitbox.gd" id="21_wy8i0"]
 
@@ -480,7 +480,6 @@ position = Vector2(-7, -48)
 
 [node name="Hitbox" type="Area2D" parent="."]
 position = Vector2(-1.19209e-07, -1.90735e-06)
-scale = Vector2(1, 1)
 script = ExtResource("21_wy8i0")
 metadata/_custom_type_script = "uid://dntc3c582m5w8"
 

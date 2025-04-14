@@ -88,7 +88,7 @@
 [ext_resource type="Texture2D" uid="uid://gmlp0exuhhau" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-hurt-01.png" id="82_n34ts"]
 [ext_resource type="Texture2D" uid="uid://cpe0qvs6s15qe" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-hurt-02.png" id="83_bn5v0"]
 [ext_resource type="Script" uid="uid://5byn62y1oa76" path="res://demo/agents/scripts/health.gd" id="88_ycmvp"]
-[ext_resource type="Script" uid="uid://b5ik5pbkpba07" path="res://Scripts/hurtbox.gd" id="89_vsgar"]
+[ext_resource type="Script" uid="uid://b5ik5pbkpba07" path="res://Scripts/HurtBox.gd" id="89_vsgar"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ycmvp"]
 size = Vector2(24, 36)
