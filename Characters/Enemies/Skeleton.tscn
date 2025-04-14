@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://cwrrv8epkwkp1"]
+[gd_scene load_steps=62 format=3 uid="uid://cwrrv8epkwkp1"]
 
 [ext_resource type="Script" uid="uid://debcog0v476s1" path="res://Characters/Enemies/Skeleton.gd" id="1_2lpyg"]
 [ext_resource type="Texture2D" uid="uid://bjis3oekm525b" path="res://Art/Monsters_Creatures_Fantasy/Skeleton/Attack.png" id="1_dlowh"]
@@ -316,6 +316,30 @@ tracks/5/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AnimatedSprite2D:animation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"attack"]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("AnimatedSprite2D:frame")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_7fcct"]
 resource_name = "interrogation"
@@ -399,10 +423,179 @@ tracks/2/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_wy8i0"]
+resource_name = "death"
+length = 2.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"death"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_7eypj"]
+resource_name = "attack"
+length = 0.8
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"attack"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"enable_attack_hitbox"
+}, {
+"args": [],
+"method": &"disable_attack_hitbox"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_d4a26"]
+resource_name = "walk"
+length = 0.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"walk"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_sgpi5"]
+resource_name = "idle"
+length = 0.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_ejpg0"]
+resource_name = "take_hit"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"take_hit"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0v6nt"]
 _data = {
 &"RESET": SubResource("Animation_ei3mt"),
+&"attack": SubResource("Animation_7eypj"),
+&"death": SubResource("Animation_wy8i0"),
+&"idle": SubResource("Animation_sgpi5"),
 &"interrogation": SubResource("Animation_7fcct"),
+&"take_hit": SubResource("Animation_ejpg0"),
+&"walk": SubResource("Animation_d4a26"),
 &"warning": SubResource("Animation_8aju0")
 }
 
@@ -410,8 +603,6 @@ _data = {
 height = 38.0
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_6huwf"]
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_3pbq6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kqih6"]
 size = Vector2(29, 42)
@@ -430,8 +621,7 @@ sprite = NodePath("AnimatedSprite2D")
 position = Vector2(-2, -21)
 scale = Vector2(0.8, 0.8)
 sprite_frames = SubResource("SpriteFrames_ohv7j")
-animation = &"idle"
-autoplay = "idle"
+animation = &"attack"
 
 [node name="interrogationSprite" type="Sprite2D" parent="AnimatedSprite2D"]
 visible = false
@@ -456,10 +646,6 @@ shape = SubResource("CapsuleShape2D_5lv3d")
 behavior_tree = ExtResource("17_q0jaa")
 blackboard_plan = SubResource("BlackboardPlan_6huwf")
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource("AnimationNodeStateMachine_3pbq6")
-anim_player = NodePath("../AnimationPlayer")
-
 [node name="Hurtbox" type="Area2D" parent="."]
 collision_layer = 16
 collision_mask = 0
@@ -480,10 +666,11 @@ position = Vector2(-7, -48)
 
 [node name="Hitbox" type="Area2D" parent="."]
 position = Vector2(-1.19209e-07, -1.90735e-06)
-scale = Vector2(1, 1)
+monitoring = false
 script = ExtResource("21_wy8i0")
 metadata/_custom_type_script = "uid://dntc3c582m5w8"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(26, -23.5)
 shape = SubResource("RectangleShape2D_7eypj")
+disabled = true

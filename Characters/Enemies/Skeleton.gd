@@ -3,6 +3,7 @@ extends NPCCharacters
 @onready var animation_sprite = $AnimatedSprite2D
 @onready var damage_numbers_origin = $DamageNumbersOrigin
 
+
 var jump_power : float = -500
 var gravity = 50
 var max_health : int
@@ -30,17 +31,17 @@ func move(dir, speed):
 func update_flip(dir):
 	if abs(dir) == dir:
 		animation_sprite.flip_h = false
+		$Hitbox/CollisionShape2D.position.x = abs($Hitbox/CollisionShape2D.position.x)
 	else:
 		animation_sprite.flip_h = true
+		$Hitbox/CollisionShape2D.position.x = -abs($Hitbox/CollisionShape2D.position.x)
 	
 func handle_animation():
-	if !is_on_floor():
-		animation_sprite.play("fall")
 		
 	if velocity.x != 0:
-		animation_sprite.play("walk")
+		animation_player.play("walk")
 	else:
-		animation_sprite.play("idle")
+		animation_player.play("idle")
 	
 func check_for_self(node):
 	if node == self:
@@ -49,7 +50,16 @@ func check_for_self(node):
 		return false
 
 func attack():
-	animation_sprite.play("attack")
+	animation_player.play("attack")
+	await animation_sprite.animation_finished
+	
+func enable_attack_hitbox():
+	$Hitbox.monitoring = true
+	$Hitbox/CollisionShape2D.disabled = false
+
+func disable_attack_hitbox():
+	$Hitbox.monitoring = false
+	$Hitbox/CollisionShape2D.disabled = true
 
 func take_damage(damage_amount: int) -> void:
 	DamageNumbers.display_number(damage_amount, damage_numbers_origin.global_position, false)
@@ -61,7 +71,8 @@ func take_damage(damage_amount: int) -> void:
 
 func die():
 	print("Skeleton died!")
-	# Later: play death animation, spawn particles, give XP, etc.
+	animation_player.play("death")
+	await animation_player.animation_finished
 	queue_free()
 	
 	
