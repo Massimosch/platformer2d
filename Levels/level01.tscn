@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=4 uid="uid://bbiqswa8jlgf4"]
+[gd_scene load_steps=14 format=4 uid="uid://bbiqswa8jlgf4"]
 
 [ext_resource type="Texture2D" uid="uid://dyp7g3uueei7b" path="res://Art/Background/1.png" id="1_jkiok"]
+[ext_resource type="Script" uid="uid://cw4xx2a6osxtc" path="res://Levels/level_01.gd" id="1_qvap4"]
 [ext_resource type="Texture2D" uid="uid://b78oo2uv55323" path="res://Art/Legacy-Fantasy - High Forest 2.3/Assets/Tiles.png" id="1_yvup7"]
 [ext_resource type="PackedScene" uid="uid://bgsi1vo3el1wv" path="res://Characters/Player/player.tscn" id="2_36tc4"]
 [ext_resource type="Texture2D" uid="uid://ba7qjhtl3xngu" path="res://Art/Background/2.png" id="2_bhdl6"]
@@ -1251,6 +1252,7 @@ terrain_set_0/terrain_2/color = Color(0.682895, 0.860611, 0.995948, 1)
 sources/1 = SubResource("TileSetAtlasSource_36tc4")
 
 [node name="TestLevel" type="Node2D"]
+script = ExtResource("1_qvap4")
 
 [node name="Background" type="Node2D" parent="."]
 
@@ -1321,6 +1323,5 @@ drag_vertical_enabled = true
 script = ExtResource("12_o53ws")
 QueuedSongs = Array[ExtResource("13_kdp18")]([ExtResource("14_6vddt")])
 Volume = -11.203
-Intensity = 1.0
 LoopQueue = true
 metadata/_custom_type_script = "uid://dt75f3rpd32cq"

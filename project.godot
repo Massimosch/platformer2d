@@ -11,13 +11,12 @@ config_version=5
 [application]
 
 config/name="Platformer2D"
-run/main_scene="uid://bbiqswa8jlgf4"
+run/main_scene="uid://dq7vthgp1xuav"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-SignalBus="*res://Scripts/signal_bus.gd"
 HitStopManager="*res://Scripts/HitStopManager.gd"
 DamageNumbers="*res://Scripts/DamageNumbers.gd"
 

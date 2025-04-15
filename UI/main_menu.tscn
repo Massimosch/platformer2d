@@ -1,0 +1,109 @@
+[gd_scene load_steps=11 format=3 uid="uid://dq7vthgp1xuav"]
+
+[ext_resource type="Script" uid="uid://0882byc0e5ga" path="res://UI/main_menu.gd" id="1_4cwpn"]
+[ext_resource type="Texture2D" uid="uid://boqkge5x6fryi" path="res://Art/Clouds/Clouds 2/1.png" id="1_d8nwk"]
+[ext_resource type="FontFile" uid="uid://dxk0synwso6tl" path="res://Art/UI/Minecraft.ttf" id="2_4cwpn"]
+[ext_resource type="Texture2D" uid="uid://dx53au0lhsdw" path="res://Art/UI/UI_SPRITESHEET.png" id="3_f40uw"]
+[ext_resource type="Script" uid="uid://dt75f3rpd32cq" path="res://addons/OvaniPlugin/OvaniPlayer.gd" id="5_ev3b6"]
+[ext_resource type="Script" uid="uid://cmlhttw4sefvo" path="res://addons/OvaniPlugin/OvaniSong.gd" id="6_k0a0m"]
+[ext_resource type="Resource" uid="uid://d0rxr6t67vbvh" path="res://Music/Oi (RT 3.301)/Oi Song.tres" id="7_2mudq"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8ctay"]
+texture = ExtResource("3_f40uw")
+region_rect = Rect2(224, 37, 32, 23)
+modulate_color = Color(0.351563, 0.351563, 0.351563, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d8nwk"]
+texture = ExtResource("3_f40uw")
+region_rect = Rect2(224, 37, 32, 23)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4cwpn"]
+texture = ExtResource("3_f40uw")
+region_rect = Rect2(224, 37, 32, 23)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4cwpn")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_d8nwk")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -131.0
+offset_top = -74.0
+offset_right = 155.0
+offset_bottom = 57.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_4cwpn")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/hover = SubResource("StyleBoxTexture_8ctay")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_8ctay")
+theme_override_styles/normal = SubResource("StyleBoxTexture_d8nwk")
+text = "START GAME"
+
+[node name="Button2" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_4cwpn")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/hover = SubResource("StyleBoxTexture_8ctay")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_8ctay")
+theme_override_styles/normal = SubResource("StyleBoxTexture_4cwpn")
+text = "EXIT GAME"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -334.0
+offset_top = -239.0
+offset_right = 357.0
+offset_bottom = -163.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.0125304, 0.00383559, 2.63215e-09, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.707675, 0.416772, 0.128693, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("2_4cwpn")
+theme_override_font_sizes/font_size = 60
+text = "Lonely Adventurer"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="OvaniPlayer" type="Node" parent="."]
+script = ExtResource("5_ev3b6")
+QueuedSongs = Array[ExtResource("6_k0a0m")]([ExtResource("7_2mudq")])
+Volume = -3.734
+LoopQueue = true
+metadata/_custom_type_script = "uid://dt75f3rpd32cq"
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_exit_pressed"]

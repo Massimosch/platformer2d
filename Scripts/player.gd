@@ -7,7 +7,6 @@ extends BaseCharacter
 var max_health : int
 var current_health: int
 
-
 func _ready():
 	character_stats = player_stats
 	max_health = player_stats.max_health
