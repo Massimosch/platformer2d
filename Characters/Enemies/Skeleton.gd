@@ -26,9 +26,7 @@ func _physics_process(_delta):
 		velocity.y += gravity
 	move_and_slide()
 	
-
 func move(dir, speed):
-	
 	velocity.x = dir * speed
 	handle_animation()
 	update_flip(dir)
@@ -77,6 +75,7 @@ func take_damage(damage_amount: int) -> void:
 		prints("Health now:", current_health)
 
 	if current_health == 0:
+		healthbar.health = current_health
 		$Hurtbox/CollisionShape2D.set_deferred("disabled", true)
 		die()
 		
