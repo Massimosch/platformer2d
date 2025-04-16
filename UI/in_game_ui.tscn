@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://7bdnu521soe8"]
+[gd_scene load_steps=10 format=3 uid="uid://7bdnu521soe8"]
 
+[ext_resource type="Script" uid="uid://0xxk03pldx2f" path="res://UI/in_game_ui.gd" id="1_d0vji"]
 [ext_resource type="Texture2D" uid="uid://dx53au0lhsdw" path="res://Art/UI/UI_SPRITESHEET.png" id="1_r4raw"]
 [ext_resource type="Script" uid="uid://csbt4lofmeu17" path="res://UI/popup_menu_manager.gd" id="1_trw78"]
+[ext_resource type="FontFile" uid="uid://dxk0synwso6tl" path="res://Art/UI/Minecraft.ttf" id="3_jpmjn"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d0vji"]
 texture = ExtResource("1_r4raw")
@@ -34,12 +36,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_d0vji")
 
 [node name="popupMenu" type="MarginContainer" parent="." node_paths=PackedStringArray("menu_screen", "open_menu_screen")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -1000.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_trw78")
@@ -70,7 +74,7 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_d0vji")
 theme_override_styles/normal = SubResource("StyleBoxTexture_d0vji")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="popupMenu/baseMenuScreenContainer/baseMenuScreen/VBoxContainer"]
-custom_minimum_size = Vector2(400, 500)
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture = ExtResource("1_r4raw")
 region_rect = Rect2(-2, -4, 81, 102)
@@ -84,25 +88,29 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -27.5
+offset_right = 40.0
+offset_bottom = 27.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 100
-theme_override_constants/margin_top = 265
+theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 100
-theme_override_constants/margin_bottom = 15
 
 [node name="buttonContainer" type="VBoxContainer" parent="popupMenu/baseMenuScreenContainer/baseMenuScreen/VBoxContainer/NinePatchRect/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 0
+size_flags_vertical = 4
 theme_override_constants/separation = 30
 
 [node name="topButtonsContainer" type="HBoxContainer" parent="popupMenu/baseMenuScreenContainer/baseMenuScreen/VBoxContainer/NinePatchRect/MarginContainer/buttonContainer"]
 layout_mode = 2
+size_flags_vertical = 0
 theme_override_constants/separation = 30
 
 [node name="helpButton" type="Button" parent="popupMenu/baseMenuScreenContainer/baseMenuScreen/VBoxContainer/NinePatchRect/MarginContainer/buttonContainer/topButtonsContainer"]
-custom_minimum_size = Vector2(80, 80)
+custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -111,7 +119,7 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_trw78")
 theme_override_styles/normal = SubResource("StyleBoxTexture_jpmjn")
 
 [node name="continueButton" type="Button" parent="popupMenu/baseMenuScreenContainer/baseMenuScreen/VBoxContainer/NinePatchRect/MarginContainer/buttonContainer/topButtonsContainer"]
-custom_minimum_size = Vector2(80, 80)
+custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -139,6 +147,17 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_d0vji")
 
 [node name="seperator" type="Control" parent="popupMenu/BaseMenuOpenButton"]
 layout_mode = 2
+
+[node name="Label" type="Label" parent="."]
+z_index = 20
+layout_mode = 2
+offset_left = 172.0
+offset_top = 769.0
+offset_right = 236.0
+offset_bottom = 785.0
+theme_override_colors/font_color = Color(0.283561, 0.196459, 0.0930473, 1)
+theme_override_fonts/font = ExtResource("3_jpmjn")
+text = "PAUSE"
 
 [connection signal="pressed" from="popupMenu/baseMenuScreenContainer/baseMenuScreen/VBoxContainer/ToggleMenuButton" to="popupMenu" method="_on_toggle_menu_button_pressed"]
 [connection signal="pressed" from="popupMenu/BaseMenuOpenButton/ToggleMenuButton" to="popupMenu" method="_on_toggle_menu_button_pressed"]
