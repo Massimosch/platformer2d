@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://b4m1t6tllm4ue"
+path="res://.godot/imported/magic cliffs.ogg-808cb1a61c3bab347dc3dffbc6c75b8b.oggvorbisstr"
+
+[deps]
+
+source_file="res://Art/Magic_Cliffs/magic cliffs music/magic cliffs.ogg"
+dest_files=["res://.godot/imported/magic cliffs.ogg-808cb1a61c3bab347dc3dffbc6c75b8b.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

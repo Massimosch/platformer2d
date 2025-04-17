@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 HitStopManager="*res://Scripts/HitStopManager.gd"
 DamageNumbers="*res://Scripts/DamageNumbers.gd"
+VariablesGlobal="*res://Scripts/variables_global.gd"
 
 [display]
 

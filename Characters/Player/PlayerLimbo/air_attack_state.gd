@@ -4,14 +4,24 @@ extends AirState
 @export var attack_3 : StringName
 var is_slamming = false
 var slam_played = false
+var attacked = false
+var stop_movement = false
 
 func _enter() -> void:
 	super()
+	VariablesGlobal.have_attacked = false
 	character.animation_tree.animation_finished.connect(_on_animation_finished)
 	blackboard.set_var(BBNames.attack_var, false)
+	attacked = true
 
 func _update(delta: float) -> void:
 	super(delta)
+
+	if attacked:
+		character.velocity.y = 0
+	if stop_movement:
+		character.velocity.y = 500
+		character.velocity.x = 0
 
 	if character.is_on_floor():
 		if character.animation_state_machine.get_current_node() == attack_3 and not is_slamming:
@@ -22,9 +32,12 @@ func _update(delta: float) -> void:
 			dispatch("finished")
 	
 func _exit() -> void:
+	character.velocity.x = 0
 	slam_played = false
 	is_slamming = false
 	character.animation_tree.animation_finished.disconnect(_on_animation_finished)
+	attacked = false
+	stop_movement = false
 	
 	
 func _on_animation_finished(p_animation : StringName):
@@ -36,12 +49,17 @@ func _on_animation_finished(p_animation : StringName):
 		animation_name:
 			if !character.is_on_floor():
 				character.animation_state_machine.travel(attack_2)
+				VariablesGlobal.have_attacked = true
 				blackboard.set_var(BBNames.attack_var, false)
 		attack_2:
 			if attack_3.is_empty():
 				dispatch("finished")
 				
+				
 			character.animation_state_machine.travel(attack_3)
+			VariablesGlobal.have_attacked = true
+			attacked = false
+			stop_movement = true
 			blackboard.set_var(BBNames.attack_var, false)
 		_:
 			dispatch("finished")

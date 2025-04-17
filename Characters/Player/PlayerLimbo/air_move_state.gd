@@ -12,7 +12,9 @@ func _update(delta: float) -> void:
 	super(delta)
 	select_animation_state()
 	print("Current jumps made: ", blackboard.get_var(BBNames.jumps_made_var))
-	character.velocity.y = min(character.velocity.y, character_stats.max_fall_speed)
+	
+	if not blackboard.get_var(BBNames.attack_var):
+		character.velocity.y = min(character.velocity.y, character_stats.max_fall_speed)
 
 	if character.is_on_floor():
 		have_double_jumped = false
@@ -24,7 +26,7 @@ func _update(delta: float) -> void:
 		if coyote_timer > coyote_time:
 			can_coyote_jump = false
 			
-	if blackboard.get_var(BBNames.attack_var):
+	if blackboard.get_var(BBNames.attack_var) && !VariablesGlobal.have_attacked:
 		dispatch("attack")
 		
 func select_animation_state():

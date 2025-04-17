@@ -3,6 +3,7 @@ extends GroundState
 func _enter() -> void:
 	super()
 	blackboard.set_var(BBNames.jumps_made_var, 0)
+	VariablesGlobal.have_attacked = false
 	land()
 	
 func _update(delta: float) -> void:
