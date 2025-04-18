@@ -25,4 +25,6 @@ func get_enemy_node():
 	
 func get_player_node():
 	var nodes : Array[Node] = agent.get_tree().get_nodes_in_group(group)
+	if nodes.is_empty():
+		return null
 	return nodes[0] 

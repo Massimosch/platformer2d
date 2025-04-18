@@ -16,7 +16,7 @@ var is_dead : bool
 func _ready() -> void:
 	max_health = character_stats.max_health
 	current_health = max_health
-	healthbar.init_health(max_health)
+	healthbar.init_health(current_health)
 	
 
 func _physics_process(_delta):
@@ -54,7 +54,7 @@ func check_for_self(node):
 
 func attack():
 	animation_player.play("attack")
-	await animation_sprite.animation_finished
+	await animation_player.animation_finished
 	
 func enable_attack_hitbox():
 	$Hitbox.monitoring = true
@@ -64,15 +64,16 @@ func disable_attack_hitbox():
 	$Hitbox.monitoring = false
 	$Hitbox/CollisionShape2D.disabled = true
 
-func take_damage(damage_amount: int) -> void:
+func take_damage(damage_amount: int, is_crit : bool) -> void:
+	if is_crit:
+		HitStopManager.slow_motion_short()
 	if current_health < damage_amount:
 		damage_amount = current_health
 	if current_health > 0:
 		healthbar.health = current_health
-		DamageNumbers.display_number(damage_amount, damage_numbers_origin.global_position, false)
-		HitStopManager.slow_motion_short()
+		DamageNumbers.display_number(damage_amount, damage_numbers_origin.global_position, is_crit)
 		current_health -= damage_amount
-		prints("Health now:", current_health)
+		#prints("Health now:", current_health)
 
 	if current_health == 0:
 		healthbar.health = current_health

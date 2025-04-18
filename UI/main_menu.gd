@@ -6,7 +6,7 @@ func _ready():
 	get_tree().root.content_scale_factor = 1
 
 func _on_start_pressed():
-	get_tree().change_scene_to_file("res://Levels/level01.tscn")
+	get_tree().change_scene_to_file("res://Levels/LobbyLevel.tscn")
 
 
 func _on_exit_pressed():

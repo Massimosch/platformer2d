@@ -9,7 +9,6 @@ var stop_movement = false
 
 func _enter() -> void:
 	super()
-	VariablesGlobal.have_attacked = false
 	character.animation_tree.animation_finished.connect(_on_animation_finished)
 	blackboard.set_var(BBNames.attack_var, false)
 	attacked = true
@@ -42,6 +41,7 @@ func _exit() -> void:
 	
 func _on_animation_finished(p_animation : StringName):
 	if not blackboard.get_var(BBNames.attack_var):
+		VariablesGlobal.have_attacked = true
 		dispatch("finished")
 		return
 	

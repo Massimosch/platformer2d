@@ -8,6 +8,7 @@ var max_health : int
 var current_health: int
 
 func _ready():
+	VariablesGlobal.playerBody = self
 	character_stats = player_stats
 	max_health = player_stats.max_health
 	current_health = max_health
@@ -19,15 +20,15 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 		
 
-func take_damage(damage_amount: int) -> void:
-	DamageNumbers.display_number(damage_amount, damage_numbers_origin.global_position, false)
+func take_damage(damage_amount: int, is_crit : bool) -> void:
+	DamageNumbers.display_number(damage_amount, damage_numbers_origin.global_position, is_crit)
 	current_health -= damage_amount
-	prints("Player Health now:", current_health)
+	#prints("Player Health now:", current_health)
 
 	if current_health <= 0:
 		die()
 
 func die():
-	print("Nyt tulee damagea..")
-	# Later: play death animation, spawn particles, give XP, etc.
-	queue_free()
+	animation_state_machine.travel("die")
+	VariablesGlobal.player_alive = false
+	

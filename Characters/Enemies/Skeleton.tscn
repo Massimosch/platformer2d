@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://cwrrv8epkwkp1"]
+[gd_scene load_steps=65 format=3 uid="uid://cwrrv8epkwkp1"]
 
 [ext_resource type="Script" uid="uid://debcog0v476s1" path="res://Characters/Enemies/Skeleton.gd" id="1_2lpyg"]
 [ext_resource type="Texture2D" uid="uid://bjis3oekm525b" path="res://Art/Monsters_Creatures_Fantasy/Skeleton/Attack.png" id="1_dlowh"]
@@ -18,8 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://ifujcd1v80et" path="res://Art/4-Interrogation Dialog/1-Opening/4.png" id="15_snmyw"]
 [ext_resource type="Texture2D" uid="uid://cu2e7mhg700ho" path="res://Art/4-Interrogation Dialog/2-Closing/1.png" id="16_wfpfj"]
 [ext_resource type="BehaviorTree" uid="uid://utos5k1fndmq" path="res://ai/trees/Skeleton.tres" id="17_q0jaa"]
-[ext_resource type="Script" uid="uid://b5ik5pbkpba07" path="res://Scripts/hurtbox.gd" id="19_3pbq6"]
-[ext_resource type="Script" uid="uid://5byn62y1oa76" path="res://demo/agents/scripts/health.gd" id="20_kqih6"]
+[ext_resource type="Script" uid="uid://b5ik5pbkpba07" path="res://Scripts/HurtBox.gd" id="19_3pbq6"]
 [ext_resource type="Script" uid="uid://dntc3c582m5w8" path="res://Scripts/hitbox.gd" id="21_wy8i0"]
 [ext_resource type="AudioStream" uid="uid://ber5oanhs3xpo" path="res://Music/SFX/12_Player_Movement_SFX/56_Attack_03.wav" id="22_d4a26"]
 [ext_resource type="AudioStream" uid="uid://h0arfq8w3dal" path="res://Music/SFX/12_Player_Movement_SFX/03_Step_grass_03.wav" id="23_sgpi5"]
@@ -671,18 +670,18 @@ metadata/_custom_type_script = "uid://b5ik5pbkpba07"
 position = Vector2(0.5, -21)
 shape = SubResource("RectangleShape2D_kqih6")
 
-[node name="Health" type="Node" parent="."]
-script = ExtResource("20_kqih6")
-max_health = 50.0
-metadata/_custom_type_script = "uid://5byn62y1oa76"
-
 [node name="DamageNumbersOrigin" type="Node2D" parent="."]
-position = Vector2(-7, -48)
+position = Vector2(0, -52)
 
 [node name="Hitbox" type="Area2D" parent="."]
 position = Vector2(-1.19209e-07, -1.90735e-06)
 monitoring = false
 script = ExtResource("21_wy8i0")
+min_damage = 3
+max_damage = 10
+critical_chance = 0.3
+knockback_enabled = null
+knockback_strength = null
 metadata/_custom_type_script = "uid://dntc3c582m5w8"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
@@ -694,10 +693,10 @@ disabled = true
 stream = SubResource("AudioStreamInteractive_ejpg0")
 
 [node name="Healthbar" parent="." instance=ExtResource("24_sgpi5")]
-offset_left = -19.0
-offset_top = -54.0
-offset_right = 21.0
-offset_bottom = -51.0
+offset_left = -13.0
+offset_top = -47.0
+offset_right = 14.0
+offset_bottom = -44.0
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2(19, -22)

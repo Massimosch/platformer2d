@@ -1,5 +1,6 @@
-[gd_scene load_steps=18 format=4 uid="uid://cc8pihjixo4qx"]
+[gd_scene load_steps=20 format=4 uid="uid://cc8pihjixo4qx"]
 
+[ext_resource type="Script" uid="uid://cyiohu5ywgq4m" path="res://Levels/lobby_level.gd" id="1_8hpy5"]
 [ext_resource type="Texture2D" uid="uid://cevbb12axgow8" path="res://Art/Legacy-Fantasy - High Forest 2.3/Assets/Interior-01.png" id="1_52l1f"]
 [ext_resource type="Texture2D" uid="uid://u0odyqbpwhhh" path="res://Art/Legacy-Fantasy - High Forest 2.3/Assets/Props-Rocks.png" id="1_xe0ce"]
 [ext_resource type="Texture2D" uid="uid://b8akhal0jtbc6" path="res://Art/Legacy-Fantasy - High Forest 2.3/Assets/Buildings.png" id="2_chq15"]
@@ -2380,7 +2381,11 @@ tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_6ijx8")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cgghj"]
+size = Vector2(282, 90)
+
 [node name="LobbyLevel" type="Node2D"]
+script = ExtResource("1_8hpy5")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAkAP3/AQAVAAUAAAAkAP7/AQAVAAQAAAAkAP//AQAVAAUAAAAlAP3/AQAWAAUAAAAlAP7/AQAWAAQAAAAlAP//AQAWAAUAAAAmAP3/AQAWAAQAAAAmAP7/AQAWAAQAAAAmAP//AQAWAAQAAAAnAP3/AQAXAAQAAAAnAP7/AQAXAAQAAAAnAP//AQAXAAQAAAAkAPr/AQAVAAQAAAAkAPv/AQAVAAUAAAAkAPz/AQAVAAQAAAAlAPr/AQAWAAQAAAAlAPv/AQAWAAUAAAAlAPz/AQAWAAQAAAAmAPr/AQAWAAQAAAAmAPv/AQAWAAQAAAAmAPz/AQAWAAQAAAAnAPr/AQAWAAQAAAAnAPv/AQAWAAQAAAAnAPz/AQAXAAQAAAAkAPj/AQAVAAMAAAAkAPn/AQAVAAQAAAAlAPj/AQAWAAMAAAAlAPn/AQAYAAQAAAAmAPj/AQAWAAMAAAAmAPn/AQAYAAQAAAAnAPj/AQAWAAMAAAAnAPn/AQAYAAQAAAAwAP3/AQALAAMAAAAwAP7/AQALAAQAAAAwAP//AQALAAUAAAAxAP3/AQAMAAMAAAAxAP7/AQAMAAQAAAAxAP//AQAMAAUAAAA0AP3/AQALAAMAAAA0AP7/AQALAAQAAAA0AP//AQALAAUAAAA1AP3/AQAMAAMAAAA1AP7/AQAMAAQAAAA1AP//AQAMAAUAAAApAPj/AQAWAAMAAAApAPn/AQAYAAQAAAApAPr/AQAWAAQAAAApAPv/AQAWAAQAAAAoAPj/AQAWAAMAAAAoAPn/AQAYAAQAAAAoAPr/AQAWAAQAAAAoAPv/AQAWAAQAAAAqAPj/AQAWAAMAAAAqAPn/AQAYAAQAAAAqAPr/AQAWAAQAAAAqAPv/AQAWAAQAAAAoAPz/AQAWAAQAAAAoAP3/AQAWAAQAAAAoAP7/AQAWAAQAAAAoAP//AQAWAAQAAAApAPz/AQAWAAQAAAApAP3/AQAWAAQAAAApAP7/AQAWAAQAAAApAP//AQAWAAQAAAAqAPz/AQAWAAQAAAAqAP3/AQAWAAQAAAAqAP7/AQAWAAQAAAAqAP//AQAWAAQAAAArAPz/AQAWAAQAAAArAP3/AQAWAAQAAAArAP7/AQAWAAQAAAArAP//AQAWAAQAAAAvAP7/AQAXAAQAAAAvAP//AQAXAAUAAAAvAPz/AQAXAAQAAAAvAP3/AQAXAAUAAAAvAPr/AQAXAAUAAAAvAPv/AQAXAAUAAAAvAPn/AQAXAAQAAAAvAPj/AQAXAAMAAAAuAPj/AQAWAAMAAAAtAPj/AQAWAAMAAAAsAPj/AQAWAAMAAAArAPj/AQAWAAMAAAAuAPn/AQAYAAQAAAAtAPn/AQAYAAQAAAAsAPn/AQAYAAQAAAArAPn/AQAYAAQAAAArAPr/AQAWAAQAAAAsAPr/AQAWAAQAAAAtAPr/AQAWAAQAAAAuAPr/AQAWAAQAAAAuAPv/AQAWAAQAAAAtAPv/AQAWAAQAAAAsAPv/AQAWAAQAAAArAPv/AQAWAAQAAAAtAP//AQAWAAQAAAAtAP7/AQAWAAQAAAAtAPz/AQAWAAQAAAAtAP3/AQAWAAQAAAAuAPz/AQAWAAQAAAAuAP3/AQAWAAQAAAAuAP7/AQAWAAQAAAAuAP//AQAWAAQAAAAsAP//AQAVAAQAAAAsAP7/AQAVAAQAAAAsAP3/AQAVAAQAAAAsAPz/AQAVAAQAAAAyAP//AQAOAAMAAAA=")
@@ -2420,3 +2425,13 @@ process_callback = 0
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
+
+[node name="LevelLoader" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelLoader"]
+position = Vector2(1300, 165)
+shape = SubResource("RectangleShape2D_cgghj")
+
+[connection signal="body_entered" from="LevelLoader" to="." method="_on_level_loader_body_entered"]
