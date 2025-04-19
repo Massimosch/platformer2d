@@ -1,4 +1,4 @@
-[gd_scene load_steps=163 format=3 uid="uid://bgsi1vo3el1wv"]
+[gd_scene load_steps=162 format=3 uid="uid://bgsi1vo3el1wv"]
 
 [ext_resource type="Script" uid="uid://bxq1vd4trhlp7" path="res://Scripts/player.gd" id="1_eovys"]
 [ext_resource type="Resource" uid="uid://bcmksavmvf6yb" path="res://Characters/Player/PlayerLimbo/PlayerStats.tres" id="3_8b15s"]
@@ -87,7 +87,6 @@
 [ext_resource type="Texture2D" uid="uid://crw4kpvf1a5uf" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-hurt-00.png" id="81_we7wg"]
 [ext_resource type="Texture2D" uid="uid://gmlp0exuhhau" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-hurt-01.png" id="82_n34ts"]
 [ext_resource type="Texture2D" uid="uid://cpe0qvs6s15qe" path="res://Art/PlayerGraphics/SwordCombatSprites/adventurer-hurt-02.png" id="83_bn5v0"]
-[ext_resource type="Script" uid="uid://5byn62y1oa76" path="res://demo/agents/scripts/health.gd" id="88_ycmvp"]
 [ext_resource type="Script" uid="uid://b5ik5pbkpba07" path="res://Scripts/HurtBox.gd" id="89_vsgar"]
 [ext_resource type="AudioStream" uid="uid://ber5oanhs3xpo" path="res://Music/SFX/12_Player_Movement_SFX/56_Attack_03.wav" id="90_gxw5c"]
 
@@ -360,20 +359,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [ExtResource("75_sil3o"), ExtResource("76_s24qw"), ExtResource("77_hkw46"), ExtResource("78_62cg6"), ExtResource("79_fvi2t"), ExtResource("80_taxjj")]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.6),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"queue_free"
-}]
 }
 
 [sub_resource type="Animation" id="Animation_hvtal"]
@@ -887,12 +872,6 @@ collision_layer = 0
 collision_mask = 16
 monitoring = false
 script = ExtResource("6_elxsa")
-min_damage = null
-max_damage = null
-critical_chance = null
-critical_multiplier = null
-knockback_enabled = null
-knockback_strength = null
 metadata/_custom_type_script = "uid://dntc3c582m5w8"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Facing/Hitbox"]
@@ -980,11 +959,6 @@ tree_root = SubResource("AnimationNodeStateMachine_mevwr")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/land = false
 parameters/Move/blend_position = 0
-
-[node name="Health" type="Node" parent="."]
-script = ExtResource("88_ycmvp")
-max_health = 100.0
-metadata/_custom_type_script = "uid://5byn62y1oa76"
 
 [node name="Hurtbox" type="Area2D" parent="."]
 script = ExtResource("89_vsgar")

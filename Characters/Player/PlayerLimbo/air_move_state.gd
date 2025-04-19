@@ -26,7 +26,7 @@ func _update(delta: float) -> void:
 		if coyote_timer > coyote_time:
 			can_coyote_jump = false
 			
-	if blackboard.get_var(BBNames.attack_var) && !VariablesGlobal.have_attacked:
+	if blackboard.get_var(BBNames.attack_var):
 		dispatch("attack")
 		
 func select_animation_state():

@@ -4,9 +4,11 @@ extends NPCCharacters
 @onready var damage_numbers_origin = $DamageNumbersOrigin
 @export var audiostream : AudioStreamPlayer2D
 @onready var healthbar = $Healthbar
+var aggro_time := 3.0  # Kuinka kauan vihollinen jahtaa pelaajaa
+var aggro_timer := 0.0
 
 
-var jump_power : float = -500
+var jump_power : float = -1000
 var gravity = 50
 var max_health : int
 var current_health: int
@@ -19,7 +21,13 @@ func _ready() -> void:
 	healthbar.init_health(current_health)
 	
 
-func _physics_process(_delta):
+func _physics_process(delta):
+	if aggro_timer > 0:
+		aggro_timer -= delta
+		$BTPlayer.blackboard.set("aggro", true)
+	else:
+		$BTPlayer.blackboard.set("aggro", false)
+	
 	if is_on_wall() and is_on_floor():
 		velocity.y = jump_power
 	else:
@@ -65,6 +73,7 @@ func disable_attack_hitbox():
 	$Hitbox/CollisionShape2D.disabled = true
 
 func take_damage(damage_amount: int, is_crit : bool) -> void:
+	aggro_timer = aggro_time
 	if is_crit:
 		HitStopManager.slow_motion_short()
 	if current_health < damage_amount:

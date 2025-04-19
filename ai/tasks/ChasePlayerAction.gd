@@ -4,14 +4,15 @@ extends BTAction
 @export var speed_var = 60
 @export var tolerance = 20
 
-
 func _tick(_delta: float) -> Status:
+	if !blackboard.get("aggro"):
+		return FAILURE
+
 	var target = blackboard.get_var(target_var) as Player
 	if target != null:
 		var target_position = target.global_position
 		var vertical_difference = abs(agent.global_position.y - target_position.y)
 
-		# If Y distance is too much, don't act
 		if vertical_difference > 400:
 			return FAILURE
 
@@ -23,5 +24,5 @@ func _tick(_delta: float) -> Status:
 		else:
 			agent.move(dir.x, speed_var)
 			return RUNNING
-		
+
 	return FAILURE

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://cc8pihjixo4qx"]
+[gd_scene load_steps=22 format=4 uid="uid://cc8pihjixo4qx"]
 
 [ext_resource type="Script" uid="uid://cyiohu5ywgq4m" path="res://Levels/lobby_level.gd" id="1_8hpy5"]
 [ext_resource type="Texture2D" uid="uid://cevbb12axgow8" path="res://Art/Legacy-Fantasy - High Forest 2.3/Assets/Interior-01.png" id="1_52l1f"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://b8akhal0jtbc6" path="res://Art/Legacy-Fantasy - High Forest 2.3/Assets/Buildings.png" id="2_chq15"]
 [ext_resource type="Texture2D" uid="uid://wn083w8ponna" path="res://Art/Magic_Cliffs/Environment/PNG/tileset.png" id="2_spmvd"]
 [ext_resource type="PackedScene" uid="uid://bgsi1vo3el1wv" path="res://Characters/Player/player.tscn" id="5_chq15"]
+[ext_resource type="PackedScene" uid="uid://bwy40w7feytdv" path="res://scene_transition_animation.tscn" id="7_cgghj"]
+[ext_resource type="Resource" uid="uid://bcmksavmvf6yb" path="res://Characters/Player/PlayerLimbo/PlayerStats.tres" id="7_ib52v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cgghj"]
 texture = ExtResource("1_52l1f")
@@ -2382,7 +2384,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_6ijx8")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cgghj"]
-size = Vector2(282, 90)
+size = Vector2(282, 27)
 
 [node name="LobbyLevel" type="Node2D"]
 script = ExtResource("1_8hpy5")
@@ -2412,8 +2414,11 @@ tile_set = SubResource("TileSet_r0que")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Collisions"]
 polygon = PackedVector2Array(1153, 0, 1162, 215, 1440, 218, 1446, -446, 1446, -613, 1673, -605, 1676, 308, 1548, 435, 1151, 377)
 
+[node name="SceneTransitionAnimation" parent="." instance=ExtResource("7_cgghj")]
+
 [node name="Player" parent="." instance=ExtResource("5_chq15")]
 position = Vector2(456, -56)
+character_stats = ExtResource("7_ib52v")
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../Camera2D")
@@ -2422,6 +2427,10 @@ remote_path = NodePath("../../Camera2D")
 position = Vector2(456, -56)
 zoom = Vector2(0.7, 0.7)
 process_callback = 0
+limit_left = -11
+limit_top = -687
+limit_right = 1662
+limit_bottom = 89
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
@@ -2431,7 +2440,7 @@ collision_layer = 3
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelLoader"]
-position = Vector2(1300, 165)
+position = Vector2(1300, 196.5)
 shape = SubResource("RectangleShape2D_cgghj")
 
 [connection signal="body_entered" from="LevelLoader" to="." method="_on_level_loader_body_entered"]

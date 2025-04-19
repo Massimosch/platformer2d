@@ -39,7 +39,7 @@ func move(delta):
 	player = VariablesGlobal.playerBody
 	if !dead:
 		is_roaming = true
-		if !taking_damage and is_bat_chase:
+		if player and !taking_damage and is_bat_chase and VariablesGlobal.player_alive:
 			velocity = position.direction_to(player.position) * speed
 			dir.x = abs(velocity.x) / velocity.x
 		elif taking_damage:
@@ -48,7 +48,7 @@ func move(delta):
 		elif !is_bat_chase:
 			velocity += dir * speed * delta
 	elif dead:
-		velocity.y += 10 * delta
+		velocity.y += 500 * delta
 		velocity.x = 0
 	move_and_slide()
 

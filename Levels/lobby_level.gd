@@ -1,9 +1,12 @@
 extends Node2D
 
-
+@onready var SceneTransitionAnimation = $SceneTransitionAnimation/AnimationPlayer
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	SceneTransitionAnimation.get_parent().get_node("ColorRect").color.a = 255
 	get_tree().root.content_scale_factor = 4
+	VariablesGlobal.can_move = true
+	SceneTransitionAnimation.play("fade_out")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -13,4 +16,7 @@ func _process(_delta):
 
 func _on_level_loader_body_entered(body):
 	if body is Player:
+		VariablesGlobal.game_started = true
+		SceneTransitionAnimation.play("fade_in")
+		await get_tree().create_timer(0.4).timeout
 		get_tree().change_scene_to_file("res://Levels/level01.tscn")

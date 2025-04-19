@@ -8,10 +8,10 @@ func _enter() -> void:
 	
 func _update(delta: float) -> void:
 	super(delta)
-		
+			
 	if blackboard.get_var(BBNames.attack_var):
 		dispatch("attack")
-		
+			
 	if blackboard.get_var(BBNames.dash_var):
 		dispatch("dash")
 		

@@ -21,14 +21,20 @@ func _physics_process(delta: float) -> void:
 		
 
 func take_damage(damage_amount: int, is_crit : bool) -> void:
-	DamageNumbers.display_number(damage_amount, damage_numbers_origin.global_position, is_crit)
-	current_health -= damage_amount
-	#prints("Player Health now:", current_health)
+	if VariablesGlobal.player_alive:
+		DamageNumbers.display_number(damage_amount, damage_numbers_origin.global_position, is_crit)
+		current_health -= damage_amount
+		#prints("Player Health now:", current_health)
+	else:
+		pass
 
 	if current_health <= 0:
 		die()
 
 func die():
+	velocity.x = 0
+	VariablesGlobal.can_move = false
 	animation_state_machine.travel("die")
+	await get_tree().create_timer(2).timeout
 	VariablesGlobal.player_alive = false
 	

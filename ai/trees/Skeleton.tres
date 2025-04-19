@@ -6,6 +6,11 @@
 [ext_resource type="Script" uid="uid://duon7gvta38a1" path="res://ai/tasks/move_to_target.gd" id="4_s3dnj"]
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_6e3ig"]
+var/aggro/name = &"aggro"
+var/aggro/type = 1
+var/aggro/value = false
+var/aggro/hint = 0
+var/aggro/hint_string = ""
 
 [sub_resource type="BTConsolePrint" id="BTConsolePrint_6e3ig"]
 text = "Random Move"
@@ -21,6 +26,7 @@ dir_var = &"dir"
 script = ExtResource("2_w3558")
 target_pos_var = &"pos"
 dir_var = &"dir"
+max_stuck_time = 2.0
 speed_var = 40
 tolerance = 10
 
@@ -76,6 +82,7 @@ custom_name = "Move To Player"
 children = [SubResource("BTConsolePrint_s3dnj"), SubResource("BTAction_w2pju"), SubResource("BTPlayAnimation_usix2"), SubResource("BTAction_pvx8b"), SubResource("BTCallMethod_w2pju"), SubResource("BTWait_s3dnj")]
 
 [sub_resource type="BTProbability" id="BTProbability_hexxq"]
+run_chance = 0.6
 children = [SubResource("BTSequence_gvbbb")]
 
 [sub_resource type="BTConsolePrint" id="BTConsolePrint_w3558"]

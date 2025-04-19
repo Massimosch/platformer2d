@@ -22,19 +22,19 @@ func _process(_delta: float) -> void:
 	#prints(blackboard.get_var("direction"))
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed(player_actions.jump):
+	if event.is_action_pressed(player_actions.jump) and VariablesGlobal.player_alive:
 		is_jumping = true
 		
-	elif event.is_action_released(player_actions.jump):
+	elif event.is_action_released(player_actions.jump) and VariablesGlobal.player_alive:
 		is_jumping = false
 		
-	elif event.is_action_pressed(player_actions.dash):
+	elif event.is_action_pressed(player_actions.dash) and VariablesGlobal.player_alive:
 		dash = true
 	
-	elif event.is_action_released(player_actions.dash):
+	elif event.is_action_released(player_actions.dash) and VariablesGlobal.player_alive:
 		dash = false
 		
-	if Input.is_action_just_pressed(player_actions.attack):
+	elif event.is_action_pressed(player_actions.attack) and VariablesGlobal.player_alive:
 		attack = true
 	
 		
