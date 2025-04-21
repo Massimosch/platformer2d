@@ -16,7 +16,7 @@ func display_number(value: int, position: Vector2, is_critical: bool = false):
 	number.label_settings.font_color = color
 	number.label_settings.font_size = 18
 	number.label_settings.outline_color = "#000"
-	number.label_settings.outline_size = 1
+	number.label_settings.outline_size = 2
 
 	call_deferred("add_child", number)
 	
@@ -34,6 +34,9 @@ func display_number(value: int, position: Vector2, is_critical: bool = false):
 	tween.tween_property(
 		number, "scale", Vector2.ZERO, 0.25
 	).set_ease(Tween.EASE_IN).set_delay(0.5)
+	tween.tween_property(number, "scale", Vector2(1.2, 1.2), 0.1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween.tween_property(number, "scale", Vector2(1, 1), 0.15)
 	
 	await tween.finished
 	number.queue_free()
+	

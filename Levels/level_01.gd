@@ -3,8 +3,10 @@ extends Node2D
 @onready var SceneTransitionAnimation = $Camera2D/SceneTransitionAnimation/AnimationPlayer
 # Called when the node enters the scene tree for the first time.
 var current_wave : int = 0
+@onready var enemy_container = $EnemyContainer
 @export var Flying_Eye_Scene : PackedScene
 @export var Skeleton_Scene : PackedScene
+@onready var player = $Player
 
 var starting_nodes: int
 var current_nodes: int
@@ -24,6 +26,8 @@ func position_to_next_wave():
 	if current_nodes == starting_nodes:
 		if current_wave != 0:
 			VariablesGlobal.moving_to_next_wave = true
+		wave_spawning_ended = false
+		player.at_round_start()
 		SceneTransitionAnimation.play("between_wave")
 		current_wave += 1
 		VariablesGlobal.current_wave = current_wave
@@ -43,13 +47,34 @@ func spawn_type(type, mob_spawn_rounds, mob_wait_time):
 		var skeleton_spawn1 = $SkeletonSpawnPoint1
 		var skeleton_spawn2 = $SkeletonSpawnPoint2
 		if mob_spawn_rounds >= 1:
-			for i in mob_spawn_rounds:
+			for i in int(mob_spawn_rounds):
 				var skeleton1 = Skeleton_Scene.instantiate()
 				skeleton1.global_position = skeleton_spawn1.global_position
 				var skeleton2 = Skeleton_Scene.instantiate()
 				skeleton2.global_position = skeleton_spawn2.global_position
-				add_child(skeleton1)
-				add_child(skeleton2)
+				enemy_container.add_child(skeleton1)
+				enemy_container.add_child(skeleton2)
+				mob_spawn_rounds -= 1
+				await get_tree().create_timer(mob_wait_time).timeout
+	elif type == "flying_eye":
+		var flying_enemy_spawn1 = $FlyingEnemySpawn1
+		var flying_enemy_spawn2 = $FlyingEnemySpawn2
+		var flying_enemy_spawn3 = $FlyingEnemySpawn3
+		var flying_enemy_spawn4 = $FlyingEnemySpawn4
+		if mob_spawn_rounds >= 1:
+			for i in mob_spawn_rounds:
+				var flying_eye1 = Flying_Eye_Scene.instantiate()
+				flying_eye1.global_position = flying_enemy_spawn1.global_position
+				var flying_eye2 = Flying_Eye_Scene.instantiate()
+				flying_eye2.global_position = flying_enemy_spawn2.global_position
+				var flying_eye3 = Flying_Eye_Scene.instantiate()
+				flying_eye3.global_position = flying_enemy_spawn3.global_position
+				var flying_eye4 = Flying_Eye_Scene.instantiate()
+				flying_eye4.global_position = flying_enemy_spawn4.global_position
+				enemy_container.add_child(flying_eye1)
+				enemy_container.add_child(flying_eye2)
+				enemy_container.add_child(flying_eye3)
+				enemy_container.add_child(flying_eye4)
 				mob_spawn_rounds -= 1
 				await get_tree().create_timer(mob_wait_time).timeout
 		wave_spawning_ended = true
@@ -60,5 +85,24 @@ func _process(_delta):
 	if !VariablesGlobal.player_alive:
 		SceneTransitionAnimation.play("fade_in")
 		await get_tree().create_timer(0.5).timeout
+		update_score()
 		VariablesGlobal.game_started = false
 		get_tree().change_scene_to_file("res://Levels/LobbyLevel.tscn")
+		
+	current_nodes = get_child_count()
+	
+	if wave_spawning_ended and enemy_container.get_child_count() == 0:
+		VariablesGlobal.current_score += current_wave * 50
+		wave_spawning_ended = false
+		await get_tree().create_timer(1.5).timeout
+		position_to_next_wave()
+		
+	if Input.is_action_just_pressed("open_menu"):
+		get_tree().change_scene_to_file("res://UI/main_menu.tscn")
+
+
+func update_score():
+	VariablesGlobal.previous_score = VariablesGlobal.current_score
+	if VariablesGlobal.current_score > VariablesGlobal.high_score:
+		VariablesGlobal.high_score = VariablesGlobal.current_score
+	VariablesGlobal.current_score = 0

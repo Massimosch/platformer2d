@@ -4,11 +4,12 @@ extends NPCCharacters
 @onready var damage_numbers_origin = $DamageNumbersOrigin
 @export var audiostream : AudioStreamPlayer2D
 @onready var healthbar = $Healthbar
-var aggro_time := 3.0  # Kuinka kauan vihollinen jahtaa pelaajaa
+var aggro_time := 3.0
 var aggro_timer := 0.0
+var points = 175
 
 
-var jump_power : float = -1000
+var jump_power : float = -600
 var gravity = 50
 var max_health : int
 var current_health: int
@@ -88,16 +89,10 @@ func take_damage(damage_amount: int, is_crit : bool) -> void:
 		healthbar.health = current_health
 		$Hurtbox/CollisionShape2D.set_deferred("disabled", true)
 		die()
-		
-func update_audio(audio_name: String):
-	if audio_name == "none":
-		audiostream.stop()
-	if audio_name != audiostream["parameters/switch_to_clip"]:
-		audiostream.play()
-		audiostream["parameters/switch_to_clip"] = audio_name
 
 func die():
 	##COME BACK HERE, TERRIBLE WAY TO DO IT BUT IT GOES FOR NOW.
+	VariablesGlobal.current_score += points
 	velocity.x = 0
 	$BTPlayer.active = false
 	animation_player.play("death")

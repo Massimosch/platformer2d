@@ -12,7 +12,7 @@ func _tick(_delta: float) -> Status:
 		var vertical_difference = abs(agent.global_position.y - target_position.y)
 
 		# If Y distance is too much, don't act
-		if vertical_difference > 400:
+		if vertical_difference > 200:
 			return FAILURE
 
 		var dir = agent.global_position.direction_to(target_position)

@@ -12,11 +12,12 @@ extends Area2D
 func _ready() -> void:
 	area_entered.connect(_area_entered)
 
-func _area_entered(hurtbox: CustomHurtbox) -> void:
+func _area_entered(hurtbox: Area2D) -> void:
 	if hurtbox.owner == owner:
 		return
-	var damage_data = calculate_damage()
-	hurtbox.take_damage(damage_data["damage"], damage_data["critical"])
+	if hurtbox is CustomHurtbox:
+		var damage_data = calculate_damage()
+		hurtbox.take_damage(damage_data["damage"], damage_data["critical"])
 	
 func calculate_damage() -> Dictionary:
 	var base_damage = randi_range(min_damage, max_damage)

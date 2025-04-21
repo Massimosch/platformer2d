@@ -11,9 +11,10 @@ var last_position := Vector2.ZERO
 func _tick(_delta: float) -> Status:
 	var target_pos: Vector2 = blackboard.get_var(target_pos_var, Vector2.ZERO)
 	var dir = blackboard.get_var(dir_var)
+	var distance_moved = agent.global_position.distance_to(last_position)
 
 	# Tarkista onko jumissa
-	if agent.global_position.distance_to(last_position) < 1:
+	if distance_moved < 1:
 		stuck_timer += _delta
 	else:
 		stuck_timer = 0.0

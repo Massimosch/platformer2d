@@ -680,8 +680,6 @@ script = ExtResource("21_wy8i0")
 min_damage = 3
 max_damage = 10
 critical_chance = 0.3
-knockback_enabled = null
-knockback_strength = null
 metadata/_custom_type_script = "uid://dntc3c582m5w8"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
@@ -697,7 +695,3 @@ offset_left = -13.0
 offset_top = -47.0
 offset_right = 14.0
 offset_bottom = -44.0
-
-[node name="RayCast2D" type="RayCast2D" parent="."]
-position = Vector2(19, -22)
-target_position = Vector2(50, 0)

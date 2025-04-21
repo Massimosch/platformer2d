@@ -1,15 +1,15 @@
 extends Node2D
 
 @onready var SceneTransitionAnimation = $SceneTransitionAnimation/AnimationPlayer
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
+	VariablesGlobal.player_alive = true
 	SceneTransitionAnimation.get_parent().get_node("ColorRect").color.a = 255
 	get_tree().root.content_scale_factor = 4
 	VariablesGlobal.can_move = true
 	SceneTransitionAnimation.play("fade_out")
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	pass
 

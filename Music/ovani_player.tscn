@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://dr0d6v62fmc08"]
+
+[ext_resource type="Script" uid="uid://dt75f3rpd32cq" path="res://addons/OvaniPlugin/OvaniPlayer.gd" id="1_pdsji"]
+[ext_resource type="Script" uid="uid://cmlhttw4sefvo" path="res://addons/OvaniPlugin/OvaniSong.gd" id="2_1s3x4"]
+[ext_resource type="Resource" uid="uid://d0rxr6t67vbvh" path="res://Music/Oi (RT 3.301)/Oi Song.tres" id="3_6n15t"]
+
+[node name="OvaniPlayer" type="Node"]
+script = ExtResource("1_pdsji")
+QueuedSongs = Array[ExtResource("2_1s3x4")]([ExtResource("3_6n15t")])
+Volume = -11.203
+Intensity = 1.0
+LoopQueue = true
+metadata/_custom_type_script = "uid://dt75f3rpd32cq"

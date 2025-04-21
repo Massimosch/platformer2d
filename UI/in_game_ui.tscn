@@ -1,17 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://7bdnu521soe8"]
+[gd_scene load_steps=12 format=3 uid="uid://7bdnu521soe8"]
 
 [ext_resource type="Script" uid="uid://0xxk03pldx2f" path="res://UI/in_game_ui.gd" id="1_d0vji"]
 [ext_resource type="Texture2D" uid="uid://dx53au0lhsdw" path="res://Art/UI/UI_SPRITESHEET.png" id="1_r4raw"]
 [ext_resource type="Script" uid="uid://csbt4lofmeu17" path="res://UI/popup_menu_manager.gd" id="1_trw78"]
 [ext_resource type="FontFile" uid="uid://dxk0synwso6tl" path="res://Art/UI/Minecraft.ttf" id="3_jpmjn"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d0vji"]
-texture = ExtResource("1_r4raw")
-texture_margin_left = 2.0
-texture_margin_top = 2.0
-texture_margin_right = 2.0
-texture_margin_bottom = 2.0
-region_rect = Rect2(213, 103, 6, 2)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_trw78"]
 texture = ExtResource("1_r4raw")
@@ -23,13 +15,51 @@ region_rect = Rect2(145, 1, 14, 14)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b4smu"]
 texture = ExtResource("1_r4raw")
-region_rect = Rect2(161, 50, 14, 13)
+region_rect = Rect2(97, 34, 14, 13)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ix84t"]
 texture = ExtResource("1_r4raw")
-region_rect = Rect2(145, 49, 14, 14)
+region_rect = Rect2(81, 33, 14, 14)
+
+[sub_resource type="Animation" id="Animation_d0vji"]
+resource_name = "blur"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_b4smu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ix84t"]
+_data = {
+&"RESET": SubResource("Animation_b4smu"),
+&"blur": SubResource("Animation_d0vji")
+}
 
 [node name="inGameUI" type="Control"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -63,15 +93,6 @@ size_flags_vertical = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="popupMenu/baseMenuScreenContainer/baseMenuScreen"]
 layout_mode = 2
-
-[node name="ToggleMenuButton" type="Button" parent="popupMenu/baseMenuScreenContainer/baseMenuScreen/VBoxContainer"]
-custom_minimum_size = Vector2(50, 4)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_styles/hover = SubResource("StyleBoxTexture_d0vji")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_d0vji")
-theme_override_styles/normal = SubResource("StyleBoxTexture_d0vji")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="popupMenu/baseMenuScreenContainer/baseMenuScreen/VBoxContainer"]
 custom_minimum_size = Vector2(100, 100)
@@ -109,7 +130,7 @@ layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/separation = 30
 
-[node name="helpButton" type="Button" parent="popupMenu/baseMenuScreenContainer/baseMenuScreen/VBoxContainer/NinePatchRect/MarginContainer/buttonContainer/topButtonsContainer"]
+[node name="continueButton" type="Button" parent="popupMenu/baseMenuScreenContainer/baseMenuScreen/VBoxContainer/NinePatchRect/MarginContainer/buttonContainer/topButtonsContainer"]
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -118,7 +139,7 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_trw78")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_trw78")
 theme_override_styles/normal = SubResource("StyleBoxTexture_jpmjn")
 
-[node name="continueButton" type="Button" parent="popupMenu/baseMenuScreenContainer/baseMenuScreen/VBoxContainer/NinePatchRect/MarginContainer/buttonContainer/topButtonsContainer"]
+[node name="backToMenu" type="Button" parent="popupMenu/baseMenuScreenContainer/baseMenuScreen/VBoxContainer/NinePatchRect/MarginContainer/buttonContainer/topButtonsContainer"]
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -136,15 +157,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 8
 theme_override_constants/separation = 20
 
-[node name="ToggleMenuButton" type="Button" parent="popupMenu/BaseMenuOpenButton"]
-custom_minimum_size = Vector2(50, 4)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-theme_override_styles/hover = SubResource("StyleBoxTexture_d0vji")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_d0vji")
-theme_override_styles/normal = SubResource("StyleBoxTexture_d0vji")
-
 [node name="seperator" type="Control" parent="popupMenu/BaseMenuOpenButton"]
 layout_mode = 2
 
@@ -159,5 +171,10 @@ theme_override_colors/font_color = Color(0.283561, 0.196459, 0.0930473, 1)
 theme_override_fonts/font = ExtResource("3_jpmjn")
 text = "PAUSE"
 
-[connection signal="pressed" from="popupMenu/baseMenuScreenContainer/baseMenuScreen/VBoxContainer/ToggleMenuButton" to="popupMenu" method="_on_toggle_menu_button_pressed"]
-[connection signal="pressed" from="popupMenu/BaseMenuOpenButton/ToggleMenuButton" to="popupMenu" method="_on_toggle_menu_button_pressed"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ix84t")
+}
+
+[connection signal="pressed" from="popupMenu/baseMenuScreenContainer/baseMenuScreen/VBoxContainer/NinePatchRect/MarginContainer/buttonContainer/topButtonsContainer/continueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="popupMenu/baseMenuScreenContainer/baseMenuScreen/VBoxContainer/NinePatchRect/MarginContainer/buttonContainer/topButtonsContainer/backToMenu" to="." method="_on_back_to_menu_pressed"]

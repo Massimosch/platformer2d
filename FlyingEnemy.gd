@@ -4,16 +4,20 @@ extends NPCCharacters
 @onready var damage_numbers_origin = $DamageNumbersOrigin
 @onready var healthbar = $Healthbar
 
+var max_chase_distance : float = 50.0
+var points = 100
 var max_health : int
 var current_health : int
 var is_dead : bool
 var is_bat_chase : bool
 var is_roaming: bool
 var taking_damage : bool
+var can_attack : bool = true
 var dead : bool
 var dir: Vector2
 var speed : float
 var player : BaseCharacter
+
 
 func _ready():
 	taking_damage = false
@@ -40,8 +44,14 @@ func move(delta):
 	if !dead:
 		is_roaming = true
 		if player and !taking_damage and is_bat_chase and VariablesGlobal.player_alive:
-			velocity = position.direction_to(player.position) * speed
-			dir.x = abs(velocity.x) / velocity.x
+			var distance_to_player = position.distance_to(player.position)
+			if distance_to_player > max_chase_distance:
+				velocity = position.direction_to(player.position) * speed
+				dir.x = abs(velocity.x) / velocity.x
+			else:
+				velocity = Vector2.ZERO
+				if not taking_damage:
+					attack()
 		elif taking_damage:
 			var knockback_dir = position.direction_to(player.position) * -50
 			velocity = knockback_dir
@@ -62,7 +72,7 @@ func choose(array):
 	return array.front()
 
 func handle_animations():
-	if !dead:
+	if !dead and can_attack and !taking_damage:
 		animation_player.play("flying")
 		if dir.x == -1:
 			animation_sprite.flip_h = true
@@ -72,10 +82,18 @@ func handle_animations():
 			$Hitbox/CollisionShape2D.position.x = abs($Hitbox/CollisionShape2D.position.x)
 			
 func attack():
+	if !can_attack:
+		return
+	print("Attack Ajettiin!")
+	can_attack = false
 	animation_player.play("attack")
 	await animation_player.animation_finished
+	can_attack = true
 	
 func take_damage(damage_amount: int, is_crit : bool) -> void:
+	if dead:
+		return
+	
 	if is_crit:
 		HitStopManager.slow_motion_short()
 	taking_damage = true
@@ -86,8 +104,9 @@ func take_damage(damage_amount: int, is_crit : bool) -> void:
 		DamageNumbers.display_number(damage_amount, damage_numbers_origin.global_position, is_crit)
 
 		current_health -= damage_amount
-		taking_damage = false
 		animation_sprite.play("take_hit")
+		await animation_sprite.animation_finished
+		taking_damage = false
 	
 	if current_health == 0:
 		healthbar.health = current_health
@@ -95,11 +114,12 @@ func take_damage(damage_amount: int, is_crit : bool) -> void:
 		die()
 		
 func die():
-	set_collision_layer_value(1, true)
+	VariablesGlobal.current_score += points
+	set_collision_layer_value(4, true)
+	set_collision_mask_value(1, true)
 	set_collision_layer_value(6, false)
 	dead = true
 	animation_sprite.play("death")
 	await get_tree().create_timer(1.5).timeout
 	queue_free()
-	
 	

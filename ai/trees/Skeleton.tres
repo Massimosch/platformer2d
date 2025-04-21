@@ -82,7 +82,7 @@ custom_name = "Move To Player"
 children = [SubResource("BTConsolePrint_s3dnj"), SubResource("BTAction_w2pju"), SubResource("BTPlayAnimation_usix2"), SubResource("BTAction_pvx8b"), SubResource("BTCallMethod_w2pju"), SubResource("BTWait_s3dnj")]
 
 [sub_resource type="BTProbability" id="BTProbability_hexxq"]
-run_chance = 0.6
+run_chance = 1.0
 children = [SubResource("BTSequence_gvbbb")]
 
 [sub_resource type="BTConsolePrint" id="BTConsolePrint_w3558"]

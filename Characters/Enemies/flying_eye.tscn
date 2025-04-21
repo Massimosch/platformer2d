@@ -396,7 +396,7 @@ _data = {
 radius = 21.0238
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_x4nru"]
-radius = 16.0
+radius = 12.0416
 
 [node name="FlyingEye" type="CharacterBody2D" node_paths=PackedStringArray("animation_player", "sprite")]
 collision_layer = 36
@@ -442,6 +442,7 @@ position = Vector2(2, -1)
 shape = SubResource("CircleShape2D_756rv")
 
 [node name="Hitbox" type="Area2D" parent="."]
+position = Vector2(1, 1)
 monitoring = false
 script = ExtResource("9_756rv")
 min_damage = 2
@@ -450,7 +451,8 @@ critical_chance = 0.5
 metadata/_custom_type_script = "uid://dntc3c582m5w8"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(16, 7)
+position = Vector2(22, 10)
 shape = SubResource("CircleShape2D_x4nru")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
