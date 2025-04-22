@@ -91,7 +91,7 @@ func attack():
 	can_attack = true
 	
 func take_damage(damage_amount: int, is_crit : bool) -> void:
-	if dead:
+	if dead or current_health <= 0:
 		return
 	
 	if is_crit:
@@ -100,16 +100,15 @@ func take_damage(damage_amount: int, is_crit : bool) -> void:
 	if current_health < damage_amount:
 		damage_amount = current_health
 	if current_health > 0:
-		healthbar.health = current_health
 		DamageNumbers.display_number(damage_amount, damage_numbers_origin.global_position, is_crit)
 
 		current_health -= damage_amount
+		healthbar.health = current_health
 		animation_sprite.play("take_hit")
 		await animation_sprite.animation_finished
 		taking_damage = false
 	
 	if current_health == 0:
-		healthbar.health = current_health
 		$Hurtbox/CollisionShape2D.set_deferred("disabled", true)
 		die()
 		

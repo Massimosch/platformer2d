@@ -74,19 +74,20 @@ func disable_attack_hitbox():
 	$Hitbox/CollisionShape2D.disabled = true
 
 func take_damage(damage_amount: int, is_crit : bool) -> void:
-	aggro_timer = aggro_time
+	if current_health <= 0:
+		return
+	
 	if is_crit:
 		HitStopManager.slow_motion_short()
 	if current_health < damage_amount:
 		damage_amount = current_health
 	if current_health > 0:
+		current_health -= damage_amount
 		healthbar.health = current_health
 		DamageNumbers.display_number(damage_amount, damage_numbers_origin.global_position, is_crit)
-		current_health -= damage_amount
 		#prints("Health now:", current_health)
 
 	if current_health == 0:
-		healthbar.health = current_health
 		$Hurtbox/CollisionShape2D.set_deferred("disabled", true)
 		die()
 
