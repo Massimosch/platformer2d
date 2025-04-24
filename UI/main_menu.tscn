@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dx53au0lhsdw" path="res://Art/UI/UI_SPRITESHEET.png" id="3_f40uw"]
 [ext_resource type="Script" uid="uid://dt75f3rpd32cq" path="res://addons/OvaniPlugin/OvaniPlayer.gd" id="5_ev3b6"]
 [ext_resource type="Script" uid="uid://cmlhttw4sefvo" path="res://addons/OvaniPlugin/OvaniSong.gd" id="6_k0a0m"]
-[ext_resource type="Resource" uid="uid://d0rxr6t67vbvh" path="res://Music/Oi (RT 3.301)/Oi Song.tres" id="7_2mudq"]
+[ext_resource type="Resource" uid="uid://msg7f6m8u6j2" path="res://Music/Wicked (RT 7.255)/wicked.tres" id="7_ev3b6"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8ctay"]
 texture = ExtResource("3_f40uw")
@@ -21,7 +21,7 @@ region_rect = Rect2(224, 37, 32, 23)
 texture = ExtResource("3_f40uw")
 region_rect = Rect2(224, 37, 32, 23)
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("myPlayer")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -29,6 +29,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_4cwpn")
+myPlayer = NodePath("OvaniPlayer")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -100,8 +101,7 @@ uppercase = true
 
 [node name="OvaniPlayer" type="Node" parent="."]
 script = ExtResource("5_ev3b6")
-QueuedSongs = Array[ExtResource("6_k0a0m")]([ExtResource("7_2mudq")])
-Volume = -3.734
+QueuedSongs = Array[ExtResource("6_k0a0m")]([ExtResource("7_ev3b6")])
 LoopQueue = true
 metadata/_custom_type_script = "uid://dt75f3rpd32cq"
 

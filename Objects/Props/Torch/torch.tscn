@@ -89,6 +89,6 @@ region_rect = Rect2(653, 37, 8, 24)
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(0, -82)
 color = Color(0.432997, 0.521141, 0.932191, 1)
-energy = 1.5
+energy = 0.8
 texture = SubResource("GradientTexture2D_dgc7k")
 texture_scale = 3.0

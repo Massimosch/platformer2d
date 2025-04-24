@@ -1,9 +1,13 @@
 extends Control
 
+@export var myPlayer : OvaniPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	get_tree().root.content_scale_factor = 1
+	myPlayer.Volume = -60
+	myPlayer.FadeIntensity(1, 10)
+	myPlayer.FadeVolume(0, 5)
 
 func _on_start_pressed():
 	get_tree().change_scene_to_file("res://Levels/LobbyLevel.tscn")
