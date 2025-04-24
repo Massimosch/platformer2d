@@ -7,12 +7,15 @@ var current_wave : int = 0
 @export var Flying_Eye_Scene : PackedScene
 @export var Skeleton_Scene : PackedScene
 @onready var player = $Player
+@onready var audioPlayer = $AudioStreamPlayer2D
+@export var myPlayer : OvaniPlayer
 
 var starting_nodes: int
 var current_nodes: int
 var wave_spawning_ended : bool
 
 func _ready():
+	myPlayer.FadeVolume(-25, 5)
 	get_tree().root.content_scale_factor = 4
 	SceneTransitionAnimation.get_parent().get_node("ColorRect").color.a = 255
 	SceneTransitionAnimation.play("fade_out")
@@ -29,6 +32,8 @@ func position_to_next_wave():
 		wave_spawning_ended = false
 		player.at_round_start()
 		SceneTransitionAnimation.play("between_wave")
+		audioPlayer.pitch_scale = 1.5
+		audioPlayer.play()
 		current_wave += 1
 		VariablesGlobal.current_wave = current_wave
 		await get_tree().create_timer(0.5).timeout
@@ -82,6 +87,9 @@ func spawn_type(type, mob_spawn_rounds, mob_wait_time):
 				
 
 func _process(_delta):
+	if Input.is_action_just_pressed("music_bool"):
+		myPlayer.Volume = -80
+	
 	if !VariablesGlobal.player_alive:
 		SceneTransitionAnimation.play("fade_in")
 		await get_tree().create_timer(0.5).timeout

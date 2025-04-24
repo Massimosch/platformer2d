@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://dcegn2pt3hdwu"]
+[gd_scene load_steps=46 format=3 uid="uid://dcegn2pt3hdwu"]
 
 [ext_resource type="Script" uid="uid://csiyu37bmh5vj" path="res://FlyingEnemy.gd" id="1_a7as8"]
 [ext_resource type="Texture2D" uid="uid://dxro0rh1wckbj" path="res://Art/Monsters_Creatures_Fantasy/Flying eye/Attack.png" id="2_m7x3b"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cg44pjkp1xpgk" path="res://Characters/healthbar/healthbar.tscn" id="6_m7x3b"]
 [ext_resource type="Script" uid="uid://b5ik5pbkpba07" path="res://Scripts/HurtBox.gd" id="8_xrh0c"]
 [ext_resource type="Script" uid="uid://dntc3c582m5w8" path="res://Scripts/hitbox.gd" id="9_756rv"]
+[ext_resource type="AudioStream" uid="uid://djqd6j3f1vutq" path="res://Music/SFX/10_Battle_SFX/77_flesh_02.wav" id="10_x4nru"]
 
 [sub_resource type="Resource" id="Resource_xrh0c"]
 script = ExtResource("2_ojhaw")
@@ -396,7 +397,7 @@ _data = {
 radius = 21.0238
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_x4nru"]
-radius = 12.0416
+radius = 26.0
 
 [node name="FlyingEye" type="CharacterBody2D" node_paths=PackedStringArray("animation_player", "sprite")]
 collision_layer = 36
@@ -451,8 +452,11 @@ critical_chance = 0.5
 metadata/_custom_type_script = "uid://dntc3c582m5w8"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(22, 10)
+position = Vector2(10, 1)
 shape = SubResource("CircleShape2D_x4nru")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_x4nru")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

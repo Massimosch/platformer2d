@@ -3,8 +3,10 @@ extends NPCCharacters
 @onready var animation_sprite = $AnimatedSprite2D
 @onready var damage_numbers_origin = $DamageNumbersOrigin
 @onready var healthbar = $Healthbar
+@onready var audioPlayer = $AudioStreamPlayer2D
 
-var max_chase_distance : float = 50.0
+
+var max_chase_distance : float = 30.0
 var points = 100
 var max_health : int
 var current_health : int
@@ -96,10 +98,16 @@ func take_damage(damage_amount: int, is_crit : bool) -> void:
 	
 	if is_crit:
 		HitStopManager.slow_motion_short()
+		audioPlayer.pitch_scale = 2
+		audioPlayer.play()
 	taking_damage = true
 	if current_health < damage_amount:
 		damage_amount = current_health
+		audioPlayer.pitch_scale = 1.3
+		audioPlayer.play()
 	if current_health > 0:
+		audioPlayer.pitch_scale = 1.6
+		audioPlayer.play()
 		DamageNumbers.display_number(damage_amount, damage_numbers_origin.global_position, is_crit)
 
 		current_health -= damage_amount

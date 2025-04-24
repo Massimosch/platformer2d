@@ -4,9 +4,10 @@ extends Node2D
 @export var myPlayer : OvaniPlayer
 
 func _ready():
-	myPlayer.Volume = -60
-	myPlayer.FadeIntensity(1, 10)
-	myPlayer.FadeVolume(0, 5)
+	if VariablesGlobal.music_bool:
+		myPlayer.Volume = -60
+		myPlayer.FadeIntensity(1, 10)
+		myPlayer.FadeVolume(-25, 5)
 	VariablesGlobal.player_alive = true
 	SceneTransitionAnimation.get_parent().get_node("ColorRect").color.a = 255
 	get_tree().root.content_scale_factor = 4
@@ -15,7 +16,9 @@ func _ready():
 
 
 func _process(_delta):
-	pass
+	if Input.is_action_just_pressed("music_bool"):
+		myPlayer.Volume = -80
+		
 
 
 func _on_level_loader_body_entered(body):

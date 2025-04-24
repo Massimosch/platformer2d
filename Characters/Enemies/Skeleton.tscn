@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://cwrrv8epkwkp1"]
+[gd_scene load_steps=66 format=3 uid="uid://cwrrv8epkwkp1"]
 
 [ext_resource type="Script" uid="uid://debcog0v476s1" path="res://Characters/Enemies/Skeleton.gd" id="1_2lpyg"]
 [ext_resource type="Texture2D" uid="uid://bjis3oekm525b" path="res://Art/Monsters_Creatures_Fantasy/Skeleton/Attack.png" id="1_dlowh"]
@@ -22,6 +22,7 @@
 [ext_resource type="Script" uid="uid://dntc3c582m5w8" path="res://Scripts/hitbox.gd" id="21_wy8i0"]
 [ext_resource type="AudioStream" uid="uid://ber5oanhs3xpo" path="res://Music/SFX/12_Player_Movement_SFX/56_Attack_03.wav" id="22_d4a26"]
 [ext_resource type="AudioStream" uid="uid://h0arfq8w3dal" path="res://Music/SFX/12_Player_Movement_SFX/03_Step_grass_03.wav" id="23_sgpi5"]
+[ext_resource type="AudioStream" uid="uid://b5jy4025f668m" path="res://Music/SFX/12_Player_Movement_SFX/61_Hit_03.wav" id="24_ejpg0"]
 [ext_resource type="PackedScene" uid="uid://cg44pjkp1xpgk" path="res://Characters/healthbar/healthbar.tscn" id="24_sgpi5"]
 
 [sub_resource type="Resource" id="Resource_kqih6"]
@@ -695,3 +696,6 @@ offset_left = -13.0
 offset_top = -47.0
 offset_right = 14.0
 offset_bottom = -44.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("24_ejpg0")

@@ -2,6 +2,7 @@ extends AirState
 
 @export var attack_2 : StringName
 @export var attack_3 : StringName
+@onready var audioPlayer = $"../../AudioStreamPlayer2D"
 var is_slamming = false
 var slam_played = false
 var attacked = false
@@ -11,13 +12,15 @@ func _enter() -> void:
 	super()
 	character.animation_tree.animation_finished.connect(_on_animation_finished)
 	blackboard.set_var(BBNames.attack_var, false)
+	audioPlayer.pitch_scale = 1.4
+	audioPlayer.play()
 	attacked = true
 
 func _update(delta: float) -> void:
 	super(delta)
 
 	if attacked:
-		character.velocity.y = 0
+		character.velocity.y = 20
 	if stop_movement:
 		character.velocity.y = 500
 		character.velocity.x = 0
@@ -49,6 +52,8 @@ func _on_animation_finished(p_animation : StringName):
 		animation_name:
 			if !character.is_on_floor():
 				character.animation_state_machine.travel(attack_2)
+				audioPlayer.pitch_scale = 2.4
+				audioPlayer.play()
 				VariablesGlobal.have_attacked = true
 				blackboard.set_var(BBNames.attack_var, false)
 		attack_2:
@@ -57,6 +62,8 @@ func _on_animation_finished(p_animation : StringName):
 				
 				
 			character.animation_state_machine.travel(attack_3)
+			audioPlayer.pitch_scale = 2
+			audioPlayer.play()
 			VariablesGlobal.have_attacked = true
 			attacked = false
 			stop_movement = true
