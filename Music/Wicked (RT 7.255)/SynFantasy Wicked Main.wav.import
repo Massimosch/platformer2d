@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://djx0iwm3act6n"
+path="res://.godot/imported/SynFantasy Wicked Main.wav-438295e51f1f7bc0f9033da7f1deaedb.sample"
+
+[deps]
+
+source_file="res://Music/Wicked (RT 7.255)/SynFantasy Wicked Main.wav"
+dest_files=["res://.godot/imported/SynFantasy Wicked Main.wav-438295e51f1f7bc0f9033da7f1deaedb.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

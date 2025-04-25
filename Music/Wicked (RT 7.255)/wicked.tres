@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="OvaniSong" load_steps=7 format=3 uid="uid://msg7f6m8u6j2"]
+
+[ext_resource type="AudioStream" uid="uid://dy8alllr62uwo" path="res://Music/Wicked (RT 7.255)/SynFantasy Wicked Intensity 1.wav" id="1_jamy3"]
+[ext_resource type="Script" uid="uid://cmlhttw4sefvo" path="res://addons/OvaniPlugin/OvaniSong.gd" id="1_opjv2"]
+[ext_resource type="AudioStream" uid="uid://jh76l0u87c2r" path="res://Music/Wicked (RT 7.255)/SynFantasy Wicked Intensity 2.wav" id="2_7gp4k"]
+[ext_resource type="AudioStream" uid="uid://djx0iwm3act6n" path="res://Music/Wicked (RT 7.255)/SynFantasy Wicked Main.wav" id="3_f41vk"]
+[ext_resource type="AudioStream" uid="uid://cqcbg5t300ijh" path="res://Music/Wicked (RT 7.255)/SynFantasy Wicked Cut 30.wav" id="4_o72jy"]
+[ext_resource type="AudioStream" uid="uid://deh4j7qkfemv5" path="res://Music/Wicked (RT 7.255)/SynFantasy Wicked Cut 60.wav" id="5_veshc"]
+
+[resource]
+script = ExtResource("1_opjv2")
+Intensity1 = ExtResource("1_jamy3")
+Intensity2 = ExtResource("2_7gp4k")
+Intensity3 = ExtResource("3_f41vk")
+Loop30 = ExtResource("4_o72jy")
+Loop60 = ExtResource("5_veshc")
+ReverbTail = 7.255
+SongMode = 0
+metadata/_custom_type_script = "uid://cmlhttw4sefvo"

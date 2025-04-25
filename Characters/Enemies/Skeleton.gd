@@ -4,6 +4,7 @@ extends NPCCharacters
 @onready var damage_numbers_origin = $DamageNumbersOrigin
 @export var audiostream : AudioStreamPlayer2D
 @onready var healthbar = $Healthbar
+@onready var audioPlayer = $AudioStreamPlayer2D
 var aggro_time := 3.0
 var aggro_timer := 0.0
 var points = 175
@@ -79,9 +80,15 @@ func take_damage(damage_amount: int, is_crit : bool) -> void:
 	
 	if is_crit:
 		HitStopManager.slow_motion_short()
+		audioPlayer.pitch_scale = 1.8
+		audioPlayer.play()
 	if current_health < damage_amount:
+		audioPlayer.pitch_scale = 1
+		audioPlayer.play()
 		damage_amount = current_health
 	if current_health > 0:
+		audioPlayer.pitch_scale = 1.4
+		audioPlayer.play()
 		current_health -= damage_amount
 		healthbar.health = current_health
 		DamageNumbers.display_number(damage_amount, damage_numbers_origin.global_position, is_crit)
